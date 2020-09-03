@@ -7,6 +7,8 @@ import 'package:wvsu_tour_app/screens/messages_screen.dart';
 import 'package:wvsu_tour_app/screens/navigator_screen.dart';
 import 'package:wvsu_tour_app/screens/thankyou_frontliners_screen.dart';
 
+import '../config/app.dart';
+
 class HomeScreen extends StatefulWidget {
   HomeScreen({Key key}) : super(key: key);
 
@@ -27,11 +29,11 @@ class _HomeScreenState extends State<HomeScreen>
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: Color(0xFFF3F3F3),
+        backgroundColor: appScaffoldBackgroundColor,
         bottomNavigationBar: ConvexAppBar(
-          color: Color(0xFF106DCF),
+          color: appPrimaryColor,
           backgroundColor: Colors.white,
-          activeColor: Color(0xFF106DCF),
+          activeColor: appPrimaryColor,
           controller: _tabController,
           items: [
             TabItem(
@@ -50,7 +52,8 @@ class _HomeScreenState extends State<HomeScreen>
               icon: SimpleLineIcons.user,
             ),
           ],
-          initialActiveIndex: 2, //optional, default as 0
+          initialActiveIndex: 2,
+          //optional, default as 0
           onTap: (int i) => print('click index=$i'),
         ),
         body: TabBarView(controller: _tabController, children: [

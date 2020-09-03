@@ -1,9 +1,9 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_vector_icons/flutter_vector_icons.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:websafe_svg/websafe_svg.dart';
-import 'package:flutter_vector_icons/flutter_vector_icons.dart';
 import 'package:wvsu_tour_app/config/app.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -66,12 +66,12 @@ class _LoginScreenState extends State<LoginScreen> {
                                           ),
                                           Text("West Visayas State University",
                                               style: GoogleFonts.openSans(
-                                                color: Color(0xFF106DCF),
+                                                color: appPrimaryColor,
                                                 fontSize: 14,
                                               )),
                                           Text("Campus Tour",
                                               style: GoogleFonts.pattaya(
-                                                  color: Color(0xFF106DCF),
+                                                  color: appPrimaryColor,
                                                   fontSize: 35,
                                                   fontWeight: FontWeight.bold,
                                                   letterSpacing: 1)),
@@ -81,7 +81,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                           SizedBox(
                                             width: double.infinity,
                                             child: FlatButton.icon(
-                                                color: Color(0xFF075BB3),
+                                                color: appSecondaryColor,
                                                 padding: EdgeInsets.fromLTRB(
                                                     25, 15, 25, 15),
                                                 onPressed: () {
@@ -92,7 +92,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                                 icon: Icon(SimpleLineIcons
                                                     .social_facebook),
                                                 label: Text(
-                                                  "Continue with Facebook",
+                                                  "Facebook Login",
                                                   style: GoogleFonts.openSans(
                                                       color: Colors.white,
                                                       fontSize: 15),
@@ -110,7 +110,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                           SizedBox(
                                             width: double.infinity,
                                             child: FlatButton.icon(
-                                                color: Color(0xFF075BB3),
+                                                color: appSecondaryColor,
                                                 padding: EdgeInsets.fromLTRB(
                                                     25, 15, 25, 15),
                                                 onPressed: () {
@@ -121,7 +121,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                                 icon: Icon(SimpleLineIcons
                                                     .social_google),
                                                 label: Text(
-                                                  "Continue with Google",
+                                                  "Google Login",
                                                   style: GoogleFonts.openSans(
                                                       color: Colors.white,
                                                       fontSize: 15),
