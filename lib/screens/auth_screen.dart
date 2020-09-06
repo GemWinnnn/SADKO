@@ -120,11 +120,11 @@ class _AuthScreenState extends State<AuthScreen> {
               SizedBox(height: 20),
               Text(
                 "West Visayas State University",
-                style: GoogleFonts.lato(color: appPrimaryColor),
+                style: GoogleFonts.lato(color: appSecondaryColor),
               ),
               Text("Campus Tour",
-                  style:
-                      GoogleFonts.pattaya(color: appPrimaryColor, fontSize: 30))
+                  style: GoogleFonts.pattaya(
+                      color: appSecondaryColor, fontSize: 30))
             ],
           ),
         );
@@ -134,7 +134,7 @@ class _AuthScreenState extends State<AuthScreen> {
         _loginXOffset = 0;
         break;
       case 1:
-        _backgroundColor = appPrimaryColor;
+        _backgroundColor = appSecondaryColor;
         _loginOpacity = 1;
         _loginYOffset = appScreenSize.height * 0.34;
         _signUpYOffset = appScreenSize.height;
@@ -145,7 +145,7 @@ class _AuthScreenState extends State<AuthScreen> {
         _loginOpacity = 0.9;
         _loginYOffset = appScreenSize.height * 0.35;
         _signUpYOffset = appScreenSize.height * 0.38;
-        _backgroundColor = appPrimaryColor;
+        _backgroundColor = appSecondaryColor;
         _loginWidth = appScreenSize.width - 30;
         _loginXOffset = 10;
         break;
@@ -305,7 +305,7 @@ class _AuthScreenState extends State<AuthScreen> {
                         right: 0,
                         child: IconButton(
                           icon: Icon(SimpleLineIcons.close,
-                              color: appPrimaryColor),
+                              color: appSecondaryColor),
                           onPressed: () {
                             setState(() {
                               _pageState != 0 ? _pageState = 0 : _pageState = 1;

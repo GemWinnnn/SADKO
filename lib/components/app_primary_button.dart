@@ -25,7 +25,7 @@ class _AppPrimaryButtonState extends State<AppPrimaryButton> {
           width: double.infinity,
           child: widget.icon != null
               ? FlatButton.icon(
-                  color: appPrimaryColor,
+                  color: appSecondaryColor,
                   padding: buttonPadding,
                   onPressed: widget.onPressed,
                   icon: Icon(widget.icon),
@@ -33,7 +33,7 @@ class _AppPrimaryButtonState extends State<AppPrimaryButton> {
                   textColor: buttonTextColor,
                   shape: buttonShape)
               : FlatButton(
-                  color: appPrimaryColor,
+                  color: appSecondaryColor,
                   padding: buttonPadding,
                   onPressed: widget.onPressed,
                   child: Text(widget.text, style: buttonStyle),
