@@ -8,6 +8,7 @@ import 'package:wvsu_tour_app/observers/counter_observer.dart';
 import 'package:wvsu_tour_app/screens/auth_screen.dart';
 import 'package:wvsu_tour_app/screens/home_screen.dart';
 import 'package:wvsu_tour_app/screens/legal_screen.dart';
+import 'package:wvsu_tour_app/screens/login_screen.dart';
 import 'package:wvsu_tour_app/screens/root_screen.dart';
 
 Future<void> main() async {
@@ -25,7 +26,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     Auth appAuth = new Auth();
     return MaterialApp(
-        home: new CounterPage(),
+        home: new LoginScreen(),
         // home: new RootScreen(auth: appAuth),
         theme: ThemeData(
           primaryColor: appPrimaryColor,

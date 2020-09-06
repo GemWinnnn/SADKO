@@ -31,8 +31,8 @@ class _CampusLifeScreenState extends State<CampusLifeScreen> {
 
   Widget _buildListItem(BuildContext context, int index) {
     return Container(
+      width: 280,
       margin: EdgeInsets.symmetric(horizontal: 10),
-      width: 300,
       child: Material(
         borderRadius: appDefaultBorderRadius,
         color: Colors.white,
