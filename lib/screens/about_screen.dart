@@ -46,6 +46,7 @@ class _AboutScreenState extends State<AboutScreen> {
         backgroundColor: appPrimaryColor,
         body: SingleChildScrollView(
           scrollDirection: Axis.vertical,
+          controller: ScrollController(initialScrollOffset: 0),
           child: Container(
             width: double.infinity,
             decoration: BoxDecoration(color: appPrimaryColor),

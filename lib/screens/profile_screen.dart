@@ -16,6 +16,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
     return Scaffold(
         backgroundColor: appPrimaryColor,
         body: SingleChildScrollView(
+          controller: ScrollController(initialScrollOffset: 0),
           child: Container(
             width: double.infinity,
             decoration: BoxDecoration(color: appPrimaryColor),

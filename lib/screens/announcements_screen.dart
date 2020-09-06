@@ -30,6 +30,7 @@ class _AnnouncementsScreenState extends State<AnnouncementsScreen> {
     return Scaffold(
         backgroundColor: appPrimaryColor,
         body: SingleChildScrollView(
+          controller: ScrollController(initialScrollOffset: 0),
           child: Container(
             width: double.infinity,
             decoration: BoxDecoration(color: appPrimaryColor),
@@ -71,7 +72,12 @@ class _AnnouncementsScreenState extends State<AnnouncementsScreen> {
                             );
                           }
 
-                          return Container();
+                          return Center(
+                            child: Text(
+                              "No connection :(",
+                              style: GoogleFonts.openSans(color: Colors.white),
+                            ),
+                          );
                         },
                       )
                     ],

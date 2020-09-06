@@ -38,6 +38,7 @@ dependencies:
   url_launcher: ^5.5.2
   share: ^0.6.5
   line_icons: ^0.2.0
+  hydrated_bloc: ^6.0.1
   flutter_webview_plugin: ^0.3.11
   sembast: ^2.4.7+6
   circular_profile_avatar: ^1.0.6

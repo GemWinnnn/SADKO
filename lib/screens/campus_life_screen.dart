@@ -64,6 +64,7 @@ class _CampusLifeScreenState extends State<CampusLifeScreen> {
   Widget build(BuildContext context) {
     Size appScreenSize = MediaQuery.of(context).size;
     return SingleChildScrollView(
+      controller: ScrollController(initialScrollOffset: 0),
       child: Container(
         width: double.infinity,
         decoration: BoxDecoration(color: appPrimaryColor),

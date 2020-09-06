@@ -70,6 +70,7 @@ class _NavigatorScreenState extends State<NavigatorScreen> {
   Widget build(BuildContext context) {
     Size appScreenSize = MediaQuery.of(context).size;
     return SingleChildScrollView(
+      controller: ScrollController(initialScrollOffset: 0),
       child: Container(
         decoration: BoxDecoration(
             color: appPrimaryColor,
