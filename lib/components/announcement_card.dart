@@ -71,8 +71,7 @@ class AnnouncementCard extends StatelessWidget {
                                   this.title != null
                                       ? this.title
                                       : "Loading...",
-                                  style: GoogleFonts.openSans(
-                                      color: Color(0xFF000000), fontSize: 15),
+                                  style: appBodyTextStyle,
                                   overflow: TextOverflow.ellipsis,
                                   maxLines: 2,
                                   softWrap: true),

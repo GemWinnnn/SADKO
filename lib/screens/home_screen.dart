@@ -52,7 +52,7 @@ class _HomeScreenState extends State<HomeScreen>
           backgroundColor: Colors.white,
           activeColor: Color(0xFF106DCF),
           controller: _tabController,
-          elevation: 0,
+          elevation: 1,
           items: [
             TabItem(
               icon: SimpleLineIcons.bell,

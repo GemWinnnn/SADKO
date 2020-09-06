@@ -120,7 +120,7 @@ class _AuthScreenState extends State<AuthScreen> {
               SizedBox(height: 20),
               Text(
                 "West Visayas State University",
-                style: GoogleFonts.openSans(color: appPrimaryColor),
+                style: GoogleFonts.lato(color: appPrimaryColor),
               ),
               Text("Campus Tour",
                   style:
@@ -167,7 +167,7 @@ class _AuthScreenState extends State<AuthScreen> {
                   SizedBox(height: 20),
                   Text(
                     "West Visayas State University",
-                    style: GoogleFonts.openSans(color: Colors.white),
+                    style: GoogleFonts.lato(color: Colors.white),
                   ),
                   Text("Campus Tour",
                       style: GoogleFonts.pattaya(
@@ -252,11 +252,11 @@ class _AuthScreenState extends State<AuthScreen> {
                         ),
                         Text(
                           "Login",
-                          style: GoogleFonts.openSans(fontSize: 27),
+                          style: GoogleFonts.lato(fontSize: 27),
                         ),
                         Text(
                           "Select an option to login on an existing account or create a new one.",
-                          style: GoogleFonts.openSans(),
+                          style: GoogleFonts.lato(),
                         ),
                         SizedBox(height: 20),
                         Padding(
@@ -322,7 +322,7 @@ class _AuthScreenState extends State<AuthScreen> {
                                       SizedBox(height: 20),
                                       Text(
                                         "West Visayas State University",
-                                        style: GoogleFonts.openSans(
+                                        style: GoogleFonts.lato(
                                             color: Colors.white),
                                       ),
                                       Text("Campus Tour",
@@ -358,11 +358,11 @@ class _AuthScreenState extends State<AuthScreen> {
                     ),
                     Text(
                       "Create an Account",
-                      style: GoogleFonts.openSans(fontSize: 27),
+                      style: GoogleFonts.lato(fontSize: 27),
                     ),
                     Text(
                       "Select an option to create a new account.",
-                      style: GoogleFonts.openSans(),
+                      style: GoogleFonts.lato(),
                     ),
                     SizedBox(height: 20),
                     Padding(
@@ -377,7 +377,7 @@ class _AuthScreenState extends State<AuthScreen> {
                               icon: Icon(SimpleLineIcons.social_facebook),
                               label: Text(
                                 "Continue with Facebook",
-                                style: GoogleFonts.openSans(
+                                style: GoogleFonts.lato(
                                     color: Colors.white, fontSize: 15),
                               ),
                               textColor: Colors.white,

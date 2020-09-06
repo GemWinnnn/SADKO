@@ -17,7 +17,7 @@ class AppBrandHorizontal extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text("West Visayas State University",
-                style: GoogleFonts.openSans(color: Colors.white)),
+                style: GoogleFonts.lato(color: Colors.white)),
             Text("Campus Tour",
                 style: GoogleFonts.pattaya(color: Colors.white, fontSize: 30))
           ],

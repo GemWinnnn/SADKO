@@ -42,12 +42,10 @@ class _AnnouncementsScreenState extends State<AnnouncementsScreen> {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text("Announcements",
-                          style: GoogleFonts.openSans(
-                              color: Colors.white, fontSize: 30)),
+                      Text("Announcements", style: appTitleTextStyle),
                       Text(
                         'Be informed!',
-                        style: GoogleFonts.openSans(color: Colors.white),
+                        style: appBodyTextStyle,
                       ),
                       SizedBox(
                         height: 20,
@@ -73,7 +71,8 @@ class _AnnouncementsScreenState extends State<AnnouncementsScreen> {
                           return Center(
                             child: Text(
                               "No connection :(",
-                              style: GoogleFonts.openSans(color: Colors.white),
+                              style:
+                                  GoogleFonts.lato(color: appTextPrimaryColor),
                             ),
                           );
                         },

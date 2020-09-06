@@ -17,20 +17,10 @@ class AppLegalLinks extends StatelessWidget {
           TextSpan(
               text:
                   "Taga West! By logging in or creating an account, you are agreeing with our ",
-              style: GoogleFonts.openSans(color: appTextBodyColor)),
-          TextSpan(
-            text: "Terms and Conditions",
-            style: GoogleFonts.openSans(
-                fontWeight: FontWeight.bold, color: appPrimaryColor),
-          ),
-          TextSpan(
-              text: " and ",
-              style: GoogleFonts.openSans(color: appTextBodyColor)),
-          TextSpan(
-            text: "Privacy Policy.",
-            style: GoogleFonts.openSans(
-                fontWeight: FontWeight.bold, color: appPrimaryColor),
-          )
+              style: appBodyTextStyle),
+          TextSpan(text: "Terms and Conditions", style: appBodyBoldTextStyle),
+          TextSpan(text: " and ", style: appBodyTextStyle),
+          TextSpan(text: "Privacy Policy.", style: appBodyBoldTextStyle)
         ])),
       ),
     );

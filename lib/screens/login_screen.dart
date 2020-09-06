@@ -68,7 +68,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                               fit: BoxFit.cover,
                                               child: Text(
                                                   "West Visayas State University",
-                                                  style: GoogleFonts.openSans(
+                                                  style: GoogleFonts.lato(
                                                     color: Color(0xFF106DCF),
                                                   ))),
                                           FittedBox(
@@ -99,7 +99,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                                       .social_facebook),
                                                   label: Text(
                                                     "Login with Facebook",
-                                                    style: GoogleFonts.openSans(
+                                                    style: GoogleFonts.lato(
                                                         color: Colors.white,
                                                         fontSize: 15),
                                                   ),
@@ -131,7 +131,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                                   label: Text(
                                                     "Login with Google",
                                                     softWrap: true,
-                                                    style: GoogleFonts.openSans(
+                                                    style: GoogleFonts.lato(
                                                         color: Colors.white,
                                                         fontSize: 15),
                                                   ),
@@ -155,11 +155,10 @@ class _LoginScreenState extends State<LoginScreen> {
                               TextSpan(
                                   text:
                                       "Taga-West! By creating or logging into an account, you are agreeing with our. ",
-                                  style: GoogleFonts.openSans(
-                                      color: Colors.white)),
+                                  style: GoogleFonts.lato(color: Colors.white)),
                               TextSpan(
                                   text: "Privacy Policy",
-                                  style: GoogleFonts.openSans(
+                                  style: GoogleFonts.lato(
                                       color: Colors.white,
                                       fontWeight: FontWeight.bold))
                             ])))

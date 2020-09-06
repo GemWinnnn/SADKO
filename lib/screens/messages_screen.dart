@@ -12,7 +12,7 @@ class MessagesScreen extends StatelessWidget {
           backgroundColor: Colors.white,
           title: Text(
             "Messages",
-            style: GoogleFonts.openSans(color: Color(0xFF000000)),
+            style: GoogleFonts.lato(color: Color(0xFF000000)),
           ),
         ),
         body: Text("data"),

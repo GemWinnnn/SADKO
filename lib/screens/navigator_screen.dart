@@ -51,7 +51,7 @@ class _NavigatorScreenState extends State<NavigatorScreen> {
                 bottom: 20,
                 left: 20,
                 child: Text("Data Here",
-                    style: GoogleFonts.openSans(color: Colors.white)),
+                    style: GoogleFonts.lato(color: Colors.white)),
               ),
             ],
           ),
@@ -90,11 +90,11 @@ class _NavigatorScreenState extends State<NavigatorScreen> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text("Campus Tour",
-                            style: GoogleFonts.openSans(
+                            style: GoogleFonts.lato(
                                 color: Colors.white, fontSize: 30)),
                         Text(
                           "Hold thy banner high!",
-                          style: GoogleFonts.openSans(color: Colors.white),
+                          style: GoogleFonts.lato(color: Colors.white),
                         )
                       ],
                     ),
@@ -117,7 +117,7 @@ class _NavigatorScreenState extends State<NavigatorScreen> {
                         padding: EdgeInsets.fromLTRB(30, 30, 30, 10),
                         child: Text(
                           "Explore",
-                          style: GoogleFonts.openSans(
+                          style: GoogleFonts.lato(
                               fontSize: 20, fontWeight: FontWeight.bold),
                         ),
                       ),
@@ -137,7 +137,7 @@ class _NavigatorScreenState extends State<NavigatorScreen> {
                         padding: EdgeInsets.fromLTRB(30, 10, 30, 10),
                         child: Text(
                           "Featured",
-                          style: GoogleFonts.openSans(
+                          style: GoogleFonts.lato(
                               fontSize: 20, fontWeight: FontWeight.bold),
                         ),
                       ),

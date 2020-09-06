@@ -63,11 +63,12 @@ class _AboutScreenState extends State<AboutScreen> {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text("About",
-                                style: GoogleFonts.openSans(
-                                    color: Colors.white, fontSize: 30)),
+                                style: GoogleFonts.lato(
+                                    color: appTextPrimaryColor, fontSize: 30)),
                             Text(
                               'Information about this app',
-                              style: GoogleFonts.openSans(color: Colors.white),
+                              style:
+                                  GoogleFonts.lato(color: appTextPrimaryColor),
                             ),
                             SizedBox(
                               height: 20,
@@ -91,7 +92,7 @@ class _AboutScreenState extends State<AboutScreen> {
                             padding: EdgeInsets.fromLTRB(30, 30, 30, 10),
                             child: Text(
                               "App User",
-                              style: GoogleFonts.openSans(
+                              style: GoogleFonts.lato(
                                   fontSize: 20, fontWeight: FontWeight.bold),
                             ),
                           ),
@@ -134,7 +135,7 @@ class _AboutScreenState extends State<AboutScreen> {
                                             _user != null
                                                 ? _user.displayName
                                                 : "User Name",
-                                            style: GoogleFonts.openSans(
+                                            style: GoogleFonts.lato(
                                                 fontSize: 18,
                                                 fontWeight: FontWeight.bold),
                                           ),
@@ -181,7 +182,7 @@ class _AboutScreenState extends State<AboutScreen> {
                                 padding: EdgeInsets.fromLTRB(30, 10, 30, 10),
                                 child: Text(
                                   "WVSU Campus Tour",
-                                  style: GoogleFonts.openSans(
+                                  style: GoogleFonts.lato(
                                       fontSize: 20,
                                       fontWeight: FontWeight.bold),
                                 ),
@@ -190,7 +191,7 @@ class _AboutScreenState extends State<AboutScreen> {
                                 padding: EdgeInsets.fromLTRB(30, 10, 30, 10),
                                 child: Text(
                                   "WVSU Campus Tour is a mobile app developed by the volunteers from the College of Information and Communications Technology, Main Campus. It aims to mitigate the effect of the pandemic for students who want to get more familiar with the University.",
-                                  style: GoogleFonts.openSans(),
+                                  style: GoogleFonts.lato(),
                                 ),
                               )
                             ],
@@ -206,7 +207,7 @@ class _AboutScreenState extends State<AboutScreen> {
                                 children: [
                                   Text(
                                     "Volunteers",
-                                    style: GoogleFonts.openSans(
+                                    style: GoogleFonts.lato(
                                         fontSize: 20,
                                         fontWeight: FontWeight.bold),
                                   ),
@@ -215,7 +216,7 @@ class _AboutScreenState extends State<AboutScreen> {
                                   ),
                                   Text(
                                     "This app is not possible without the help of these volunteers.",
-                                    style: GoogleFonts.openSans(),
+                                    style: appBodyTextStyle,
                                   ),
                                 ],
                               )),
@@ -255,7 +256,7 @@ class _AboutScreenState extends State<AboutScreen> {
                             padding: EdgeInsets.fromLTRB(30, 20, 30, 10),
                             child: Text(
                               "Open Source",
-                              style: GoogleFonts.openSans(
+                              style: GoogleFonts.lato(
                                   fontSize: 20, fontWeight: FontWeight.bold),
                             ),
                           ),
@@ -265,7 +266,7 @@ class _AboutScreenState extends State<AboutScreen> {
                               children: [
                                 Text(
                                     "WVSU Campus tour app is being developed publicly on GitHub. Anyone with or without the knowledge of programming can help with its development. Please report any suggestions or issues by pressing the button below.",
-                                    style: GoogleFonts.openSans()),
+                                    style: GoogleFonts.lato()),
                                 SizedBox(
                                   width: double.infinity,
                                   child: RaisedButton.icon(

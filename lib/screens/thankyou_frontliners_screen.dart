@@ -49,7 +49,7 @@ class _ThankyouFrontlinersScreenState extends State<ThankyouFrontlinersScreen> {
                     EdgeInsets.symmetric(horizontal: appScreenSize.width * 0.1),
                 child: Text(
                   "A special screen for our dedicated frontliners! Thank you for all your sacrifices!",
-                  style: GoogleFonts.openSans(color: Colors.white),
+                  style: GoogleFonts.lato(color: Colors.white),
                   textAlign: TextAlign.center,
                 ),
               ),
@@ -69,8 +69,8 @@ class _ThankyouFrontlinersScreenState extends State<ThankyouFrontlinersScreen> {
                     width: 20,
                   ),
                   Text("1,000",
-                      style: GoogleFonts.openSans(
-                          fontSize: 60, color: Colors.white))
+                      style:
+                          GoogleFonts.lato(fontSize: 60, color: Colors.white))
                 ],
               ),
               SizedBox(
@@ -99,7 +99,7 @@ class _ThankyouFrontlinersScreenState extends State<ThankyouFrontlinersScreen> {
                   padding: EdgeInsets.symmetric(horizontal: 40),
                   child: Text(
                     "Double tap the heart to send a thank you to our modern heroes!",
-                    style: GoogleFonts.openSans(color: Colors.white),
+                    style: GoogleFonts.lato(color: Colors.white),
                     textAlign: TextAlign.center,
                   )),
             ],

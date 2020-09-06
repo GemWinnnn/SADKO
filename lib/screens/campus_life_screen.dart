@@ -45,7 +45,7 @@ class _CampusLifeScreenState extends State<CampusLifeScreen> {
               Positioned(
                 bottom: 20,
                 left: 20,
-                child: Text("Name Here", style: GoogleFonts.openSans()),
+                child: Text("Name Here", style: GoogleFonts.lato()),
               ),
             ],
           ),
@@ -79,11 +79,11 @@ class _CampusLifeScreenState extends State<CampusLifeScreen> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text("Campus Life",
-                      style: GoogleFonts.openSans(
-                          color: Colors.white, fontSize: 30)),
+                      style: GoogleFonts.lato(
+                          color: appTextPrimaryColor, fontSize: 30)),
                   Text(
                     'What it feels to be a "Taga-West"',
-                    style: GoogleFonts.openSans(color: Colors.white),
+                    style: GoogleFonts.lato(color: appTextPrimaryColor),
                   )
                 ],
               ),
@@ -95,8 +95,8 @@ class _CampusLifeScreenState extends State<CampusLifeScreen> {
                 padding: EdgeInsets.symmetric(horizontal: 30, vertical: 10),
                 child: Text(
                   "Take a Way Messages",
-                  style:
-                      GoogleFonts.openSans(color: Colors.white, fontSize: 20),
+                  style: GoogleFonts.lato(
+                      color: appTextPrimaryColor, fontSize: 20),
                 )),
             SizedBox(
               height: appScreenSize.height * 0.5,
@@ -115,14 +115,14 @@ class _CampusLifeScreenState extends State<CampusLifeScreen> {
                 padding: EdgeInsets.symmetric(horizontal: 30, vertical: 10),
                 child: Text(
                   "Our University president and other key officials would like to express their thoughts.",
-                  style: GoogleFonts.openSans(color: Colors.white),
+                  style: GoogleFonts.lato(color: appTextPrimaryColor),
                 )),
             Padding(
                 padding: EdgeInsets.symmetric(horizontal: 30, vertical: 10),
                 child: Text(
                   "Organizations",
-                  style:
-                      GoogleFonts.openSans(color: Colors.white, fontSize: 20),
+                  style: GoogleFonts.lato(
+                      color: appTextPrimaryColor, fontSize: 20),
                 )),
             SizedBox(
               height: 200,
@@ -141,8 +141,8 @@ class _CampusLifeScreenState extends State<CampusLifeScreen> {
                 padding: EdgeInsets.symmetric(horizontal: 30, vertical: 10),
                 child: Text(
                   "Photos",
-                  style:
-                      GoogleFonts.openSans(color: Colors.white, fontSize: 20),
+                  style: GoogleFonts.lato(
+                      color: appTextPrimaryColor, fontSize: 20),
                 )),
             SizedBox(
               height: 200,
@@ -161,7 +161,7 @@ class _CampusLifeScreenState extends State<CampusLifeScreen> {
                 padding: EdgeInsets.symmetric(horizontal: 30, vertical: 10),
                 child: Text(
                   "Veggies es bonus vobis, proinde vos postulo essum magis kohlrabi welsh onion daikon amaranth tatsoi tomatillo melon azuki bean garlic.",
-                  style: GoogleFonts.openSans(color: Colors.white),
+                  style: GoogleFonts.lato(color: appTextPrimaryColor),
                 )),
             SizedBox(height: 30)
           ],

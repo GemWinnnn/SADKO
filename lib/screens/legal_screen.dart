@@ -59,7 +59,7 @@ class _LegalScreenState extends State<LegalScreen> {
           appBar: AppBar(
             title: Text(
               "Legal",
-              style: GoogleFonts.openSans(color: Colors.black),
+              style: GoogleFonts.lato(color: Colors.black),
             ),
             leading: IconButton(
                 icon: Icon(

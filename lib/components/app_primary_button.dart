@@ -13,8 +13,7 @@ class AppPrimaryButton extends StatefulWidget {
 }
 
 class _AppPrimaryButtonState extends State<AppPrimaryButton> {
-  TextStyle buttonStyle =
-      GoogleFonts.openSans(color: Colors.white, fontSize: 15);
+  TextStyle buttonStyle = GoogleFonts.lato(color: Colors.white, fontSize: 15);
   EdgeInsetsGeometry buttonPadding = EdgeInsets.fromLTRB(0, 15, 0, 15);
   ShapeBorder buttonShape = RoundedRectangleBorder(
       borderRadius: BorderRadius.all(Radius.circular(23)));

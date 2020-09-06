@@ -20,7 +20,7 @@ class AnnouncementDetailsScreen extends StatelessWidget {
           backgroundColor: Colors.white,
           title: Text(
             "Announcement",
-            style: GoogleFonts.openSans(color: appTextBodyColor),
+            style: GoogleFonts.lato(color: appTextBodyColor),
           ),
           elevation: 1,
           leading: IconButton(
@@ -61,7 +61,7 @@ class AnnouncementDetailsScreen extends StatelessWidget {
                   children: [
                     Text(
                       this.title,
-                      style: GoogleFonts.openSans(
+                      style: GoogleFonts.lato(
                           fontSize: 17, fontWeight: FontWeight.w600),
                     ),
                     SizedBox(height: 20),

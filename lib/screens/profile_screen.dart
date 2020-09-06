@@ -31,11 +31,11 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text("Profile",
-                          style: GoogleFonts.openSans(
+                          style: GoogleFonts.lato(
                               color: Colors.white, fontSize: 30)),
                       Text(
                         'About you',
-                        style: GoogleFonts.openSans(color: Colors.white),
+                        style: GoogleFonts.lato(color: Colors.white),
                       ),
                       SizedBox(
                         height: 20,

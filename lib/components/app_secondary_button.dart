@@ -14,7 +14,7 @@ class AppSecondaryButton extends StatefulWidget {
 
 class _AppSecondaryButtonState extends State<AppSecondaryButton> {
   TextStyle buttonStyle =
-      GoogleFonts.openSans(color: appPrimaryColor, fontSize: 15);
+      GoogleFonts.lato(color: appPrimaryColor, fontSize: 15);
   EdgeInsetsGeometry buttonPadding = EdgeInsets.fromLTRB(0, 15, 0, 15);
   ShapeBorder buttonShape = RoundedRectangleBorder(
       borderRadius: BorderRadius.circular(23),
