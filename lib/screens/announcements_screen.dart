@@ -6,8 +6,6 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:wvsu_tour_app/bloc/blocs.dart';
 import 'package:wvsu_tour_app/components/announcement_card.dart';
 import 'package:wvsu_tour_app/config/app.dart';
-import 'package:wvsu_tour_app/models/models.dart';
-import 'package:wvsu_tour_app/repositories/repositories.dart';
 
 class AnnouncementsScreen extends StatefulWidget {
   AnnouncementsScreen({Key key}) : super(key: key);

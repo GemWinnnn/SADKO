@@ -19,7 +19,7 @@ class AnnouncementsApiClient {
     final response = await this.httpClient.get(url);
 
     if (response.statusCode != 200) {
-      throw Exception('error getting weather for location');
+      print("Error fetching data");
     }
 
     final json = jsonDecode(response.body);

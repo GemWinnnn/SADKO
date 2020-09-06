@@ -195,14 +195,30 @@ class _AboutScreenState extends State<AboutScreen> {
                               )
                             ],
                           ),
-                          Padding(
-                            padding: EdgeInsets.fromLTRB(30, 20, 30, 10),
-                            child: Text(
-                              "Volunteers",
-                              style: GoogleFonts.openSans(
-                                  fontSize: 20, fontWeight: FontWeight.bold),
-                            ),
+                          Divider(
+                            thickness: 2,
+                            height: 30,
                           ),
+                          Padding(
+                              padding: EdgeInsets.fromLTRB(30, 20, 30, 10),
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(
+                                    "Volunteers",
+                                    style: GoogleFonts.openSans(
+                                        fontSize: 20,
+                                        fontWeight: FontWeight.bold),
+                                  ),
+                                  SizedBox(
+                                    height: 20,
+                                  ),
+                                  Text(
+                                    "This app is not possible without the help of these volunteers.",
+                                    style: GoogleFonts.openSans(),
+                                  ),
+                                ],
+                              )),
                           Row(
                             children: [
                               SizedBox(
