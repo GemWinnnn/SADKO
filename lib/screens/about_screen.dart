@@ -79,6 +79,7 @@ class _AboutScreenState extends State<AboutScreen> {
                     child: Container(
                       decoration: BoxDecoration(
                           color: Colors.white,
+                          boxShadow: appDefaultShadow,
                           borderRadius:
                               BorderRadius.vertical(top: Radius.circular(36))),
                       width: appScreenSize.width,
