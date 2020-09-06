@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_vector_icons/flutter_vector_icons.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -38,26 +39,31 @@ class AnnouncementCard extends StatelessWidget {
                 width: appScreenSize.width,
                 child: Container(
                   decoration: BoxDecoration(
-                      boxShadow: appDefaultShadow,
-                      color: Colors.white,
-                      borderRadius: BorderRadius.all(Radius.circular(10))),
+                    boxShadow: appDefaultShadow,
+                    color: Colors.white,
+                  ),
                   child: Padding(
                     padding: EdgeInsets.all(10),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.start,
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        SizedBox(
-                          height: 60,
-                          width: 60,
-                          child: Container(
-                            decoration: BoxDecoration(
-                                image: DecorationImage(
-                                    image: NetworkImage(featuredImageThumbnail),
-                                    fit: BoxFit.cover),
-                                color: appPrimaryColor,
-                                borderRadius:
-                                    BorderRadius.all(Radius.circular(10))),
+                        ClipRRect(
+                          borderRadius: BorderRadius.all(Radius.circular(50)),
+                          child: SizedBox(
+                            height: 60,
+                            width: 60,
+                            child: Container(
+                              decoration: BoxDecoration(color: appPrimaryColor),
+                              child: FittedBox(
+                                fit: BoxFit.cover,
+                                child: CachedNetworkImage(
+                                  placeholder: (context, url) =>
+                                      CircularProgressIndicator(),
+                                  imageUrl: featuredImageThumbnail,
+                                ),
+                              ),
+                            ),
                           ),
                         ),
                         SizedBox(
@@ -67,22 +73,23 @@ class AnnouncementCard extends StatelessWidget {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Container(
-                              width: MediaQuery.of(context).size.width * 0.6,
+                              width: MediaQuery.of(context).size.width * 0.7,
                               child: Text(
                                   this.title != null
                                       ? this.title
                                       : "Loading...",
                                   style: appBodyTextStyle,
                                   overflow: TextOverflow.ellipsis,
-                                  maxLines: 2,
+                                  maxLines: 1,
                                   softWrap: true),
                             ),
                             SizedBox(height: 5),
                             Opacity(
                                 opacity: 0.7,
                                 child: Container(
+                                  height: 30,
                                   width:
-                                      MediaQuery.of(context).size.width * 0.6,
+                                      MediaQuery.of(context).size.width * 0.7,
                                   child: Text(
                                     this.contents != null
                                         ? this.contents
@@ -97,12 +104,15 @@ class AnnouncementCard extends StatelessWidget {
                                 opacity: 0.5,
                                 child: Container(
                                   width: appScreenSize.width -
-                                      appScreenSize.width * 0.4,
+                                      appScreenSize.width * 0.3,
                                   child: Row(
                                     mainAxisAlignment:
                                         MainAxisAlignment.spaceBetween,
                                     children: [
-                                      Text("by " + this.createdBy['firstname']),
+                                      Row(children: [
+                                        Icon(Feather.feather, size: 15),
+                                        Text(" " + this.createdBy['username']),
+                                      ]),
                                       Row(
                                         children: [
                                           Icon(
@@ -112,8 +122,21 @@ class AnnouncementCard extends StatelessWidget {
                                           SizedBox(
                                             width: 5,
                                           ),
-                                          Text(timeago.format(DateTime.parse(
-                                              this.createdBy["createdAt"])))
+                                          // Text(timeago.format(DateTime
+                                          //     .fromMillisecondsSinceEpoch(DateTime
+                                          //             .parse(this.createdBy[
+                                          //                 "createdAt"])
+                                          //         .add(Duration(
+                                          //             milliseconds: new DateTime
+                                          //                     .now()
+                                          //                 .millisecondsSinceEpoch))
+                                          //         .millisecondsSinceEpoch)))
+                                          Text(timeago.format(DateTime.now()
+                                              .subtract(Duration(
+                                                  minutes: DateTime.parse(
+                                                          this.createdBy[
+                                                              "createdAt"])
+                                                      .minute))))
                                         ],
                                       )
                                     ],

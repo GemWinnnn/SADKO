@@ -1,5 +1,6 @@
 import 'package:avatar_glow/avatar_glow.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_vector_icons/flutter_vector_icons.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:wvsu_tour_app/components/app_brand_horizontal.dart';
@@ -14,6 +15,14 @@ class ThankyouFrontlinersScreen extends StatefulWidget {
 }
 
 class _ThankyouFrontlinersScreenState extends State<ThankyouFrontlinersScreen> {
+  @override
+  void initState() {
+    super.initState();
+    SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
+        statusBarIconBrightness: Brightness.light,
+        statusBarColor: Colors.transparent));
+  }
+
   @override
   Widget build(BuildContext context) {
     Size appScreenSize = MediaQuery.of(context).size;

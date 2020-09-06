@@ -20,7 +20,7 @@ class AnnouncementDetailsScreen extends StatelessWidget {
           backgroundColor: Colors.white,
           title: Text(
             "Announcement",
-            style: appBodyTextStyle,
+            style: GoogleFonts.lato(color: Colors.black),
           ),
           elevation: 1,
           leading: IconButton(
@@ -36,6 +36,7 @@ class AnnouncementDetailsScreen extends StatelessWidget {
             child: Stack(
           children: [
             Container(
+              width: appScreenSize.width,
               height: appScreenSize.height * 0.33,
               decoration: BoxDecoration(
                   color: appPrimaryColor,
@@ -49,6 +50,7 @@ class AnnouncementDetailsScreen extends StatelessWidget {
                     height: appScreenSize.height * 0.4,
                     decoration: BoxDecoration(color: Colors.black))),
             Container(
+              width: appScreenSize.width,
               margin: EdgeInsets.only(top: appScreenSize.height * 0.28),
               decoration: BoxDecoration(
                 color: Colors.white,

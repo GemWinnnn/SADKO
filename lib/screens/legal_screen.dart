@@ -29,8 +29,12 @@ class _LegalScreenState extends State<LegalScreen> {
     this.setState(() {
       _loading = true;
     });
-    var privacyResponse = await http.get(
-        "https://raw.githubusercontent.com/wvsu-cict-code/wvsu-tour-app/master/privacy.md");
+    var privacyResponse = await http
+        .get(
+            "https://raw.githubusercontent.com/wvsu-cict-code/wvsu-tour-app/master/privacy.md")
+        .catchError((onError) {
+      print(onError);
+    });
     if (privacyResponse.statusCode == 200) {
       this.setState(() {
         _markdownPrivacy = privacyResponse.body;

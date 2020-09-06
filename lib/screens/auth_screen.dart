@@ -24,7 +24,7 @@ class _AuthScreenState extends State<AuthScreen> {
 
   int _pageState = 0;
 
-  var _backgroundColor = Colors.white;
+  var _backgroundColor = appPrimaryColor;
 
   var _appIcon = Container();
 
@@ -111,7 +111,7 @@ class _AuthScreenState extends State<AuthScreen> {
     double appIconSize = appScreenSize.width * 0.2;
     switch (_pageState) {
       case 0:
-        _backgroundColor = Colors.white;
+        _backgroundColor = appPrimaryColor;
         _appIcon = Container(
           child: Column(
             children: [
