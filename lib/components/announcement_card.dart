@@ -2,13 +2,21 @@ import 'package:flutter/material.dart';
 import 'package:flutter_vector_icons/flutter_vector_icons.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:wvsu_tour_app/config/app.dart';
+import 'package:timeago/timeago.dart' as timeago;
 
 class AnnouncementCard extends StatelessWidget {
-  const AnnouncementCard({Key key}) : super(key: key);
-
+  const AnnouncementCard(
+      {Key key, this.title, this.featuredImage, this.contents, this.createdBy})
+      : super(key: key);
+  final String title;
+  final dynamic featuredImage;
+  final String contents;
+  final dynamic createdBy;
   @override
   Widget build(BuildContext context) {
     Size appScreenSize = MediaQuery.of(context).size;
+    dynamic featuredImage =
+        apiUrl + this.featuredImage["formats"]["thumbnail"]["url"];
     return Container(
         child: Padding(
             padding: EdgeInsets.only(bottom: 20),
@@ -29,6 +37,9 @@ class AnnouncementCard extends StatelessWidget {
                         width: 60,
                         child: Container(
                           decoration: BoxDecoration(
+                              image: DecorationImage(
+                                  image: NetworkImage(featuredImage),
+                                  fit: BoxFit.cover),
                               color: appPrimaryColor,
                               borderRadius:
                                   BorderRadius.all(Radius.circular(10))),
@@ -40,32 +51,50 @@ class AnnouncementCard extends StatelessWidget {
                       Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Text(
-                            "Announcement Title",
-                            style: GoogleFonts.openSans(
-                                color: Color(0xFF000000), fontSize: 18),
+                          Container(
+                            width: MediaQuery.of(context).size.width * 0.6,
+                            child: Text(
+                                this.title != null ? this.title : "Loading...",
+                                style: GoogleFonts.openSans(
+                                    color: Color(0xFF000000), fontSize: 18),
+                                overflow: TextOverflow.ellipsis,
+                                maxLines: 1,
+                                softWrap: true),
                           ),
                           Container(
-                            width: MediaQuery.of(context).size.width * 0.5,
+                            width: MediaQuery.of(context).size.width * 0.6,
                             child: Text(
-                              "Announcement description here. This announcement is so long that you can't read most of this text.",
+                              this.contents != null
+                                  ? this.contents
+                                  : "Loading...",
                               overflow: TextOverflow.ellipsis,
                               maxLines: 2,
                               softWrap: true,
                             ),
                           ),
                           Divider(),
-                          Row(
-                            children: [
-                              Icon(
-                                SimpleLineIcons.clock,
-                                size: 15,
-                              ),
-                              SizedBox(
-                                width: 5,
-                              ),
-                              Text("1 hour ago")
-                            ],
+                          Container(
+                            width:
+                                appScreenSize.width - appScreenSize.width * 0.4,
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Text("by " + this.createdBy['firstname']),
+                                Row(
+                                  children: [
+                                    Icon(
+                                      SimpleLineIcons.clock,
+                                      size: 15,
+                                    ),
+                                    SizedBox(
+                                      width: 5,
+                                    ),
+                                    Text(timeago.format(DateTime.parse(
+                                        this.createdBy["createdAt"])))
+                                  ],
+                                )
+                              ],
+                            ),
                           )
                         ],
                       )

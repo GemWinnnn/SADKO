@@ -1,6 +1,6 @@
 <img src="app_icon.svg"/>
 
-# WVSU Campus Tour App
+# WVSU Campus Tour
 
 WVSU Campus Tour is a mobile app developed by the volunteers from the [College of Information and Communications Technology](https://cictwvsu.com/), Main Campus. It aims to mitigate the effect of the pandemic for students who want to get more familiar with our [University](https://wvsu.edu.ph).
 

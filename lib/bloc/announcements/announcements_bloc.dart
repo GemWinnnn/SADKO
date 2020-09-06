@@ -14,7 +14,7 @@ class AnnouncementsInitial extends AnnouncementsState {}
 class AnnouncementsLoadInProgress extends AnnouncementsState {}
 
 class AnnouncementsLoadSuccess extends AnnouncementsState {
-  final Announcements announcements;
+  final List<Announcements> announcements;
 
   const AnnouncementsLoadSuccess({@required this.announcements})
       : assert(announcements != null);
@@ -37,8 +37,7 @@ class AnnouncementsBloc extends Bloc<AnnouncementsEvent, AnnouncementsState> {
     AnnouncementsEvent event,
   ) async* {
     try {
-      final Announcements announcements =
-          await announcementsRepository.getData();
+      final List announcements = await announcementsRepository.getData();
       yield AnnouncementsLoadSuccess(announcements: announcements);
     } catch (_) {}
   }

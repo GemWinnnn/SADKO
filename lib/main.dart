@@ -18,21 +18,13 @@ Future<void> main() async {
   Bloc.observer = DefaultBlocObserver();
   await Firebase.initializeApp();
 
-  final AnnouncementsRepository announcementsRepository =
-      AnnouncementsRepository(
-    apiClient: AnnouncementsApiClient(
-      httpClient: http.Client(),
-    ),
-  );
-
-  runApp(MyApp(announcementsRepository: announcementsRepository));
+  runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
-  MyApp({Key key, @required this.announcementsRepository})
-      : assert(announcementsRepository != null),
-        super(key: key);
-  final AnnouncementsRepository announcementsRepository;
+  MyApp({
+    Key key,
+  });
   @override
   Widget build(BuildContext context) {
     Auth appAuth = new Auth();
@@ -47,10 +39,7 @@ class MyApp extends StatelessWidget {
         ),
         routes: <String, WidgetBuilder>{
           '/login': (BuildContext context) => new AuthScreen(auth: appAuth),
-          '/home': (BuildContext context) => BlocProvider(
-              create: (context) => AnnouncementsBloc(
-                    announcementsRepository: announcementsRepository,
-                  )),
+          '/home': (BuildContext context) => new HomeScreen(),
           '/legal': (BuildContext context) => new LegalScreen(),
         });
   }

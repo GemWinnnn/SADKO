@@ -7,3 +7,4 @@ const appScaffoldBackgroundColor = appPrimaryColor;
 const facebookAppID = "618815765675430";
 BorderRadius appDefaultBorderRadius = BorderRadius.all(Radius.circular(20));
 double appDefaultPadding = 30.0;
+const apiUrl = "http://128.199.253.64:1337";

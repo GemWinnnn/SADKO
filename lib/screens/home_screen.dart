@@ -1,26 +1,39 @@
 import 'package:convex_bottom_bar/convex_bottom_bar.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_vector_icons/flutter_vector_icons.dart';
+import 'package:wvsu_tour_app/bloc/blocs.dart';
 import 'package:wvsu_tour_app/firebase/auth.dart';
 import 'package:wvsu_tour_app/models/models.dart';
+import 'package:wvsu_tour_app/repositories/announcements/announcements_api.dart';
+import 'package:wvsu_tour_app/repositories/repositories.dart';
 import 'package:wvsu_tour_app/screens/about_screen.dart';
 import 'package:wvsu_tour_app/screens/announcements_screen.dart';
 import 'package:wvsu_tour_app/screens/campus_life_screen.dart';
 import 'package:wvsu_tour_app/screens/navigator_screen.dart';
 import 'package:wvsu_tour_app/screens/thankyou_frontliners_screen.dart';
+import 'package:http/http.dart' as http;
 
 class HomeScreen extends StatefulWidget {
-  HomeScreen({Key key, this.auth, this.announcements}) : super(key: key);
+  HomeScreen({Key key, this.auth}) : super(key: key);
 
   final BaseAuth auth;
-  final Announcements announcements;
+  final AnnouncementsRepository announcementsRepository =
+      AnnouncementsRepository(
+    apiClient: AnnouncementsApiClient(
+      httpClient: http.Client(),
+    ),
+  );
 
   @override
-  _HomeScreenState createState() => _HomeScreenState();
+  _HomeScreenState createState() =>
+      _HomeScreenState(announcementsRepository: announcementsRepository);
 }
 
 class _HomeScreenState extends State<HomeScreen>
     with SingleTickerProviderStateMixin {
+  _HomeScreenState({Key key, this.announcementsRepository});
+  final AnnouncementsRepository announcementsRepository;
   TabController _tabController;
 
   @override
@@ -59,7 +72,11 @@ class _HomeScreenState extends State<HomeScreen>
           onTap: (int i) => print('click index=$i'),
         ),
         body: TabBarView(controller: _tabController, children: [
-          new AnnouncementsScreen(contents: widget.announcements),
+          BlocProvider(
+            create: (context) => AnnouncementsBloc(
+                announcementsRepository: widget.announcementsRepository),
+            child: new AnnouncementsScreen(),
+          ),
           new CampusLifeScreen(),
           new NavigatorScreen(),
           new ThankyouFrontlinersScreen(),

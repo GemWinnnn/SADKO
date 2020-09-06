@@ -14,7 +14,7 @@ class AnnouncementsApiClient {
   AnnouncementsApiClient({@required this.httpClient})
       : assert(httpClient != null);
 
-  Future<Announcements> fetchAnnouncements() async {
+  Future<List> fetchAnnouncements() async {
     final url = '$baseUrl/$endpoint';
     final response = await this.httpClient.get(url);
 
@@ -23,6 +23,18 @@ class AnnouncementsApiClient {
     }
 
     final json = jsonDecode(response.body);
-    return Announcements.fromJson(json);
+
+    List<Announcements> _announcementsList = [];
+
+    for (var item in json) {
+      Announcements announcement = Announcements(
+          contents: item['Contents'],
+          createdBy: item['created_by'],
+          featuredImage: item['FeaturedImage'],
+          title: item['Title']);
+      _announcementsList.add(announcement);
+    }
+
+    return _announcementsList;
   }
 }
