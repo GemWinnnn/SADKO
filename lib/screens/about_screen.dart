@@ -62,13 +62,10 @@ class _AboutScreenState extends State<AboutScreen> {
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Text("About",
-                                style: GoogleFonts.lato(
-                                    color: appTextPrimaryColor, fontSize: 30)),
+                            Text("About", style: appTitleTextStyle),
                             Text(
                               'Information about this app',
-                              style:
-                                  GoogleFonts.lato(color: appTextPrimaryColor),
+                              style: appBodyTextStyle,
                             ),
                             SizedBox(
                               height: 20,
@@ -90,11 +87,8 @@ class _AboutScreenState extends State<AboutScreen> {
                         children: [
                           Padding(
                             padding: EdgeInsets.fromLTRB(30, 30, 30, 10),
-                            child: Text(
-                              "App User",
-                              style: GoogleFonts.lato(
-                                  fontSize: 20, fontWeight: FontWeight.bold),
-                            ),
+                            child: Text("App User",
+                                style: appSecondaryTitleTextStyle),
                           ),
                           Padding(
                             padding: EdgeInsets.symmetric(
@@ -135,15 +129,16 @@ class _AboutScreenState extends State<AboutScreen> {
                                             _user != null
                                                 ? _user.displayName
                                                 : "User Name",
-                                            style: GoogleFonts.lato(
-                                                fontSize: 18,
-                                                fontWeight: FontWeight.bold),
+                                            style: appBodyBoldTextStyle,
                                           ),
-                                          Text("Connected via " +
-                                              (_user != null
-                                                  ? _user.providerData.first
-                                                      .providerId
-                                                  : "...")),
+                                          Text(
+                                            "Connected via " +
+                                                (_user != null
+                                                    ? _user.providerData.first
+                                                        .providerId
+                                                    : "..."),
+                                            style: appBodyTextStyle,
+                                          ),
                                         ],
                                       ),
                                     ),
@@ -182,16 +177,14 @@ class _AboutScreenState extends State<AboutScreen> {
                                 padding: EdgeInsets.fromLTRB(30, 10, 30, 10),
                                 child: Text(
                                   "WVSU Campus Tour",
-                                  style: GoogleFonts.lato(
-                                      fontSize: 20,
-                                      fontWeight: FontWeight.bold),
+                                  style: appSecondaryTitleTextStyle,
                                 ),
                               ),
                               Padding(
                                 padding: EdgeInsets.fromLTRB(30, 10, 30, 10),
                                 child: Text(
                                   "WVSU Campus Tour is a mobile app developed by the volunteers from the College of Information and Communications Technology, Main Campus. It aims to mitigate the effect of the pandemic for students who want to get more familiar with the University.",
-                                  style: GoogleFonts.lato(),
+                                  style: appBodyTextStyle,
                                 ),
                               )
                             ],
@@ -207,9 +200,7 @@ class _AboutScreenState extends State<AboutScreen> {
                                 children: [
                                   Text(
                                     "Volunteers",
-                                    style: GoogleFonts.lato(
-                                        fontSize: 20,
-                                        fontWeight: FontWeight.bold),
+                                    style: appSecondaryTitleTextStyle,
                                   ),
                                   SizedBox(
                                     height: 20,
@@ -266,7 +257,7 @@ class _AboutScreenState extends State<AboutScreen> {
                               children: [
                                 Text(
                                     "WVSU Campus tour app is being developed publicly on GitHub. Anyone with or without the knowledge of programming can help with its development. Please report any suggestions or issues by pressing the button below.",
-                                    style: GoogleFonts.lato()),
+                                    style: appBodyTextStyle),
                                 SizedBox(
                                   width: double.infinity,
                                   child: RaisedButton.icon(

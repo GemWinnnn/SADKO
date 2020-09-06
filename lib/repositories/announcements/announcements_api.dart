@@ -16,7 +16,9 @@ class AnnouncementsApiClient {
 
   Future<List> fetchAnnouncements() async {
     final url = '$baseUrl/$endpoint';
-    final response = await this.httpClient.get(url);
+    final response = await this.httpClient.get(url).catchError((onError) {
+      print(onError);
+    });
 
     if (response.statusCode != 200) {
       print("Error fetching data");

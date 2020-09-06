@@ -31,11 +31,13 @@ class _CampusLifeScreenState extends State<CampusLifeScreen> {
 
   Widget _buildListItem(BuildContext context, int index) {
     return Container(
-      margin: EdgeInsets.symmetric(horizontal: 10),
+      margin: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
       width: 300,
-      child: Material(
-        borderRadius: appDefaultBorderRadius,
-        color: Colors.white,
+      decoration: BoxDecoration(
+          boxShadow: appDefaultShadow,
+          color: Colors.white,
+          borderRadius: BorderRadius.circular(10)),
+      child: Container(
         child: InkWell(
           onTap: () {
             sslKeyMessages.currentState.focusToItem(index);
@@ -78,12 +80,10 @@ class _CampusLifeScreenState extends State<CampusLifeScreen> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text("Campus Life",
-                      style: GoogleFonts.lato(
-                          color: appTextPrimaryColor, fontSize: 30)),
+                  Text("Campus Life", style: appTitleTextStyle),
                   Text(
                     'What it feels to be a "Taga-West"',
-                    style: GoogleFonts.lato(color: appTextPrimaryColor),
+                    style: appBodyTextStyle,
                   )
                 ],
               ),

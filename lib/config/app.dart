@@ -16,7 +16,7 @@ TextStyle appBodyTextStyle =
 TextStyle appSecondaryTitleTextStyle = GoogleFonts.lato(
     color: appTextBodyColor,
     fontSize: appSecondaryTitleTextFontSize,
-    fontWeight: FontWeight.bold);
+    fontWeight: FontWeight.w600);
 TextStyle appBodyBoldTextStyle = GoogleFonts.lato(
     color: appTextBodyColor,
     fontSize: appBodyTextFontSize,
@@ -26,3 +26,11 @@ TextStyle appTitleTextStyle =
 BorderRadius appDefaultBorderRadius = BorderRadius.all(Radius.circular(20));
 double appDefaultPadding = 30.0;
 const apiUrl = "http://128.199.253.64:1337";
+List<BoxShadow> appDefaultShadow = [
+  BoxShadow(
+    color: Colors.grey.withOpacity(0.1),
+    spreadRadius: 3,
+    blurRadius: 7,
+    offset: Offset(0, 0), // changes position of shadow
+  ),
+];

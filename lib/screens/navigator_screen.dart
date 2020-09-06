@@ -36,11 +36,13 @@ class _NavigatorScreenState extends State<NavigatorScreen> {
 
   Widget _buildListItem(BuildContext context, int index) {
     return Container(
-      margin: EdgeInsets.symmetric(horizontal: 10),
+      margin: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
       width: 200,
-      child: Material(
-        borderRadius: appDefaultBorderRadius,
-        color: appPrimaryColor,
+      decoration: BoxDecoration(
+          boxShadow: appDefaultShadow,
+          color: Colors.white,
+          borderRadius: BorderRadius.circular(10)),
+      child: Container(
         child: InkWell(
           onTap: () {
             sslKeyCampus.currentState.focusToItem(index);
@@ -50,8 +52,7 @@ class _NavigatorScreenState extends State<NavigatorScreen> {
               Positioned(
                 bottom: 20,
                 left: 20,
-                child: Text("Data Here",
-                    style: GoogleFonts.lato(color: Colors.white)),
+                child: Text("Data Here", style: appBodyTextStyle),
               ),
             ],
           ),
@@ -73,7 +74,7 @@ class _NavigatorScreenState extends State<NavigatorScreen> {
       controller: ScrollController(initialScrollOffset: 0),
       child: Container(
         decoration: BoxDecoration(
-            color: appPrimaryColor,
+            color: appSecondaryColor,
             image: DecorationImage(
                 alignment: Alignment.topRight,
                 image: AssetImage('assets/images/home-screen-top.png'))),
@@ -106,7 +107,7 @@ class _NavigatorScreenState extends State<NavigatorScreen> {
                 padding: EdgeInsets.only(top: appScreenSize.height * 0.19),
                 child: Container(
                   decoration: BoxDecoration(
-                      color: Colors.white,
+                      color: appPrimaryColor,
                       borderRadius:
                           BorderRadius.vertical(top: Radius.circular(36))),
                   width: appScreenSize.width,
@@ -117,8 +118,7 @@ class _NavigatorScreenState extends State<NavigatorScreen> {
                         padding: EdgeInsets.fromLTRB(30, 30, 30, 10),
                         child: Text(
                           "Explore",
-                          style: GoogleFonts.lato(
-                              fontSize: 20, fontWeight: FontWeight.bold),
+                          style: appSecondaryTitleTextStyle,
                         ),
                       ),
                       SizedBox(
@@ -135,10 +135,26 @@ class _NavigatorScreenState extends State<NavigatorScreen> {
                       ),
                       Padding(
                         padding: EdgeInsets.fromLTRB(30, 10, 30, 10),
+                        child: Text("Academic Buildings",
+                            style: appSecondaryTitleTextStyle),
+                      ),
+                      SizedBox(
+                        height: 200,
+                        width: double.infinity,
+                        child: ScrollSnapList(
+                          margin: EdgeInsets.symmetric(vertical: 10),
+                          onItemFocus: _onItemFocus,
+                          itemSize: 360,
+                          itemBuilder: _buildListItem,
+                          itemCount: data.length,
+                          key: sslKeyAcad,
+                        ),
+                      ),
+                      Padding(
+                        padding: EdgeInsets.fromLTRB(30, 10, 30, 10),
                         child: Text(
-                          "Featured",
-                          style: GoogleFonts.lato(
-                              fontSize: 20, fontWeight: FontWeight.bold),
+                          "Admin Buildings",
+                          style: appSecondaryTitleTextStyle,
                         ),
                       ),
                       SizedBox(

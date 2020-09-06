@@ -20,7 +20,7 @@ class AnnouncementDetailsScreen extends StatelessWidget {
           backgroundColor: Colors.white,
           title: Text(
             "Announcement",
-            style: GoogleFonts.lato(color: appTextBodyColor),
+            style: appBodyTextStyle,
           ),
           elevation: 1,
           leading: IconButton(

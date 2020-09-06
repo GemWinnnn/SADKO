@@ -38,6 +38,7 @@ class AnnouncementCard extends StatelessWidget {
                 width: appScreenSize.width,
                 child: Container(
                   decoration: BoxDecoration(
+                      boxShadow: appDefaultShadow,
                       color: Colors.white,
                       borderRadius: BorderRadius.all(Radius.circular(10))),
                   child: Padding(
@@ -76,42 +77,48 @@ class AnnouncementCard extends StatelessWidget {
                                   maxLines: 2,
                                   softWrap: true),
                             ),
-                            Container(
-                              width: MediaQuery.of(context).size.width * 0.6,
-                              child: Text(
-                                this.contents != null
-                                    ? this.contents
-                                    : "Loading...",
-                                overflow: TextOverflow.ellipsis,
-                                maxLines: 2,
-                                softWrap: true,
-                              ),
-                            ),
+                            SizedBox(height: 5),
+                            Opacity(
+                                opacity: 0.7,
+                                child: Container(
+                                  width:
+                                      MediaQuery.of(context).size.width * 0.6,
+                                  child: Text(
+                                    this.contents != null
+                                        ? this.contents
+                                        : "Loading...",
+                                    overflow: TextOverflow.ellipsis,
+                                    maxLines: 2,
+                                    softWrap: true,
+                                  ),
+                                )),
                             Divider(),
-                            Container(
-                              width: appScreenSize.width -
-                                  appScreenSize.width * 0.4,
-                              child: Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                children: [
-                                  Text("by " + this.createdBy['firstname']),
-                                  Row(
+                            Opacity(
+                                opacity: 0.5,
+                                child: Container(
+                                  width: appScreenSize.width -
+                                      appScreenSize.width * 0.4,
+                                  child: Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
                                     children: [
-                                      Icon(
-                                        SimpleLineIcons.clock,
-                                        size: 15,
-                                      ),
-                                      SizedBox(
-                                        width: 5,
-                                      ),
-                                      Text(timeago.format(DateTime.parse(
-                                          this.createdBy["createdAt"])))
+                                      Text("by " + this.createdBy['firstname']),
+                                      Row(
+                                        children: [
+                                          Icon(
+                                            SimpleLineIcons.clock,
+                                            size: 15,
+                                          ),
+                                          SizedBox(
+                                            width: 5,
+                                          ),
+                                          Text(timeago.format(DateTime.parse(
+                                              this.createdBy["createdAt"])))
+                                        ],
+                                      )
                                     ],
-                                  )
-                                ],
-                              ),
-                            )
+                                  ),
+                                ))
                           ],
                         )
                       ],

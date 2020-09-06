@@ -19,7 +19,7 @@ class _ThankyouFrontlinersScreenState extends State<ThankyouFrontlinersScreen> {
     Size appScreenSize = MediaQuery.of(context).size;
     return Container(
       decoration: BoxDecoration(
-        color: appPrimaryColor,
+        color: appSecondaryColor,
         image: DecorationImage(
             fit: BoxFit.cover,
             alignment: Alignment.bottomCenter,
