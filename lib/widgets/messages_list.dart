@@ -42,6 +42,7 @@ class _MessagesListState extends State<MessagesList> {
                     margin: EdgeInsets.symmetric(vertical: 10),
                     itemSize: 300,
                     itemBuilder: (BuildContext context, int index) {
+                      debugPrint(state.messages[0].toString());
                       return index >= state.messages.length
                           ? Text("Bottom Loader")
                           : MessageCard(

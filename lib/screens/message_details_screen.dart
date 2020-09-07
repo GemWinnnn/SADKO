@@ -60,10 +60,12 @@ class MessageDetailsScreen extends StatelessWidget {
                         true, // setting it true will show initials text above profile picture, default false
                   ),
                   Text(
-                    this.name,
+                    this.name != null ? this.name : "Loading...",
                     style: appSecondaryTitleTextStyle,
                   ),
-                  Text(this.description),
+                  Text(this.description != null
+                      ? this.description
+                      : "Loading..."),
                   Divider(height: 30),
                 ],
               ),

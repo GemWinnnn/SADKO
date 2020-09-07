@@ -22,5 +22,6 @@ class Messages extends Equatable {
         description = json['Description'];
 
   @override
-  List<Object> get props => [name, messageBody, featuredImage, createdBy];
+  List<Object> get props =>
+      [name, messageBody, featuredImage, createdBy, description];
 }

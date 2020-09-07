@@ -33,6 +33,7 @@ class MessagesApiClient {
           messageBody: item['MessageBody'],
           createdBy: item['created_by'],
           featuredImage: item['FeaturedImage'],
+          description: item['Description'],
           name: item['Name']);
       _messagesList.add(announcement);
     }
