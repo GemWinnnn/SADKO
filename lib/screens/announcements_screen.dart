@@ -99,17 +99,19 @@ class _AnnouncementsScreenState extends State<AnnouncementsScreen> {
                             }
 
                             return Container(
+                                width: appScreenSize.width,
+                                height: appScreenSize.height * 0.5,
                                 child: Column(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              crossAxisAlignment: CrossAxisAlignment.center,
-                              children: [
-                                Text(
-                                  "No connection :(",
-                                  style: GoogleFonts.lato(
-                                      color: appTextPrimaryColor),
-                                )
-                              ],
-                            ));
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  crossAxisAlignment: CrossAxisAlignment.center,
+                                  children: [
+                                    Text(
+                                      "No connection :(",
+                                      style: GoogleFonts.lato(
+                                          color: appTextPrimaryColor),
+                                    )
+                                  ],
+                                ));
                           },
                         )
                       ],

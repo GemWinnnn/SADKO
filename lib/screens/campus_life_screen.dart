@@ -104,7 +104,7 @@ class _CampusLifeScreenState extends State<CampusLifeScreen> {
                     children: [
                       Text("Campus Life", style: appTitleTextStyle),
                       Text(
-                        'What it feels to be a "Taga-West"',
+                        'Taga-West - you belong!',
                         style: appBodyTextStyle,
                       )
                     ],
