@@ -25,7 +25,7 @@ class AnnouncementDetailsScreen extends StatelessWidget {
           elevation: 1,
           leading: IconButton(
               icon: Icon(
-                Feather.arrow_left,
+                Feather.chevron_left,
                 color: Colors.black,
               ),
               onPressed: () {

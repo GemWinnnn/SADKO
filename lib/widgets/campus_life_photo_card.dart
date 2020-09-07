@@ -2,27 +2,22 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:wvsu_tour_app/config/app.dart';
-import 'package:wvsu_tour_app/screens/message_details_screen.dart';
 
-class MessageCard extends StatelessWidget {
-  const MessageCard(
+class CampusLifePhotoCardCard extends StatelessWidget {
+  const CampusLifePhotoCardCard(
       {Key key,
-      this.name,
-      this.featuredImage,
-      this.description,
-      this.messageBody,
+      this.shortDescription,
+      this.image,
       this.onPressed,
       this.height,
       this.width})
       : super(key: key);
 
-  final String name;
-  final String featuredImage;
   final GestureTapCallback onPressed;
   final double height;
   final double width;
-  final String messageBody;
-  final String description;
+  final String image;
+  final String shortDescription;
   @override
   Widget build(BuildContext context) {
     return ClipRRect(
@@ -37,32 +32,21 @@ class MessageCard extends StatelessWidget {
               borderRadius: appDefaultBorderRadius,
             ),
             child: InkWell(
-              onTap: () {
-                Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => MessageDetailsScreen(
-                        description: this.description,
-                        messageBody: this.messageBody,
-                        name: this.name,
-                        featuredImage: featuredImage,
-                      ),
-                    ));
-              },
+              onTap: () {},
               child: Stack(
                 children: [
                   ClipRRect(
                     borderRadius: appDefaultBorderRadius,
                     child: Container(
                       decoration: BoxDecoration(color: appPrimaryColor),
-                      height: this.height,
+                      height: this.height + 10,
                       child: FittedBox(
                         fit: BoxFit.cover,
                         child: Center(
                             child: CachedNetworkImage(
                                 placeholder: (context, url) =>
                                     CircularProgressIndicator(),
-                                imageUrl: featuredImage,
+                                imageUrl: this.image,
                                 fit: BoxFit.cover,
                                 width: this.width + 50,
                                 height: this.height)),
@@ -70,7 +54,7 @@ class MessageCard extends StatelessWidget {
                     ),
                   ),
                   SizedBox(
-                    height: this.height,
+                    height: this.height + 10,
                     width: this.width,
                     child: Opacity(
                       opacity: 0.3,
@@ -84,18 +68,16 @@ class MessageCard extends StatelessWidget {
                   Positioned(
                       bottom: 20,
                       left: 20,
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(this.name != null ? this.name : "Loading...",
-                              style: GoogleFonts.lato(
-                                  color: Colors.white, fontSize: 20)),
-                          Text(
-                              this.description != null
-                                  ? this.description
-                                  : "Loading...",
-                              style: GoogleFonts.lato(color: Colors.white)),
-                        ],
+                      child: Container(
+                        width: MediaQuery.of(context).size.width * 0.6,
+                        child: Text(
+                            this.shortDescription != null
+                                ? this.shortDescription
+                                : "Loading...",
+                            style: GoogleFonts.lato(color: Colors.white),
+                            overflow: TextOverflow.ellipsis,
+                            maxLines: 1,
+                            softWrap: true),
                       )),
                 ],
               ),

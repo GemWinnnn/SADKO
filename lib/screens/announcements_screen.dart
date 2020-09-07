@@ -104,13 +104,7 @@ class _AnnouncementsScreenState extends State<AnnouncementsScreen> {
                                 child: Column(
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   crossAxisAlignment: CrossAxisAlignment.center,
-                                  children: [
-                                    Text(
-                                      "No connection :(",
-                                      style: GoogleFonts.lato(
-                                          color: appTextPrimaryColor),
-                                    )
-                                  ],
+                                  children: [CircularProgressIndicator()],
                                 ));
                           },
                         )

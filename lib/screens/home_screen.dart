@@ -26,13 +26,6 @@ class HomeScreen extends StatefulWidget {
       httpClient: http.Client(),
     ),
   );
-
-  final MessagesRepository messagesRepository = MessagesRepository(
-    apiClient: MessagesApiClient(
-      httpClient: http.Client(),
-    ),
-  );
-
   @override
   _HomeScreenState createState() =>
       _HomeScreenState(announcementsRepository: announcementsRepository);
@@ -85,11 +78,7 @@ class _HomeScreenState extends State<HomeScreen>
                 announcementsRepository: widget.announcementsRepository),
             child: new AnnouncementsScreen(),
           ),
-          BlocProvider(
-            create: (context) =>
-                MessagesBloc(messagesRepository: widget.messagesRepository),
-            child: new CampusLifeScreen(),
-          ),
+          new CampusLifeScreen(),
           new NavigatorScreen(),
           new ThankyouFrontlinersScreen(),
           new AboutScreen(auth: appAuth),
