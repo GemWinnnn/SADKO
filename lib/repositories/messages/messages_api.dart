@@ -1,5 +1,5 @@
-import 'dart:convert';
 import 'dart:async';
+import 'dart:convert';
 
 import 'package:meta/meta.dart';
 import 'package:http/http.dart' as http;
@@ -7,15 +7,14 @@ import 'package:wvsu_tour_app/config/app.dart';
 
 import 'package:wvsu_tour_app/models/models.dart';
 
-class AnnouncementsApiClient {
+class MessagesApiClient {
   static const baseUrl = apiUrl;
-  static const endpoint = 'announcements';
+  static const endpoint = 'messages';
   final http.Client httpClient;
 
-  AnnouncementsApiClient({@required this.httpClient})
-      : assert(httpClient != null);
+  MessagesApiClient({@required this.httpClient}) : assert(httpClient != null);
 
-  Future<List> fetchAnnouncements() async {
+  Future<List> fetchMessages() async {
     final url = '$baseUrl/$endpoint';
     final response = await this.httpClient.get(url).catchError((onError) {
       print(onError);
@@ -27,17 +26,17 @@ class AnnouncementsApiClient {
 
     final json = jsonDecode(response.body);
 
-    List<Announcements> _announcementsList = [];
+    List<Messages> _messagesList = [];
 
     for (var item in json) {
-      Announcements announcement = Announcements(
-          contents: item['Contents'],
+      Messages announcement = Messages(
+          messageBody: item['MessageBody'],
           createdBy: item['created_by'],
           featuredImage: item['FeaturedImage'],
-          title: item['Title']);
-      _announcementsList.add(announcement);
+          name: item['Name']);
+      _messagesList.add(announcement);
     }
 
-    return _announcementsList;
+    return _messagesList;
   }
 }

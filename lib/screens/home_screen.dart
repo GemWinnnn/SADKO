@@ -6,6 +6,8 @@ import 'package:wvsu_tour_app/bloc/blocs.dart';
 import 'package:wvsu_tour_app/firebase/auth.dart';
 import 'package:wvsu_tour_app/models/models.dart';
 import 'package:wvsu_tour_app/repositories/announcements/announcements_api.dart';
+import 'package:wvsu_tour_app/repositories/messages/messages_api.dart';
+import 'package:wvsu_tour_app/repositories/messages/messages_repository.dart';
 import 'package:wvsu_tour_app/repositories/repositories.dart';
 import 'package:wvsu_tour_app/screens/about_screen.dart';
 import 'package:wvsu_tour_app/screens/announcements_screen.dart';
@@ -21,6 +23,12 @@ class HomeScreen extends StatefulWidget {
   final AnnouncementsRepository announcementsRepository =
       AnnouncementsRepository(
     apiClient: AnnouncementsApiClient(
+      httpClient: http.Client(),
+    ),
+  );
+
+  final MessagesRepository messagesRepository = MessagesRepository(
+    apiClient: MessagesApiClient(
       httpClient: http.Client(),
     ),
   );
@@ -77,7 +85,11 @@ class _HomeScreenState extends State<HomeScreen>
                 announcementsRepository: widget.announcementsRepository),
             child: new AnnouncementsScreen(),
           ),
-          new CampusLifeScreen(),
+          BlocProvider(
+            create: (context) =>
+                MessagesBloc(messagesRepository: widget.messagesRepository),
+            child: new CampusLifeScreen(),
+          ),
           new NavigatorScreen(),
           new ThankyouFrontlinersScreen(),
           new AboutScreen(auth: appAuth),

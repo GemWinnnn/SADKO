@@ -237,7 +237,7 @@ class _AboutScreenState extends State<AboutScreen> {
                                       height: 20,
                                     ),
                                     Text(
-                                      "This app is not possible without the help of these volunteers.",
+                                      "This app is not possible without the help of these WVSU volunteers.",
                                       style: appBodyTextStyle,
                                     ),
                                   ],
