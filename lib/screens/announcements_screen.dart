@@ -6,7 +6,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:wvsu_tour_app/bloc/blocs.dart';
-import 'package:wvsu_tour_app/components/announcement_card.dart';
+import 'package:wvsu_tour_app/widgets/announcement_card.dart';
 import 'package:wvsu_tour_app/config/app.dart';
 
 class AnnouncementsScreen extends StatefulWidget {

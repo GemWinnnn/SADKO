@@ -5,7 +5,7 @@ import 'package:flutter/rendering.dart';
 import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:scroll_snap_list/scroll_snap_list.dart';
-import 'package:wvsu_tour_app/components/app_brand_horizontal.dart';
+import 'package:wvsu_tour_app/widgets/app_brand_horizontal.dart';
 import 'package:wvsu_tour_app/config/app.dart';
 
 class NavigatorScreen extends StatefulWidget {
