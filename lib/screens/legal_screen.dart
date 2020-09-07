@@ -3,8 +3,6 @@ import 'package:flutter_markdown/flutter_markdown.dart';
 import 'package:flutter_vector_icons/flutter_vector_icons.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:http/http.dart' as http;
-import 'dart:convert' as convert;
-
 import 'package:wvsu_tour_app/config/app.dart';
 
 class LegalScreen extends StatefulWidget {

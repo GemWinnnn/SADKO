@@ -5,3 +5,5 @@ export 'admin_buildings/admin_buildings_bloc.dart';
 export 'campus_life/campus_life_bloc.dart';
 export 'colleges/colleges_bloc.dart';
 export 'organizations/organizations_bloc.dart';
+export 'historical_artistic_landmarks/historical_artistic_landmarks_bloc.dart';
+export 'facilities_amenities/facilities_amenities_bloc.dart';

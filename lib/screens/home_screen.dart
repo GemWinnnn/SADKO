@@ -2,19 +2,16 @@ import 'package:convex_bottom_bar/convex_bottom_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_vector_icons/flutter_vector_icons.dart';
+import 'package:http/http.dart' as http;
 import 'package:wvsu_tour_app/bloc/blocs.dart';
 import 'package:wvsu_tour_app/firebase/auth.dart';
-import 'package:wvsu_tour_app/models/models.dart';
 import 'package:wvsu_tour_app/repositories/announcements/announcements_api.dart';
-import 'package:wvsu_tour_app/repositories/messages/messages_api.dart';
-import 'package:wvsu_tour_app/repositories/messages/messages_repository.dart';
 import 'package:wvsu_tour_app/repositories/repositories.dart';
 import 'package:wvsu_tour_app/screens/about_screen.dart';
 import 'package:wvsu_tour_app/screens/announcements_screen.dart';
 import 'package:wvsu_tour_app/screens/campus_life_screen.dart';
 import 'package:wvsu_tour_app/screens/navigator_screen.dart';
 import 'package:wvsu_tour_app/screens/thankyou_frontliners_screen.dart';
-import 'package:http/http.dart' as http;
 
 class HomeScreen extends StatefulWidget {
   HomeScreen({Key key, this.auth}) : super(key: key);
