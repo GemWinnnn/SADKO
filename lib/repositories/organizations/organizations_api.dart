@@ -9,7 +9,7 @@ import 'package:wvsu_tour_app/models/models.dart';
 
 class OrganizationsApiClient {
   static const baseUrl = apiUrl;
-  static const endpoint = 'organizations';
+  static const endpoint = 'school-organizations';
   final http.Client httpClient;
 
   OrganizationsApiClient({@required this.httpClient})

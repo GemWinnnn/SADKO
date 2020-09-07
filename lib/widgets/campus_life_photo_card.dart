@@ -2,6 +2,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:wvsu_tour_app/config/app.dart';
+import 'package:wvsu_tour_app/screens/photo_viewer.dart';
 
 class CampusLifePhotoCardCard extends StatelessWidget {
   const CampusLifePhotoCardCard(
@@ -32,7 +33,16 @@ class CampusLifePhotoCardCard extends StatelessWidget {
               borderRadius: appDefaultBorderRadius,
             ),
             child: InkWell(
-              onTap: () {},
+              onTap: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => PhotoViewer(
+                        description: this.shortDescription,
+                        image: this.image,
+                      ),
+                    ));
+              },
               child: Stack(
                 children: [
                   ClipRRect(

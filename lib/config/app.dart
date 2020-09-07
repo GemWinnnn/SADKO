@@ -21,8 +21,10 @@ TextStyle appBodyBoldTextStyle = GoogleFonts.lato(
     color: appTextBodyColor,
     fontSize: appBodyTextFontSize,
     fontWeight: FontWeight.bold);
-TextStyle appTitleTextStyle =
-    GoogleFonts.lato(color: appTextTitleColor, fontSize: appTitleTextFontSize);
+TextStyle appTitleTextStyle = GoogleFonts.lato(
+    color: appTextTitleColor,
+    fontSize: appTitleTextFontSize,
+    fontWeight: FontWeight.bold);
 BorderRadius appDefaultBorderRadius = BorderRadius.all(Radius.circular(20));
 double appDefaultPadding = 30.0;
 const apiUrl = "http://128.199.253.64:1337";

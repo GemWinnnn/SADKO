@@ -4,10 +4,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:wvsu_tour_app/bloc/blocs.dart';
-import 'package:wvsu_tour_app/widgets/announcement_card.dart';
 import 'package:wvsu_tour_app/config/app.dart';
+import 'package:wvsu_tour_app/widgets/announcement_card.dart';
 
 class AnnouncementsScreen extends StatefulWidget {
   AnnouncementsScreen({Key key}) : super(key: key);
@@ -71,6 +70,7 @@ class _AnnouncementsScreenState extends State<AnnouncementsScreen> {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Text("Announcements", style: appTitleTextStyle),
+                                SizedBox(height: 10),
                                 Text(
                                   'Be informed!',
                                   style: appBodyTextStyle,
