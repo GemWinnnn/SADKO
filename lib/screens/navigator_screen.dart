@@ -116,8 +116,9 @@ class _NavigatorScreenState extends State<NavigatorScreen> {
                           Text("Campus Tour",
                               style: GoogleFonts.lato(
                                   color: Colors.white, fontSize: 30)),
+                          SizedBox(height: 10),
                           Text(
-                            "Hold thy banner high!",
+                            "From a dream, a University grew.",
                             style: GoogleFonts.lato(color: Colors.white),
                           )
                         ],
@@ -140,58 +141,10 @@ class _NavigatorScreenState extends State<NavigatorScreen> {
                         Padding(
                           padding: EdgeInsets.fromLTRB(30, 30, 30, 10),
                           child: Text(
-                            "Explore",
+                            "Campuses",
                             style: appSecondaryTitleTextStyle,
                           ),
                         ),
-                        SizedBox(
-                          height: 200,
-                          width: double.infinity,
-                          child: ScrollSnapList(
-                            margin: EdgeInsets.symmetric(vertical: 10),
-                            onItemFocus: _onItemFocus,
-                            itemSize: 360,
-                            itemBuilder: _buildListItem,
-                            itemCount: data.length,
-                            key: sslKeyCampus,
-                          ),
-                        ),
-                        Padding(
-                          padding: EdgeInsets.fromLTRB(30, 10, 30, 10),
-                          child: Text("Academic Buildings",
-                              style: appSecondaryTitleTextStyle),
-                        ),
-                        SizedBox(
-                          height: 200,
-                          width: double.infinity,
-                          child: ScrollSnapList(
-                            margin: EdgeInsets.symmetric(vertical: 10),
-                            onItemFocus: _onItemFocus,
-                            itemSize: 360,
-                            itemBuilder: _buildListItem,
-                            itemCount: data.length,
-                            key: sslKeyAcad,
-                          ),
-                        ),
-                        Padding(
-                          padding: EdgeInsets.fromLTRB(30, 10, 30, 10),
-                          child: Text(
-                            "Admin Buildings",
-                            style: appSecondaryTitleTextStyle,
-                          ),
-                        ),
-                        SizedBox(
-                          height: 200,
-                          width: double.infinity,
-                          child: ScrollSnapList(
-                            margin: EdgeInsets.symmetric(vertical: 10),
-                            onItemFocus: _onItemFocus,
-                            itemSize: 360,
-                            itemBuilder: _buildListItem,
-                            itemCount: data.length,
-                            key: sslKeyAdmin,
-                          ),
-                        )
                       ],
                     ),
                   ))

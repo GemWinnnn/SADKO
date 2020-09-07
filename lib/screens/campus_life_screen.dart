@@ -95,7 +95,7 @@ class _CampusLifeScreenState extends State<CampusLifeScreen> {
                           style: appTitleTextStyle),
                       SizedBox(height: 10),
                       Text(
-                        'Taga-West - you belong.',
+                        'Not far away the goal comes in to view.',
                         style: appBodyTextStyle,
                       )
                     ],
