@@ -37,7 +37,7 @@ class _OrganizationsListState extends State<OrganizationsList> {
                     },
                     initialIndex: 0,
                     margin: EdgeInsets.symmetric(vertical: 10),
-                    itemSize: 230,
+                    itemSize: 400,
                     itemBuilder: (BuildContext context, int index) {
                       return index >= state.organizations.length
                           ? Text("Bottom Loader")

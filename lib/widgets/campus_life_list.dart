@@ -37,7 +37,7 @@ class _CampusLifeListState extends State<CampusLifeList> {
                     },
                     initialIndex: 0,
                     margin: EdgeInsets.symmetric(vertical: 10),
-                    itemSize: 300,
+                    itemSize: 380,
                     itemBuilder: (BuildContext context, int index) {
                       return index >= state.campus_life.length
                           ? Text("Bottom Loader")

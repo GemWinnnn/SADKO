@@ -39,7 +39,7 @@ class _MessagesListState extends State<MessagesList> {
                     },
                     initialIndex: 0,
                     margin: EdgeInsets.symmetric(vertical: 10),
-                    itemSize: 300,
+                    itemSize: 380,
                     itemBuilder: (BuildContext context, int index) {
                       debugPrint(state.messages[0].toString());
                       return index >= state.messages.length
