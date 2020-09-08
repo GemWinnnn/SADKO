@@ -77,7 +77,7 @@ class _HomeScreenState extends State<HomeScreen>
           ),
           new CampusLifeScreen(),
           new NavigatorScreen(),
-          new ThankyouFrontlinersScreen(),
+          new ThankyouFrontlinersScreen(auth: appAuth),
           new AboutScreen(auth: appAuth),
         ]));
   }

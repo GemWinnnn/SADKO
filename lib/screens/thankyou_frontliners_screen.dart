@@ -1,14 +1,16 @@
 import 'package:avatar_glow/avatar_glow.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_vector_icons/flutter_vector_icons.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:wvsu_tour_app/firebase/auth.dart';
 import 'package:wvsu_tour_app/widgets/app_brand_horizontal.dart';
 import 'package:wvsu_tour_app/config/app.dart';
 
 class ThankyouFrontlinersScreen extends StatefulWidget {
-  ThankyouFrontlinersScreen({Key key}) : super(key: key);
-
+  ThankyouFrontlinersScreen({Key key, this.auth}) : super(key: key);
+  BaseAuth auth;
   @override
   _ThankyouFrontlinersScreenState createState() =>
       _ThankyouFrontlinersScreenState();
@@ -28,6 +30,22 @@ class _ThankyouFrontlinersScreenState extends State<ThankyouFrontlinersScreen> {
   @override
   Widget build(BuildContext context) {
     Size appScreenSize = MediaQuery.of(context).size;
+    CollectionReference thankyouCounter =
+        FirebaseFirestore.instance.collection('thankyou_counter');
+
+    Future<void> addLike() {
+      widget.auth
+          .getCurrentUser()
+          .then((user) => {
+                thankyouCounter
+                    .doc(user.uid)
+                    .set({'liked': true})
+                    .then((value) => print("Liked"))
+                    .catchError((error) => print("Failed like: $error"))
+              })
+          .catchError((error) => print("Failed like: $error"));
+    }
+
     return Container(
       decoration: BoxDecoration(
         color: appSecondaryColor,
@@ -79,9 +97,21 @@ class _ThankyouFrontlinersScreenState extends State<ThankyouFrontlinersScreen> {
                   SizedBox(
                     width: 20,
                   ),
-                  Text("1,000",
-                      style:
-                          GoogleFonts.lato(fontSize: 60, color: Colors.white))
+                  StreamBuilder<QuerySnapshot>(
+                      stream: thankyouCounter.snapshots(),
+                      builder: (BuildContext context,
+                          AsyncSnapshot<QuerySnapshot> snapshot) {
+                        if (snapshot.hasError) {
+                          return Text('0');
+                        }
+                        if (snapshot.connectionState ==
+                            ConnectionState.waiting) {
+                          return Text("...");
+                        }
+                        return Text(snapshot.data.docs.length.toString() ?? "0",
+                            style: GoogleFonts.lato(
+                                fontSize: 60, color: Colors.white));
+                      }),
                 ],
               ),
               SizedBox(
@@ -101,7 +131,9 @@ class _ThankyouFrontlinersScreenState extends State<ThankyouFrontlinersScreen> {
                           color: Colors.red,
                           size: 30,
                         ),
-                        onPressed: () {}),
+                        onPressed: () {
+                          addLike();
+                        }),
                     radius: 30.0,
                   ),
                 ),
@@ -109,7 +141,7 @@ class _ThankyouFrontlinersScreenState extends State<ThankyouFrontlinersScreen> {
               Padding(
                   padding: EdgeInsets.symmetric(horizontal: 40),
                   child: Text(
-                    "Double tap the heart to send a thank you to our modern heroes!",
+                    "Tap the heart to send a thank you to our modern heroes! Please stay safe!",
                     style: GoogleFonts.lato(color: Colors.white),
                     textAlign: TextAlign.center,
                   )),
