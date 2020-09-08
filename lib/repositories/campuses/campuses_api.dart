@@ -7,15 +7,14 @@ import 'package:wvsu_tour_app/config/app.dart';
 
 import 'package:wvsu_tour_app/models/models.dart';
 
-class HistoricalArtisticLandmarksApiClient {
+class CampusesApiClient {
   static const baseUrl = apiUrl;
-  static const endpoint = 'landmarks';
+  static const endpoint = 'campuses';
   final http.Client httpClient;
 
-  HistoricalArtisticLandmarksApiClient({@required this.httpClient})
-      : assert(httpClient != null);
+  CampusesApiClient({@required this.httpClient}) : assert(httpClient != null);
 
-  Future<List> fetchHistoricalArtisticLandmarks() async {
+  Future<List> fetchCampuses() async {
     final url = '$baseUrl/$endpoint';
     final response = await this.httpClient.get(url).catchError((onError) {
       print(onError);
@@ -27,14 +26,16 @@ class HistoricalArtisticLandmarksApiClient {
 
     final json = jsonDecode(response.body);
 
-    List<HistoricalArtisticLandmarks> _messagesList = [];
+    List<Campuses> _messagesList = [];
 
     for (var item in json) {
-      HistoricalArtisticLandmarks destructured = HistoricalArtisticLandmarks(
+      Campuses destructured = Campuses(
           createdBy: item['created_by'],
           featuredImage: item['FeaturedImage'],
-          location: item['Locations'],
-          name: item['Name']);
+          logo: item['Logo'],
+          fullDescription: item['FullDescription'],
+          name: item['Name'],
+          shortDescription: item['ShortDescription']);
       _messagesList.add(destructured);
     }
 

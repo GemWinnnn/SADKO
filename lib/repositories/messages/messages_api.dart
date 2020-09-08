@@ -29,13 +29,13 @@ class MessagesApiClient {
     List<Messages> _messagesList = [];
 
     for (var item in json) {
-      Messages announcement = Messages(
+      Messages destructured = Messages(
           messageBody: item['MessageBody'],
           createdBy: item['created_by'],
           featuredImage: item['FeaturedImage'],
           description: item['Description'],
           name: item['Name']);
-      _messagesList.add(announcement);
+      _messagesList.add(destructured);
     }
 
     return _messagesList;

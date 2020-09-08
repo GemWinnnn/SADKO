@@ -29,14 +29,14 @@ class StaffsApiClient {
     List<Staffs> _staffsList = [];
 
     for (var item in json) {
-      Staffs announcement = Staffs(
+      Staffs destructured = Staffs(
           campus: item['Campus'],
           createdBy: item['created_by'],
           office: item['Office'],
           profilePicture: item['ProfilePicture'],
           description: item['Description'],
           name: item['Name']);
-      _staffsList.add(announcement);
+      _staffsList.add(destructured);
     }
 
     return _staffsList;

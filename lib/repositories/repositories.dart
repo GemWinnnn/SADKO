@@ -7,3 +7,4 @@ export 'colleges/colleges_repository.dart';
 export 'facilities_amenities/facilities_amenities_repository.dart';
 export 'messages/messages_repository.dart';
 export 'organizations/organizations_repository.dart';
+export 'campuses/campuses_repository.dart';

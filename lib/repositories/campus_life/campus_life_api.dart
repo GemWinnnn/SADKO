@@ -29,11 +29,11 @@ class CampusLifeApiClient {
     List<CampusLife> _campus_lifeList = [];
 
     for (var item in json) {
-      CampusLife announcement = CampusLife(
+      CampusLife destructured = CampusLife(
           createdBy: item['created_by'],
           image: item['Image'],
           shortDescription: item['ShortDescription']);
-      _campus_lifeList.add(announcement);
+      _campus_lifeList.add(destructured);
     }
 
     return _campus_lifeList;

@@ -30,12 +30,12 @@ class OrganizationsApiClient {
     List<Organizations> _organizationsList = [];
 
     for (var item in json) {
-      Organizations announcement = Organizations(
+      Organizations destructured = Organizations(
           createdBy: item['created_by'],
           logo: item['Logo'],
           description: item['Description'],
           name: item['Name']);
-      _organizationsList.add(announcement);
+      _organizationsList.add(destructured);
     }
 
     return _organizationsList;

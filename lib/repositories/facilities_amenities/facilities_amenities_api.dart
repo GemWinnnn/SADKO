@@ -31,12 +31,12 @@ class FacilitiesAmenitiesApiClient {
     List<FacilitiesAmenities> _facilitiesAmenitiesList = [];
 
     for (var item in json) {
-      FacilitiesAmenities announcement = FacilitiesAmenities(
+      FacilitiesAmenities destructured = FacilitiesAmenities(
           shortDescription: item['ShortDescription'],
           createdBy: item['created_by'],
           featuredImage: item['FeaturedImage'],
           name: item['Name']);
-      _facilitiesAmenitiesList.add(announcement);
+      _facilitiesAmenitiesList.add(destructured);
     }
 
     return _facilitiesAmenitiesList;

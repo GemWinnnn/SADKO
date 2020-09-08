@@ -8,3 +8,4 @@ export 'colleges.dart';
 export 'facilities_amenities.dart';
 export 'historical_artistic_landmarks.dart';
 export 'staffs.dart';
+export 'campuses.dart';

@@ -30,11 +30,11 @@ class AdminBuildingsApiClient {
     List<AdminBuildings> _messagesList = [];
 
     for (var item in json) {
-      AdminBuildings announcement = AdminBuildings(
+      AdminBuildings destructured = AdminBuildings(
           createdBy: item['created_by'],
           featuredImage: item['FeaturedImage'],
           name: item['Name']);
-      _messagesList.add(announcement);
+      _messagesList.add(destructured);
     }
 
     return _messagesList;

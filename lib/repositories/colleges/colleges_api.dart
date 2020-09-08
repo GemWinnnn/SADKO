@@ -29,14 +29,14 @@ class CollegesApiClient {
     List<Colleges> _messagesList = [];
 
     for (var item in json) {
-      Colleges announcement = Colleges(
+      Colleges destructured = Colleges(
           createdBy: item['created_by'],
           featuredImage: item['FeaturedImage'],
           campus: item['Campus'],
           logo: item['Logo'],
           longDescription: item['LongDescription'],
           photos: item['Photos']);
-      _messagesList.add(announcement);
+      _messagesList.add(destructured);
     }
 
     return _messagesList;
