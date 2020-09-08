@@ -1,16 +1,15 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/scheduler.dart';
 import 'package:flutter_vector_icons/flutter_vector_icons.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:websafe_svg/websafe_svg.dart';
-import 'package:wvsu_tour_app/widgets/app_legal_links.dart';
-import 'package:wvsu_tour_app/widgets/app_primary_button.dart';
-import 'package:wvsu_tour_app/widgets/app_secondary_button.dart';
 import 'package:wvsu_tour_app/config/app.dart';
 import 'package:wvsu_tour_app/firebase/auth.dart';
 import 'package:wvsu_tour_app/screens/facebook_auth_screen.dart';
+import 'package:wvsu_tour_app/widgets/app_legal_links.dart';
+import 'package:wvsu_tour_app/widgets/app_primary_button.dart';
+import 'package:wvsu_tour_app/widgets/app_secondary_button.dart';
 
 class AuthScreen extends StatefulWidget {
   AuthScreen({Key key, this.auth}) : super(key: key);

@@ -3,6 +3,7 @@ import 'package:circular_profile_avatar/circular_profile_avatar.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:wvsu_tour_app/config/app.dart';
+import 'package:wvsu_tour_app/screens/campus_details.dart';
 import 'package:wvsu_tour_app/screens/photo_viewer.dart';
 
 class CampusCard extends StatelessWidget {
@@ -38,7 +39,18 @@ class CampusCard extends StatelessWidget {
               borderRadius: appDefaultBorderRadius,
             ),
             child: InkWell(
-              onTap: () {},
+              onTap: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => CampusDetailsScreen(
+                        fullDescription: this.fullDescription,
+                        name: this.name,
+                        logo: this.logo,
+                        featuredImage: featuredImage,
+                      ),
+                    ));
+              },
               child: Stack(
                 children: [
                   ClipRRect(
