@@ -9,7 +9,7 @@ import 'package:wvsu_tour_app/models/models.dart';
 
 class AdminBuildingsApiClient {
   static const baseUrl = apiUrl;
-  static const endpoint = 'admin-buildings';
+  static const endpoint = 'academic-buildings';
   final http.Client httpClient;
 
   AdminBuildingsApiClient({@required this.httpClient})

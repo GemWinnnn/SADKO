@@ -41,10 +41,12 @@ class _AnnouncementsScreenState extends State<AnnouncementsScreen> {
                 SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
                     statusBarIconBrightness: Brightness.dark,
                     statusBarColor: Colors.transparent));
+                // SystemChrome.setEnabledSystemUIOverlays(SystemUiOverlay.values);
               } else if (scrollInfo.direction == ScrollDirection.reverse) {
                 SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
                     statusBarIconBrightness: Brightness.dark,
                     statusBarColor: Colors.white));
+                // SystemChrome.setEnabledSystemUIOverlays([]);
               }
             }
           },

@@ -27,10 +27,10 @@ class AdminBuildingsLoadFailure extends AdminBuildingsState {}
 
 class AdminBuildingsBloc
     extends Bloc<AdminBuildingsEvent, AdminBuildingsState> {
-  final AdminBuildingsRepository admin_buildingsRepository;
+  final AdminBuildingsRepository adminBuildingsRepository;
 
-  AdminBuildingsBloc({@required this.admin_buildingsRepository})
-      : assert(admin_buildingsRepository != null),
+  AdminBuildingsBloc({@required this.adminBuildingsRepository})
+      : assert(adminBuildingsRepository != null),
         super(AdminBuildingsInitial());
 
   @override
@@ -38,8 +38,8 @@ class AdminBuildingsBloc
     AdminBuildingsEvent event,
   ) async* {
     try {
-      final List admin_buildings = await admin_buildingsRepository.getData();
-      yield AdminBuildingsLoadSuccess(admin_buildings: admin_buildings);
+      final List adminBuildings = await adminBuildingsRepository.getData();
+      yield AdminBuildingsLoadSuccess(admin_buildings: adminBuildings);
     } catch (_) {}
   }
 }

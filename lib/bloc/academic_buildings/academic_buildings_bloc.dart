@@ -27,10 +27,10 @@ class AcademicBuildingsLoadFailure extends AcademicBuildingsState {}
 
 class AcademicBuildingsBloc
     extends Bloc<AcademicBuildingsEvent, AcademicBuildingsState> {
-  final AcademicBuildingsRepository academic_buildingsRepository;
+  final AcademicBuildingsRepository academicBuildingsRepository;
 
-  AcademicBuildingsBloc({@required this.academic_buildingsRepository})
-      : assert(academic_buildingsRepository != null),
+  AcademicBuildingsBloc({@required this.academicBuildingsRepository})
+      : assert(academicBuildingsRepository != null),
         super(AcademicBuildingsInitial());
 
   @override
@@ -39,7 +39,7 @@ class AcademicBuildingsBloc
   ) async* {
     try {
       final List academic_buildings =
-          await academic_buildingsRepository.getData();
+          await academicBuildingsRepository.getData();
       yield AcademicBuildingsLoadSuccess(
           academic_buildings: academic_buildings);
     } catch (_) {}

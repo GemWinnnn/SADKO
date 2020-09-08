@@ -1,14 +1,51 @@
-import 'dart:math';
-
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:scroll_snap_list/scroll_snap_list.dart';
+import 'package:http/http.dart' as http;
+import 'package:wvsu_tour_app/bloc/blocs.dart';
+import 'package:wvsu_tour_app/bloc/campuses/campuses_bloc.dart';
+import 'package:wvsu_tour_app/bloc/colleges/colleges_bloc.dart';
 import 'package:wvsu_tour_app/config/app.dart';
+import 'package:wvsu_tour_app/repositories/academic_buildings/academic_buildings_api.dart';
+import 'package:wvsu_tour_app/repositories/admin_buildings/admin_buildings_api.dart';
+import 'package:wvsu_tour_app/repositories/campuses/campuses_api.dart';
+import 'package:wvsu_tour_app/repositories/colleges/colleges_api.dart';
+import 'package:wvsu_tour_app/repositories/repositories.dart';
+import 'package:wvsu_tour_app/widgets/academic_buildings_list.dart';
+import 'package:wvsu_tour_app/widgets/admin_buildings_list.dart';
+import 'package:wvsu_tour_app/widgets/campuses_list.dart';
+import 'package:wvsu_tour_app/widgets/colleges_list.dart';
 
 class NavigatorScreen extends StatefulWidget {
   NavigatorScreen({Key key}) : super(key: key);
+
+  final CampusesRepository campusesRepository = CampusesRepository(
+    apiClient: CampusesApiClient(
+      httpClient: http.Client(),
+    ),
+  );
+
+  final CollegesRepository collegesRepository = CollegesRepository(
+    apiClient: CollegesApiClient(
+      httpClient: http.Client(),
+    ),
+  );
+
+  final AcademicBuildingsRepository academicBuildingsRepository =
+      AcademicBuildingsRepository(
+    apiClient: AcademicBuildingsApiClient(
+      httpClient: http.Client(),
+    ),
+  );
+
+  final AdminBuildingsRepository adminBuildingsRepository =
+      AdminBuildingsRepository(
+    apiClient: AdminBuildingsApiClient(
+      httpClient: http.Client(),
+    ),
+  );
 
   @override
   _NavigatorScreenState createState() => _NavigatorScreenState();
@@ -16,13 +53,6 @@ class NavigatorScreen extends StatefulWidget {
 
 class _NavigatorScreenState extends State<NavigatorScreen> {
   List<int> data = [];
-  int _focusedIndex = 0;
-  GlobalKey<ScrollSnapListState> sslKeyCampus = GlobalKey();
-  GlobalKey<ScrollSnapListState> sslKeyAdmin = GlobalKey();
-  GlobalKey<ScrollSnapListState> sslKeyOrganizations = GlobalKey();
-  GlobalKey<ScrollSnapListState> sslKeyLandmarksSymbols = GlobalKey();
-  GlobalKey<ScrollSnapListState> sslKeyStaff = GlobalKey();
-  GlobalKey<ScrollSnapListState> sslKeyAcad = GlobalKey();
 
   ScrollController _scrollController;
 
@@ -34,46 +64,7 @@ class _NavigatorScreenState extends State<NavigatorScreen> {
         statusBarIconBrightness: Brightness.light,
         statusBarColor: Colors.transparent));
 
-    for (int i = 0; i < 30; i++) {
-      data.add(Random().nextInt(100) + 1);
-    }
-
     _scrollController = ScrollController();
-
-    // print(_focusedIndex);
-  }
-
-  Widget _buildListItem(BuildContext context, int index) {
-    return Container(
-      margin: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
-      width: 200,
-      decoration: BoxDecoration(
-          boxShadow: appDefaultShadow,
-          color: Colors.white,
-          borderRadius: BorderRadius.circular(10)),
-      child: Container(
-        child: InkWell(
-          onTap: () {
-            sslKeyCampus.currentState.focusToItem(index);
-          },
-          child: Stack(
-            children: [
-              Positioned(
-                bottom: 20,
-                left: 20,
-                child: Text("Data Here", style: appBodyTextStyle),
-              ),
-            ],
-          ),
-        ),
-      ),
-    );
-  }
-
-  void _onItemFocus(int index) {
-    setState(() {
-      _focusedIndex = index;
-    });
   }
 
   @override
@@ -84,11 +75,12 @@ class _NavigatorScreenState extends State<NavigatorScreen> {
         if (scrollInfo is UserScrollNotification) {
           if (scrollInfo.direction == ScrollDirection.forward) {
             SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
-                statusBarIconBrightness: Brightness.dark,
+                statusBarIconBrightness: Brightness.light,
                 statusBarColor: Colors.transparent));
+            // SystemChrome.setEnabledSystemUIOverlays(SystemUiOverlay.values);
           } else if (scrollInfo.direction == ScrollDirection.reverse) {
             SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
-                statusBarIconBrightness: Brightness.light,
+                statusBarIconBrightness: Brightness.dark,
                 statusBarColor: appSecondaryColor));
           }
         }
@@ -144,6 +136,77 @@ class _NavigatorScreenState extends State<NavigatorScreen> {
                             "Campuses",
                             style: appSecondaryTitleTextStyle,
                           ),
+                        ),
+                        Padding(
+                            padding: EdgeInsets.symmetric(
+                                horizontal: 30, vertical: 0),
+                            child: Text(
+                              "Main and External Campuses",
+                              style: appBodyTextStyle,
+                            )),
+                        BlocProvider(
+                          create: (context) => CampusesBloc(
+                              campusesRepository: widget.campusesRepository),
+                          child: new CampusesList(),
+                        ),
+                        Padding(
+                          padding: EdgeInsets.fromLTRB(30, 10, 30, 10),
+                          child: Text(
+                            "Colleges",
+                            style: appSecondaryTitleTextStyle,
+                          ),
+                        ),
+                        Padding(
+                            padding: EdgeInsets.symmetric(
+                                horizontal: 30, vertical: 0),
+                            child: Text(
+                              "Different colleges offering diverse spectrum of courses.",
+                              style: appBodyTextStyle,
+                            )),
+                        BlocProvider(
+                          create: (context) => CollegesBloc(
+                              collegesRepository: widget.collegesRepository),
+                          child: new CollegesList(),
+                        ),
+                        Padding(
+                          padding: EdgeInsets.fromLTRB(30, 10, 30, 10),
+                          child: Text(
+                            "Academic Buildings",
+                            style: appSecondaryTitleTextStyle,
+                          ),
+                        ),
+                        Padding(
+                            padding: EdgeInsets.symmetric(
+                                horizontal: 30, vertical: 0),
+                            child: Text(
+                              "Let wisdom set you free.",
+                              style: appBodyTextStyle,
+                            )),
+                        BlocProvider(
+                          create: (context) => AcademicBuildingsBloc(
+                              academicBuildingsRepository:
+                                  widget.academicBuildingsRepository),
+                          child: new AcademicBuildingsList(),
+                        ),
+                        Padding(
+                          padding: EdgeInsets.fromLTRB(30, 10, 30, 10),
+                          child: Text(
+                            "Administrative Offices",
+                            style: appSecondaryTitleTextStyle,
+                          ),
+                        ),
+                        Padding(
+                            padding: EdgeInsets.symmetric(
+                                horizontal: 30, vertical: 0),
+                            child: Text(
+                              "The administrative offices for effective and efficient University operations.",
+                              style: appBodyTextStyle,
+                            )),
+                        BlocProvider(
+                          create: (context) => AdminBuildingsBloc(
+                              adminBuildingsRepository:
+                                  widget.adminBuildingsRepository),
+                          child: new AdminBuildingsList(),
                         ),
                       ],
                     ),

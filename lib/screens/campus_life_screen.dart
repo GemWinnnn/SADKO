@@ -3,7 +3,6 @@ import 'package:flutter/rendering.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:http/http.dart' as http;
-import 'package:scroll_snap_list/scroll_snap_list.dart';
 import 'package:wvsu_tour_app/bloc/blocs.dart';
 import 'package:wvsu_tour_app/bloc/campus_life/campus_life_bloc.dart';
 import 'package:wvsu_tour_app/config/app.dart';
@@ -68,7 +67,7 @@ class _CampusLifeScreenState extends State<CampusLifeScreen> {
                   statusBarColor: Colors.white));
             } else if (scrollInfo.direction == ScrollDirection.reverse) {
               SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
-                  statusBarIconBrightness: Brightness.dark,
+                  statusBarIconBrightness: Brightness.light,
                   statusBarColor: Colors.white));
             }
             return true;

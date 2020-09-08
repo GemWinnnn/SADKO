@@ -21,6 +21,8 @@ class _ThankyouFrontlinersScreenState extends State<ThankyouFrontlinersScreen> {
     SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
         statusBarIconBrightness: Brightness.light,
         statusBarColor: Colors.transparent));
+
+    SystemChrome.setEnabledSystemUIOverlays(SystemUiOverlay.values);
   }
 
   @override

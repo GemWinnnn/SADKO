@@ -34,6 +34,8 @@ class CollegesApiClient {
           featuredImage: item['FeaturedImage'],
           campus: item['Campus'],
           logo: item['Logo'],
+          name: item['Name'],
+          shortDescription: item['shortDescription'],
           longDescription: item['LongDescription'],
           photos: item['Photos']);
       _messagesList.add(destructured);
