@@ -9,7 +9,7 @@ import 'package:wvsu_tour_app/models/models.dart';
 
 class AdminBuildingsApiClient {
   static const baseUrl = apiUrl;
-  static const endpoint = 'academic-buildings';
+  static const endpoint = 'head-offices';
   final http.Client httpClient;
 
   AdminBuildingsApiClient({@required this.httpClient})
@@ -33,6 +33,7 @@ class AdminBuildingsApiClient {
       AdminBuildings destructured = AdminBuildings(
           createdBy: item['created_by'],
           featuredImage: item['FeaturedImage'],
+          fullDescription: item['FullDescription'],
           name: item['Name']);
       _messagesList.add(destructured);
     }

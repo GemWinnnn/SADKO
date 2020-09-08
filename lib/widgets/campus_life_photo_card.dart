@@ -1,5 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_vector_icons/flutter_vector_icons.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:wvsu_tour_app/config/app.dart';
 import 'package:wvsu_tour_app/screens/photo_viewer.dart';
@@ -78,17 +79,21 @@ class CampusLifePhotoCardCard extends StatelessWidget {
                   Positioned(
                       bottom: 20,
                       left: 20,
-                      child: Container(
-                        width: MediaQuery.of(context).size.width * 0.6,
-                        child: Text(
-                            this.shortDescription != null
-                                ? this.shortDescription
-                                : "Loading...",
-                            style: GoogleFonts.lato(color: Colors.white),
-                            overflow: TextOverflow.ellipsis,
-                            maxLines: 1,
-                            softWrap: true),
-                      )),
+                      child: Row(children: [
+                        Icon(SimpleLineIcons.picture,
+                            color: Colors.white, size: 15),
+                        SizedBox(
+                          width: 5,
+                        ),
+                        Container(
+                          width: MediaQuery.of(context).size.width * 0.65,
+                          child: Text(this.shortDescription ?? "Loading...",
+                              style: GoogleFonts.lato(color: Colors.white),
+                              overflow: TextOverflow.ellipsis,
+                              maxLines: 2,
+                              softWrap: true),
+                        )
+                      ]))
                 ],
               ),
             )));

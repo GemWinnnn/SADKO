@@ -1,13 +1,20 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_vector_icons/flutter_vector_icons.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:wvsu_tour_app/config/app.dart';
+import 'package:wvsu_tour_app/screens/admin_building_details_screen.dart';
 
 class AdminBuildingCard extends StatelessWidget {
   const AdminBuildingCard(
-      {Key key, this.featureImage, this.height, this.name, this.width})
+      {Key key,
+      this.featureImage,
+      this.height,
+      this.name,
+      this.width,
+      this.fullDescription})
       : super(key: key);
-
+  final String fullDescription;
   final String name;
   final double height;
   final double width;
@@ -26,7 +33,17 @@ class AdminBuildingCard extends StatelessWidget {
               borderRadius: appDefaultBorderRadius,
             ),
             child: InkWell(
-              onTap: () {},
+              onTap: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => AdministrativeBuildingDetailsScreen(
+                        fullDescription: this.fullDescription,
+                        name: this.name,
+                        featuredImage: this.featureImage,
+                      ),
+                    ));
+              },
               child: Stack(
                 children: [
                   ClipRRect(
@@ -62,14 +79,22 @@ class AdminBuildingCard extends StatelessWidget {
                   Positioned(
                       bottom: 20,
                       left: 20,
-                      child: Container(
-                        width: MediaQuery.of(context).size.width * 0.6,
-                        child: Text(this.name ?? "Loading...",
-                            style: GoogleFonts.lato(color: Colors.white),
-                            overflow: TextOverflow.ellipsis,
-                            maxLines: 2,
-                            softWrap: true),
-                      )),
+                      child: Row(children: [
+                        Icon(SimpleLineIcons.doc,
+                            color: Colors.white, size: 15),
+                        SizedBox(
+                          width: 5,
+                        ),
+                        Container(
+                          width: MediaQuery.of(context).size.width * 0.65,
+                          child: Text(
+                              this.name != null ? this.name : "Loading...",
+                              style: GoogleFonts.lato(color: Colors.white),
+                              overflow: TextOverflow.ellipsis,
+                              maxLines: 2,
+                              softWrap: true),
+                        )
+                      ]))
                 ],
               ),
             )));

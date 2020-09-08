@@ -27,16 +27,17 @@ class AcademicBuildingsApiClient {
 
     final json = jsonDecode(response.body);
 
-    List<AcademicBuildings> _messagesList = [];
+    List<AcademicBuildings> _list = [];
 
     for (var item in json) {
       AcademicBuildings destructured = AcademicBuildings(
           createdBy: item['created_by'],
           featuredImage: item['FeaturedImage'],
+          longDescription: item['LongDescription'],
           name: item['Name']);
-      _messagesList.add(destructured);
+      _list.add(destructured);
     }
 
-    return _messagesList;
+    return _list;
   }
 }

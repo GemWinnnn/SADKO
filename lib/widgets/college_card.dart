@@ -1,6 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:circular_profile_avatar/circular_profile_avatar.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_vector_icons/flutter_vector_icons.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:wvsu_tour_app/config/app.dart';
 import 'package:wvsu_tour_app/screens/college_details.dart';
@@ -100,7 +101,16 @@ class CollegeCard extends StatelessWidget {
                           borderColor: Colors.transparent,
                           cacheImage: true,
                           onTap: () {
-                            print('img');
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => CollegeDetailsScreen(
+                                    longDescription: this.longDescription,
+                                    name: this.name,
+                                    logo: this.logo,
+                                    featuredImage: featuredImage,
+                                  ),
+                                ));
                           }, // sets on tap
                           showInitialTextAbovePicture:
                               true, // setting it true will show initials text above profile picture, default false
@@ -111,15 +121,22 @@ class CollegeCard extends StatelessWidget {
                   Positioned(
                       bottom: 20,
                       left: 20,
-                      child: Container(
-                        width: MediaQuery.of(context).size.width * 0.6,
-                        child: Text(
-                            this.name != null ? this.name : "Loading...",
-                            style: GoogleFonts.lato(color: Colors.white),
-                            overflow: TextOverflow.ellipsis,
-                            maxLines: 1,
-                            softWrap: true),
-                      )),
+                      child: Row(children: [
+                        Icon(SimpleLineIcons.doc,
+                            color: Colors.white, size: 15),
+                        SizedBox(
+                          width: 5,
+                        ),
+                        Container(
+                          width: MediaQuery.of(context).size.width * 0.65,
+                          child: Text(
+                              this.name != null ? this.name : "Loading...",
+                              style: GoogleFonts.lato(color: Colors.white),
+                              overflow: TextOverflow.ellipsis,
+                              maxLines: 2,
+                              softWrap: true),
+                        )
+                      ]))
                 ],
               ),
             )));

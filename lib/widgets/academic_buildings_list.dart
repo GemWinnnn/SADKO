@@ -45,6 +45,8 @@ class _AcademicBuildingsListState extends State<AcademicBuildingsList> {
                           : AcademicBuildingCard(
                               height: 200,
                               width: 300,
+                              longDescription: state
+                                  .academic_buildings[index].longDescription,
                               name: state.academic_buildings[index].name,
                               featureImage: apiUrl +
                                   state.academic_buildings[index]

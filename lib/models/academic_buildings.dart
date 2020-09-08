@@ -4,14 +4,16 @@ class AcademicBuildings extends Equatable {
   final String name;
   final Map<String, dynamic> featuredImage;
   final Map<String, dynamic> createdBy;
-
-  AcademicBuildings({this.name, this.featuredImage, this.createdBy});
+  final String longDescription;
+  AcademicBuildings(
+      {this.name, this.featuredImage, this.createdBy, this.longDescription});
 
   AcademicBuildings.fromJson(Map<String, dynamic> json)
       : name = json['Name'],
         featuredImage = json['FeaturedImage'],
+        longDescription = json['LongDescription'],
         createdBy = json['created_by'];
 
   @override
-  List<Object> get props => [name, featuredImage, createdBy];
+  List<Object> get props => [name, featuredImage, createdBy, longDescription];
 }
