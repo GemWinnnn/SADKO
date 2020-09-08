@@ -7,16 +7,16 @@ import 'package:wvsu_tour_app/config/app.dart';
 
 class AdministrativeBuildingDetailsScreen extends StatelessWidget {
   const AdministrativeBuildingDetailsScreen(
-      {Key key, this.name, this.featuredImage, this.fullDescription})
+      {Key key, this.name, this.featuredImage, this.longDescription})
       : super(key: key);
   final String name;
   final dynamic featuredImage;
-  final String fullDescription;
+  final String longDescription;
 
   @override
   Widget build(BuildContext context) {
     Widget buildMarkdown() => Column(
-          children: MarkdownGenerator(data: this.fullDescription ?? "").widgets,
+          children: MarkdownGenerator(data: this.longDescription ?? "").widgets,
         );
     Size appScreenSize = MediaQuery.of(context).size;
     return Scaffold(

@@ -33,7 +33,7 @@ class AdminBuildingsApiClient {
       AdminBuildings destructured = AdminBuildings(
           createdBy: item['created_by'],
           featuredImage: item['FeaturedImage'],
-          fullDescription: item['FullDescription'],
+          longDescription: item['LongDescription'],
           name: item['Name']);
       _messagesList.add(destructured);
     }

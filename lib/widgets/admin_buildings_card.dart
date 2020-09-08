@@ -12,9 +12,9 @@ class AdminBuildingCard extends StatelessWidget {
       this.height,
       this.name,
       this.width,
-      this.fullDescription})
+      this.longDescription})
       : super(key: key);
-  final String fullDescription;
+  final String longDescription;
   final String name;
   final double height;
   final double width;
@@ -38,7 +38,7 @@ class AdminBuildingCard extends StatelessWidget {
                     context,
                     MaterialPageRoute(
                       builder: (context) => AdministrativeBuildingDetailsScreen(
-                        fullDescription: this.fullDescription,
+                        longDescription: this.longDescription,
                         name: this.name,
                         featuredImage: this.featureImage,
                       ),

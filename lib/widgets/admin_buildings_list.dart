@@ -45,8 +45,8 @@ class _AdminBuildingsListState extends State<AdminBuildingsList> {
                               height: 200,
                               width: 300,
                               name: state.admin_buildings[index].name,
-                              fullDescription:
-                                  state.admin_buildings[index].fullDescription,
+                              longDescription:
+                                  state.admin_buildings[index].longDescription,
                               featureImage: apiUrl +
                                   state.admin_buildings[index]
                                       .featuredImage["url"],
