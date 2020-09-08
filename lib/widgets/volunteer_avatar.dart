@@ -1,5 +1,6 @@
 import 'package:circular_profile_avatar/circular_profile_avatar.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class VolunteersAvatar extends StatelessWidget {
   const VolunteersAvatar(
@@ -33,9 +34,52 @@ class VolunteersAvatar extends StatelessWidget {
             borderColor: Colors.transparent,
             cacheImage: true,
             onTap: () {
-              // TODO: Alert here
-              print('img');
-            }, // sets on tap
+              showDialog<void>(
+                  context: context,
+                  barrierDismissible: false, // user must tap button!
+                  builder: (BuildContext context) {
+                    return AlertDialog(
+                      title: Text("About"),
+                      content: SingleChildScrollView(
+                        child: ListBody(
+                          children: <Widget>[
+                            Column(
+                              children: [
+                                SizedBox(
+                                  width: 200,
+                                  height: 200,
+                                  child: CircularProfileAvatar(
+                                    this.profileImage ?? "",
+                                    radius: 100,
+                                    backgroundColor: Colors.grey[200],
+                                    borderWidth: 10,
+                                    borderColor: Colors.transparent,
+                                    cacheImage: true,
+                                    showInitialTextAbovePicture:
+                                        true, // setting it true will show initials text above profile picture, default false
+                                  ),
+                                ),
+                                Text(
+                                  this.name ?? "",
+                                  style: GoogleFonts.lato(fontSize: 20),
+                                ),
+                                Text(this.description),
+                              ],
+                            )
+                          ],
+                        ),
+                      ),
+                      actions: <Widget>[
+                        FlatButton(
+                          child: Text('OK'),
+                          onPressed: () {
+                            Navigator.of(context).pop();
+                          },
+                        ),
+                      ],
+                    );
+                  });
+            },
             showInitialTextAbovePicture:
                 true, // setting it true will show initials text above profile picture, default false
           ),

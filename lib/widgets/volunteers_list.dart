@@ -37,7 +37,7 @@ class _VolunteersListState extends State<VolunteersList> {
                     },
                     initialIndex: 0,
                     margin: EdgeInsets.symmetric(vertical: 10),
-                    itemSize: 350,
+                    itemSize: 400,
                     itemBuilder: (BuildContext context, int index) {
                       return index >= state.volunteers.length
                           ? Text("Bottom Loader")
