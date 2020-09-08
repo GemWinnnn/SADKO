@@ -3,16 +3,28 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_vector_icons/flutter_vector_icons.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:http/http.dart' as http;
 import 'package:url_launcher/url_launcher.dart';
 import 'package:websafe_svg/websafe_svg.dart';
+import 'package:wvsu_tour_app/bloc/volunteers/volunteers_bloc.dart';
 import 'package:wvsu_tour_app/config/app.dart';
 import 'package:wvsu_tour_app/firebase/auth.dart';
+import 'package:wvsu_tour_app/repositories/volunteers/volunteers_api.dart';
+import 'package:wvsu_tour_app/repositories/volunteers/volunteers_repository.dart';
+import 'package:wvsu_tour_app/widgets/volunteers_list.dart';
 
 class AboutScreen extends StatefulWidget {
   AboutScreen({Key key, this.auth}) : super(key: key);
   BaseAuth auth;
+
+  final VolunteersRepository volunteersRepository = VolunteersRepository(
+    apiClient: VolunteersApiClient(
+      httpClient: http.Client(),
+    ),
+  );
   @override
   _AboutScreenState createState() => _AboutScreenState();
 }
@@ -242,33 +254,11 @@ class _AboutScreenState extends State<AboutScreen> {
                                     ),
                                   ],
                                 )),
-                            Row(
-                              children: [
-                                SizedBox(
-                                  width: 50,
-                                ),
-                                CircularProfileAvatar(
-                                  'https://icon-library.com/images/avatar-icon-images/avatar-icon-images-4.jpg', //sets image path, it should be a URL string. default value is empty string, if path is empty it will display only initials
-                                  radius: 40, // sets radius, default 50.0
-                                  backgroundColor: Colors
-                                      .transparent, // sets background color, default Colors.white
-                                  borderWidth: 10, // sets border, default 0.0
-                                  initialsText: Text(
-                                    "AU",
-                                    style: TextStyle(
-                                        fontSize: 40, color: Colors.white),
-                                  ), // sets initials text, set your own style, default Text('')
-                                  borderColor: Colors
-                                      .transparent, // sets border color, default Colors.white
-                                  cacheImage:
-                                      true, // allow widget to cache image against provided url
-                                  onTap: () {
-                                    print('adil');
-                                  }, // sets on tap
-                                  showInitialTextAbovePicture:
-                                      true, // setting it true will show initials text above profile picture, default false
-                                ),
-                              ],
+                            BlocProvider(
+                              create: (context) => VolunteersBloc(
+                                  volunteersRepository:
+                                      widget.volunteersRepository),
+                              child: new VolunteersList(),
                             ),
                             Divider(
                               thickness: 2,

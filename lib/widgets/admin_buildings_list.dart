@@ -37,7 +37,7 @@ class _AdminBuildingsListState extends State<AdminBuildingsList> {
                     },
                     initialIndex: 0,
                     margin: EdgeInsets.symmetric(vertical: 10),
-                    itemSize: 300,
+                    itemSize: 380,
                     itemBuilder: (BuildContext context, int index) {
                       return index >= state.admin_buildings.length
                           ? Text("Bottom Loader")

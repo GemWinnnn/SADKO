@@ -41,7 +41,7 @@ class _FacilitiesAmenitiesListState extends State<FacilitiesAmenitiesList> {
                     },
                     initialIndex: 0,
                     margin: EdgeInsets.symmetric(vertical: 10),
-                    itemSize: 300,
+                    itemSize: 380,
                     itemBuilder: (BuildContext context, int index) {
                       return index >= state.facilitiesAmenities.length
                           ? Text("Bottom Loader")
