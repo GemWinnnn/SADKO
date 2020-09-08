@@ -229,6 +229,127 @@ class _AboutScreenState extends State<AboutScreen> {
                                     "WVSU Campus Tour is a mobile app developed by the volunteers from the College of Information and Communications Technology, Main Campus. It aims to mitigate the effect of the pandemic for students who want to get more familiar with the University.",
                                     style: appBodyTextStyle,
                                   ),
+                                ),
+                                Padding(
+                                    padding:
+                                        EdgeInsets.fromLTRB(30, 10, 30, 10),
+                                    child: Container(
+                                        width: double.infinity,
+                                        child: Column(
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
+                                          children: [
+                                            Row(
+                                              crossAxisAlignment:
+                                                  CrossAxisAlignment.start,
+                                              children: [
+                                                RaisedButton.icon(
+                                                    onPressed: () {
+                                                      _launchURL(
+                                                          "https://www.facebook.com/wvsufb/");
+                                                    },
+                                                    icon: Icon(FontAwesome
+                                                        .facebook_square),
+                                                    label: Text("/wvsufb")),
+                                                SizedBox(width: 20),
+                                                RaisedButton.icon(
+                                                    onPressed: () {
+                                                      _launchURL(
+                                                          "https://www.facebook.com/cictwvsu");
+                                                    },
+                                                    icon: Icon(FontAwesome
+                                                        .facebook_square),
+                                                    label: Text("/cictwvsu")),
+                                                SizedBox(width: 20),
+                                              ],
+                                            ),
+                                            RaisedButton.icon(
+                                                onPressed: () {
+                                                  _launchURL(
+                                                      "https://twitter.com/cictwvsu");
+                                                },
+                                                icon: Icon(
+                                                    FontAwesome.twitter_square),
+                                                label: Text("@cictwvsu")),
+                                          ],
+                                        )))
+                              ],
+                            ),
+                            Divider(
+                              thickness: 2,
+                              height: 30,
+                            ),
+                            Column(
+                              children: [
+                                Padding(
+                                  padding: EdgeInsets.fromLTRB(30, 10, 30, 10),
+                                  child: Image.asset(
+                                      "assets/images/wvsu-big-logo.png",
+                                      height: 90),
+                                ),
+                                Padding(
+                                  padding: EdgeInsets.fromLTRB(30, 10, 30, 10),
+                                  child: Text(
+                                    "West Visayas State University",
+                                    style: appSecondaryTitleTextStyle,
+                                  ),
+                                ),
+                                Container(
+                                  width: double.infinity,
+                                  child: Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      Padding(
+                                        padding:
+                                            EdgeInsets.fromLTRB(30, 10, 30, 10),
+                                        child: Text(
+                                          "Vision",
+                                          style: appSecondaryTitleTextStyle,
+                                        ),
+                                      ),
+                                      Padding(
+                                        padding:
+                                            EdgeInsets.fromLTRB(30, 10, 30, 10),
+                                        child: Text(
+                                          "WVSU as the center for educational excellence in the Visayas and the hub for Human Resource Development in the Asia-Pacific region.",
+                                          style: appBodyTextStyle,
+                                        ),
+                                      ),
+                                      Padding(
+                                        padding:
+                                            EdgeInsets.fromLTRB(30, 10, 30, 10),
+                                        child: Text(
+                                          "Mission",
+                                          style: appSecondaryTitleTextStyle,
+                                        ),
+                                      ),
+                                      Padding(
+                                        padding:
+                                            EdgeInsets.fromLTRB(30, 10, 30, 10),
+                                        child: Text(
+                                          "WVSU is committed to provide holistic education geared towards sustainable growth and development.",
+                                          style: appBodyTextStyle,
+                                        ),
+                                      ),
+                                      Padding(
+                                        padding:
+                                            EdgeInsets.fromLTRB(30, 10, 30, 10),
+                                        child: Text(
+                                          "Core Values",
+                                          style: appSecondaryTitleTextStyle,
+                                        ),
+                                      ),
+                                      Padding(
+                                        padding:
+                                            EdgeInsets.fromLTRB(30, 10, 30, 10),
+                                        child: Text(
+                                          "Scholarship, Harmony, Innovation, Nurturance, Excellence, Service",
+                                          style: appBodyTextStyle,
+                                        ),
+                                      ),
+                                    ],
+                                  ),
                                 )
                               ],
                             ),
@@ -249,7 +370,7 @@ class _AboutScreenState extends State<AboutScreen> {
                                       height: 20,
                                     ),
                                     Text(
-                                      "This app is not possible without the help of these WVSU volunteers.",
+                                      "This app is not possible without their help.",
                                       style: appBodyTextStyle,
                                     ),
                                   ],
@@ -279,6 +400,7 @@ class _AboutScreenState extends State<AboutScreen> {
                                   Text(
                                       "WVSU Campus tour app is being developed publicly on GitHub. Anyone with or without the knowledge of programming can help with its development. Please report any suggestions or issues by pressing the button below.",
                                       style: appBodyTextStyle),
+                                  SizedBox(height: 20),
                                   SizedBox(
                                     width: double.infinity,
                                     child: RaisedButton.icon(
