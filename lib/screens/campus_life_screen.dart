@@ -8,11 +8,14 @@ import 'package:wvsu_tour_app/bloc/campus_life/campus_life_bloc.dart';
 import 'package:wvsu_tour_app/config/app.dart';
 import 'package:wvsu_tour_app/repositories/campus_life/campus_life_api.dart';
 import 'package:wvsu_tour_app/repositories/campus_life/campus_life_repository.dart';
+import 'package:wvsu_tour_app/repositories/historical_artistic_landmarks/historical_artistic_landmarks_api.dart';
 import 'package:wvsu_tour_app/repositories/messages/messages_api.dart';
 import 'package:wvsu_tour_app/repositories/messages/messages_repository.dart';
 import 'package:wvsu_tour_app/repositories/organizations/organizations_api.dart';
 import 'package:wvsu_tour_app/repositories/organizations/organizations_repository.dart';
+import 'package:wvsu_tour_app/repositories/repositories.dart';
 import 'package:wvsu_tour_app/widgets/campus_life_list.dart';
+import 'package:wvsu_tour_app/widgets/historical_artistic_landmarks_list.dart';
 import 'package:wvsu_tour_app/widgets/messages_list.dart';
 import 'package:wvsu_tour_app/widgets/organizations_list.dart';
 
@@ -34,6 +37,14 @@ class CampusLifeScreen extends StatefulWidget {
   final OrganizationsRepository organizationsRepository =
       OrganizationsRepository(
     apiClient: OrganizationsApiClient(
+      httpClient: http.Client(),
+    ),
+  );
+
+  final HistoricalArtisticLandmarksRepository
+      historicalArtisticLandmarksRepository =
+      HistoricalArtisticLandmarksRepository(
+    apiClient: HistoricalArtisticLandmarksApiClient(
       httpClient: http.Client(),
     ),
   );
@@ -148,6 +159,22 @@ class _CampusLifeScreenState extends State<CampusLifeScreen> {
                   create: (context) => OrganizationsBloc(
                       organizationsRepository: widget.organizationsRepository),
                   child: new OrganizationsList(),
+                ),
+                Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 30, vertical: 10),
+                    child: Text("Timeless Culture",
+                        style: appSecondaryTitleTextStyle)),
+                Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 30, vertical: 0),
+                    child: Text(
+                      "Historical and Artistic Landmarks",
+                      style: appBodyTextStyle,
+                    )),
+                BlocProvider(
+                  create: (context) => HistoricalArtisticLandmarksBloc(
+                      historicalArtisticLandmarksRepository:
+                          widget.historicalArtisticLandmarksRepository),
+                  child: new HistoricalArtisticLandmarksList(),
                 ),
                 SizedBox(
                   height: appScreenSize.height * 0.05,

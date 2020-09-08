@@ -19,6 +19,25 @@ class AnnouncementCard extends StatelessWidget {
     dynamic featuredImageThumbnail =
         apiUrl + this.featuredImage["formats"]["thumbnail"]["url"];
     dynamic featuredImage = apiUrl + this.featuredImage["url"];
+
+    // https://python.developreference.com/article/11038302/Converting+DateTime+to+time+ago+in+Dart+Flutter
+    String timeAgo(DateTime d) {
+      Duration diff = DateTime.now().difference(d);
+      if (diff.inDays > 365)
+        return "${(diff.inDays / 365).floor()} ${(diff.inDays / 365).floor() == 1 ? "year" : "years"} ago";
+      if (diff.inDays > 30)
+        return "${(diff.inDays / 30).floor()} ${(diff.inDays / 30).floor() == 1 ? "month" : "months"} ago";
+      if (diff.inDays > 7)
+        return "${(diff.inDays / 7).floor()} ${(diff.inDays / 7).floor() == 1 ? "week" : "weeks"} ago";
+      if (diff.inDays > 0)
+        return "${diff.inDays} ${diff.inDays == 1 ? "day" : "days"} ago";
+      if (diff.inHours > 0)
+        return "${diff.inHours} ${diff.inHours == 1 ? "hour" : "hours"} ago";
+      if (diff.inMinutes > 0)
+        return "${diff.inMinutes} ${diff.inMinutes == 1 ? "minute" : "minutes"} ago";
+      return "just now";
+    }
+
     return InkWell(
       onTap: () {
         Navigator.push(
@@ -121,21 +140,8 @@ class AnnouncementCard extends StatelessWidget {
                                           SizedBox(
                                             width: 5,
                                           ),
-                                          // Text(timeago.format(DateTime
-                                          //     .fromMillisecondsSinceEpoch(DateTime
-                                          //             .parse(this.createdBy[
-                                          //                 "createdAt"])
-                                          //         .add(Duration(
-                                          //             milliseconds: new DateTime
-                                          //                     .now()
-                                          //                 .millisecondsSinceEpoch))
-                                          //         .millisecondsSinceEpoch)))
-                                          Text(timeago.format(DateTime.now()
-                                              .subtract(Duration(
-                                                  minutes: DateTime.parse(
-                                                          this.createdBy[
-                                                              "createdAt"])
-                                                      .minute))))
+                                          Text(timeAgo(DateTime.parse(
+                                              this.createdBy["createdAt"]))),
                                         ],
                                       )
                                     ],

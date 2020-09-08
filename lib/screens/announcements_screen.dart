@@ -89,7 +89,7 @@ class _AnnouncementsScreenState extends State<AnnouncementsScreen> {
                             }
                             if (state is AnnouncementsLoadSuccess) {
                               return Column(
-                                children: state.announcements
+                                children: state.announcements.reversed
                                     .map((e) => AnnouncementCard(
                                           contents: e.contents,
                                           featuredImage: e.featuredImage,

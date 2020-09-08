@@ -65,7 +65,7 @@ class _LegalScreenState extends State<LegalScreen> {
             ),
             leading: IconButton(
                 icon: Icon(
-                  Feather.arrow_left,
+                  Feather.chevron_left,
                   color: Colors.black,
                 ),
                 onPressed: () {

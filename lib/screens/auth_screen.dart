@@ -222,7 +222,33 @@ class _AuthScreenState extends State<AuthScreen> {
                         child: AppPrimaryButton(
                           text: "Let's Go!",
                           onPressed: () {
-                            _switchToState(0, 1);
+                            showDialog<void>(
+                              context: context,
+                              barrierDismissible:
+                                  false, // user must tap button!
+                              builder: (BuildContext context) {
+                                return AlertDialog(
+                                  title: Text('WVSU Campus Tour in Beta'),
+                                  content: SingleChildScrollView(
+                                    child: ListBody(
+                                      children: <Widget>[
+                                        Text(
+                                            'More features and contents will be added soon.'),
+                                      ],
+                                    ),
+                                  ),
+                                  actions: <Widget>[
+                                    FlatButton(
+                                      child: Text('I understand.'),
+                                      onPressed: () {
+                                        Navigator.of(context).pop();
+                                        _switchToState(0, 1);
+                                      },
+                                    ),
+                                  ],
+                                );
+                              },
+                            );
                           },
                         ),
                       ))

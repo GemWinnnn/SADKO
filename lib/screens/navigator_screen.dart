@@ -12,11 +12,13 @@ import 'package:wvsu_tour_app/repositories/academic_buildings/academic_buildings
 import 'package:wvsu_tour_app/repositories/admin_buildings/admin_buildings_api.dart';
 import 'package:wvsu_tour_app/repositories/campuses/campuses_api.dart';
 import 'package:wvsu_tour_app/repositories/colleges/colleges_api.dart';
+import 'package:wvsu_tour_app/repositories/facilities_amenities/facilities_amenities_api.dart';
 import 'package:wvsu_tour_app/repositories/repositories.dart';
 import 'package:wvsu_tour_app/widgets/academic_buildings_list.dart';
 import 'package:wvsu_tour_app/widgets/admin_buildings_list.dart';
 import 'package:wvsu_tour_app/widgets/campuses_list.dart';
 import 'package:wvsu_tour_app/widgets/colleges_list.dart';
+import 'package:wvsu_tour_app/widgets/facilities_amenities_list.dart';
 
 class NavigatorScreen extends StatefulWidget {
   NavigatorScreen({Key key}) : super(key: key);
@@ -43,6 +45,13 @@ class NavigatorScreen extends StatefulWidget {
   final AdminBuildingsRepository adminBuildingsRepository =
       AdminBuildingsRepository(
     apiClient: AdminBuildingsApiClient(
+      httpClient: http.Client(),
+    ),
+  );
+
+  final FacilitiesAmenitiesRepository facilitiesAmenitiesRepository =
+      FacilitiesAmenitiesRepository(
+    apiClient: FacilitiesAmenitiesApiClient(
       httpClient: http.Client(),
     ),
   );
@@ -208,6 +217,27 @@ class _NavigatorScreenState extends State<NavigatorScreen> {
                                   widget.adminBuildingsRepository),
                           child: new AdminBuildingsList(),
                         ),
+                        Padding(
+                          padding: EdgeInsets.fromLTRB(30, 10, 30, 10),
+                          child: Text(
+                            "Facilities and Amenities",
+                            style: appSecondaryTitleTextStyle,
+                          ),
+                        ),
+                        Padding(
+                            padding: EdgeInsets.symmetric(
+                                horizontal: 30, vertical: 0),
+                            child: Text(
+                              "Our University continues to expanded and improved her cultural and welfare facilities.",
+                              style: appBodyTextStyle,
+                            )),
+                        BlocProvider(
+                          create: (context) => FacilitiesAmenitiesBloc(
+                              facilitiesAmenitiesRepository:
+                                  widget.facilitiesAmenitiesRepository),
+                          child: new FacilitiesAmenitiesList(),
+                        ),
+                        SizedBox(height: 30)
                       ],
                     ),
                   ))
