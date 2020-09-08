@@ -1,4 +1,4 @@
-package com.example.wvsu_tour_app
+package com.cictapps.wvsu_tour_app
 
 import io.flutter.embedding.android.FlutterActivity
 

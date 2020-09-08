@@ -50,3 +50,5 @@ app.*.map.json
 
 #Android Google service config
 /android/app/google-services.json
+
+/android/key.properties
