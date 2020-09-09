@@ -71,7 +71,7 @@ class _AuthScreenState extends State<AuthScreen> {
           _loading = false;
         });
         print(e);
-        _showSnackbar("Failed to sign in with Facebook: ${e}");
+        _showSnackbar("Failed to sign in with Facebook. :(");
       }
     }
   }
@@ -100,7 +100,7 @@ class _AuthScreenState extends State<AuthScreen> {
         _loading = false;
       });
       print(e);
-      _showSnackbar("Failed to sign in with Google: ${e}");
+      _showSnackbar("Failed to sign in with Google. :(");
     }
   }
 

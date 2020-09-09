@@ -1,4 +1,5 @@
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_vector_icons/flutter_vector_icons.dart';
 import 'package:wvsu_tour_app/config/app.dart';
@@ -128,8 +129,12 @@ class AnnouncementCard extends StatelessWidget {
                                     children: [
                                       Row(children: [
                                         Icon(Feather.feather, size: 15),
-                                        Text(" " + this.createdBy),
+                                        Text(" " + this.createdBy['username']),
                                       ]),
+                                      Text(" " +
+                                          timeAgo((this.createdBy['createdAt']
+                                                  as Timestamp)
+                                              .toDate()))
                                     ],
                                   ),
                                 ))

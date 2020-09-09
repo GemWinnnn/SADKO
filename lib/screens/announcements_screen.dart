@@ -91,8 +91,8 @@ class _AnnouncementsScreenState extends State<AnnouncementsScreen> {
                         Flexible(
                             flex: 1,
                             fit: FlexFit.loose,
-                            child: FutureBuilder<QuerySnapshot>(
-                                future: collection.get(),
+                            child: StreamBuilder<QuerySnapshot>(
+                                stream: collection.snapshots(),
                                 builder: (BuildContext context,
                                     AsyncSnapshot<QuerySnapshot> snapshot) {
                                   if (snapshot.hasError) {
@@ -100,29 +100,26 @@ class _AnnouncementsScreenState extends State<AnnouncementsScreen> {
                                   }
 
                                   if (snapshot.connectionState ==
-                                      ConnectionState.done) {
-                                    if (snapshot.hasData) {
-                                      List<QueryDocumentSnapshot> data =
-                                          snapshot.data.docs;
-                                      return Column(
-                                          children: data
-                                              .map((e) => AnnouncementCard(
-                                                    contents:
-                                                        e.data()['Contents'],
-                                                    featuredImage: e.data()[
-                                                        'FeaturedImage'],
-                                                    title: e.data()['Title'],
-                                                    createdBy: "The Umalohokan",
-                                                  ))
-                                              .toList());
-                                    }
+                                      ConnectionState.waiting) {
+                                    return Container(
+                                      width: double.infinity,
+                                      child: Column(
+                                        children: [CircularProgressIndicator()],
+                                      ),
+                                    );
                                   }
-                                  return Container(
-                                    width: double.infinity,
-                                    child: Column(
-                                      children: [CircularProgressIndicator()],
-                                    ),
-                                  );
+
+                                  return Column(
+                                      children: snapshot.data.docs
+                                          .map((e) => AnnouncementCard(
+                                                contents: e.data()['Contents'],
+                                                featuredImage:
+                                                    e.data()['FeaturedImage'],
+                                                title: e.data()['Title'],
+                                                createdBy:
+                                                    e.data()['created_by'],
+                                              ))
+                                          .toList());
                                 }))
                       ],
                     ),

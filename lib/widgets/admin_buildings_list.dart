@@ -19,7 +19,7 @@ class _AdminBuildingsListState extends State<AdminBuildingsList> {
     Size appScreenSize = MediaQuery.of(context).size;
 
     CollectionReference collection =
-        FirebaseFirestore.instance.collection('admin_buildings');
+        FirebaseFirestore.instance.collection('head_offices');
 
     ScrollController _view = ScrollController();
 
@@ -63,7 +63,7 @@ class _AdminBuildingsListState extends State<AdminBuildingsList> {
                                     longDescription:
                                         e.data()['LongDescription'],
                                     featureImage: apiUrl +
-                                        e.data()['FeatureImage']['url'],
+                                        e.data()['FeaturedImage']['url'],
                                   ))
                               .toList(),
                         )
