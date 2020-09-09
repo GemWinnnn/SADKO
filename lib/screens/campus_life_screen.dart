@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:http/http.dart' as http;
 import 'package:wvsu_tour_app/bloc/blocs.dart';
 import 'package:wvsu_tour_app/bloc/campus_life/campus_life_bloc.dart';
@@ -21,33 +20,6 @@ import 'package:wvsu_tour_app/widgets/organizations_list.dart';
 
 class CampusLifeScreen extends StatefulWidget {
   CampusLifeScreen({Key key}) : super(key: key);
-
-  final MessagesRepository messagesRepository = MessagesRepository(
-    apiClient: MessagesApiClient(
-      httpClient: http.Client(),
-    ),
-  );
-
-  final CampusLifeRepository campusLifeRepository = CampusLifeRepository(
-    apiClient: CampusLifeApiClient(
-      httpClient: http.Client(),
-    ),
-  );
-
-  final OrganizationsRepository organizationsRepository =
-      OrganizationsRepository(
-    apiClient: OrganizationsApiClient(
-      httpClient: http.Client(),
-    ),
-  );
-
-  final HistoricalArtisticLandmarksRepository
-      historicalArtisticLandmarksRepository =
-      HistoricalArtisticLandmarksRepository(
-    apiClient: HistoricalArtisticLandmarksApiClient(
-      httpClient: http.Client(),
-    ),
-  );
 
   @override
   _CampusLifeScreenState createState() => _CampusLifeScreenState();

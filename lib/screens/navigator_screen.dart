@@ -23,39 +23,6 @@ import 'package:wvsu_tour_app/widgets/facilities_amenities_list.dart';
 class NavigatorScreen extends StatefulWidget {
   NavigatorScreen({Key key}) : super(key: key);
 
-  final CampusesRepository campusesRepository = CampusesRepository(
-    apiClient: CampusesApiClient(
-      httpClient: http.Client(),
-    ),
-  );
-
-  final CollegesRepository collegesRepository = CollegesRepository(
-    apiClient: CollegesApiClient(
-      httpClient: http.Client(),
-    ),
-  );
-
-  final AcademicBuildingsRepository academicBuildingsRepository =
-      AcademicBuildingsRepository(
-    apiClient: AcademicBuildingsApiClient(
-      httpClient: http.Client(),
-    ),
-  );
-
-  final AdminBuildingsRepository adminBuildingsRepository =
-      AdminBuildingsRepository(
-    apiClient: AdminBuildingsApiClient(
-      httpClient: http.Client(),
-    ),
-  );
-
-  final FacilitiesAmenitiesRepository facilitiesAmenitiesRepository =
-      FacilitiesAmenitiesRepository(
-    apiClient: FacilitiesAmenitiesApiClient(
-      httpClient: http.Client(),
-    ),
-  );
-
   @override
   _NavigatorScreenState createState() => _NavigatorScreenState();
 }
@@ -153,11 +120,7 @@ class _NavigatorScreenState extends State<NavigatorScreen> {
                               "Main and External Campuses",
                               style: appBodyTextStyle,
                             )),
-                        BlocProvider(
-                          create: (context) => CampusesBloc(
-                              campusesRepository: widget.campusesRepository),
-                          child: new CampusesList(),
-                        ),
+                        new CampusesList(),
                         Padding(
                           padding: EdgeInsets.fromLTRB(30, 10, 30, 10),
                           child: Text(
@@ -172,11 +135,7 @@ class _NavigatorScreenState extends State<NavigatorScreen> {
                               "Different colleges offering diverse spectrum of courses.",
                               style: appBodyTextStyle,
                             )),
-                        BlocProvider(
-                          create: (context) => CollegesBloc(
-                              collegesRepository: widget.collegesRepository),
-                          child: new CollegesList(),
-                        ),
+                        new CollegesList(),
                         Padding(
                           padding: EdgeInsets.fromLTRB(30, 10, 30, 10),
                           child: Text(
@@ -191,12 +150,7 @@ class _NavigatorScreenState extends State<NavigatorScreen> {
                               "Let wisdom set you free.",
                               style: appBodyTextStyle,
                             )),
-                        BlocProvider(
-                          create: (context) => AcademicBuildingsBloc(
-                              academicBuildingsRepository:
-                                  widget.academicBuildingsRepository),
-                          child: new AcademicBuildingsList(),
-                        ),
+                        new AcademicBuildingsList(),
                         Padding(
                           padding: EdgeInsets.fromLTRB(30, 10, 30, 10),
                           child: Text(
@@ -211,12 +165,7 @@ class _NavigatorScreenState extends State<NavigatorScreen> {
                               "The administrative offices for effective and efficient University operations.",
                               style: appBodyTextStyle,
                             )),
-                        BlocProvider(
-                          create: (context) => AdminBuildingsBloc(
-                              adminBuildingsRepository:
-                                  widget.adminBuildingsRepository),
-                          child: new AdminBuildingsList(),
-                        ),
+                        new AdminBuildingsList(),
                         Padding(
                           padding: EdgeInsets.fromLTRB(30, 10, 30, 10),
                           child: Text(
@@ -231,12 +180,7 @@ class _NavigatorScreenState extends State<NavigatorScreen> {
                               "Our University continues to expanded and improved her cultural and welfare facilities.",
                               style: appBodyTextStyle,
                             )),
-                        BlocProvider(
-                          create: (context) => FacilitiesAmenitiesBloc(
-                              facilitiesAmenitiesRepository:
-                                  widget.facilitiesAmenitiesRepository),
-                          child: new FacilitiesAmenitiesList(),
-                        ),
+                        new FacilitiesAmenitiesList(),
                         SizedBox(height: 30)
                       ],
                     ),

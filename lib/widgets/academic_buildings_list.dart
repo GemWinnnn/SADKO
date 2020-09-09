@@ -18,55 +18,53 @@ class _AcademicBuildingsListState extends State<AcademicBuildingsList> {
   @override
   Widget build(BuildContext context) {
     Size appScreenSize = MediaQuery.of(context).size;
+    CollectionReference collection =
+        FirebaseFirestore.instance.collection('academic_buildings');
 
-    BlocProvider.of<AcademicBuildingsBloc>(context)
-        .add(AcademicBuildingsRequested());
-
+    collection.firestore.settings = Settings(persistenceEnabled: true);
     return Container(
         child: SizedBox(
             height: 250,
             width: double.infinity,
-            child: BlocBuilder<AcademicBuildingsBloc, AcademicBuildingsState>(
-              builder: (context, state) {
-                if (state is AcademicBuildingsLoadInProgress) {
-                  return Center(child: CircularProgressIndicator());
-                }
-                if (state is AcademicBuildingsLoadSuccess) {
-                  return ScrollSnapList(
-                    onItemFocus: (item) {
-                      print(item);
-                    },
-                    initialIndex: 0,
-                    margin: EdgeInsets.symmetric(vertical: 10),
-                    itemSize: 380,
-                    itemBuilder: (BuildContext context, int index) {
-                      return index >= state.academic_buildings.length
-                          ? Text("Bottom Loader")
-                          : AcademicBuildingCard(
+            child: StreamBuilder<QuerySnapshot>(
+                stream: collection.snapshots(),
+                builder: (BuildContext context,
+                    AsyncSnapshot<QuerySnapshot> snapshot) {
+                       if (snapshot.hasError) {
+                    return Text("An error occured.");
+                  }
+                  if (snapshot.connectionState == ConnectionState.waiting) {
+                    return Container(
+                      width: double.infinity,
+                      height: _cardHeight - 20,
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [CircularProgressIndicator()],
+                      ),
+                    );
+                  }
+                  return new SingleChildScrollView(
+                    controller: _view,
+                    scrollDirection: Axis.horizontal,
+                    child: Row(
+                      children: [
+                        SizedBox(width: 20),
+                        Row(
+                          children: snapshot.data.docs
+                              .map((e) => AcademicBuildingCard(
                               height: 200,
                               width: 300,
-                              longDescription: state
-                                  .academic_buildings[index].longDescription,
-                              name: state.academic_buildings[index].name,
-                              featureImage: apiUrl +
-                                  state.academic_buildings[index]
-                                      .featuredImage["url"],
-                            );
-                    },
-                    itemCount: state.academic_buildings.length,
-                    key: sslKeyAcademicBuildings,
-                  );
-                }
-
-                return Container(
-                    width: appScreenSize.width,
-                    height: appScreenSize.height * 0.5,
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [CircularProgressIndicator()],
-                    ));
-              },
-            )));
+                              longDescription: e.data()['LongDescription']
+                  
+                              name: e.data()['Name'],
+                              featureImage: apiUrl + e.data()['FeaturedImage']['url']
+                            )
+                            
+                            ))
+                              .toList(),
+                        )
+                      ],
+                    ),
+                    })));
   }
 }

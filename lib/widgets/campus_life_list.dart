@@ -27,42 +27,39 @@ class _CampusLifeListState extends State<CampusLifeList> {
         child: SizedBox(
             height: 250,
             width: double.infinity,
-            child: FutureBuilder<QuerySnapshot>(
-                future: collection.get(),
+            child: StreamBuilder<QuerySnapshot>(
+                stream: collection.snapshots(),
                 builder: (BuildContext context,
                     AsyncSnapshot<QuerySnapshot> snapshot) {
                   if (snapshot.hasError) {
                     return Text("An error occured.");
                   }
-                  if (snapshot.connectionState == ConnectionState.done) {
-                    if (snapshot.hasData) {
-                      List<QueryDocumentSnapshot> data = snapshot.data.docs;
-                      return SingleChildScrollView(
-                        child: Row(
-                          children: [
-                            SizedBox(width: 20),
-                            Row(
-                                children: data
-                                    .map((e) => CampusLifePhotoCardCard(
-                                          height: 200,
-                                          width: 300,
-                                          shortDescription:
-                                              e.data()['Short Description'],
-                                          image:
-                                              apiUrl + e.data()['Image']['url'],
-                                        ))
-                                    .toList())
-                          ],
-                        ),
-                      );
-                    }
+                  if (snapshot.connectionState == ConnectionState.waiting) {
+                    return Container(
+                      width: double.infinity,
+                      height: 200,
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [CircularProgressIndicator()],
+                      ),
+                    );
                   }
-                  return Container(
-                    width: double.infinity,
-                    height: 200,
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [CircularProgressIndicator()],
+
+                  return SingleChildScrollView(
+                    child: Row(
+                      children: [
+                        SizedBox(width: 20),
+                        Row(
+                            children: snapshot.data.docs
+                                .map((e) => CampusLifePhotoCardCard(
+                                      height: 200,
+                                      width: 300,
+                                      shortDescription:
+                                          e.data()['Short Description'],
+                                      image: apiUrl + e.data()['Image']['url'],
+                                    ))
+                                .toList())
+                      ],
                     ),
                   );
                 })));

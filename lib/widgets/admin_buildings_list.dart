@@ -19,53 +19,52 @@ class _AdminBuildingsListState extends State<AdminBuildingsList> {
   Widget build(BuildContext context) {
     Size appScreenSize = MediaQuery.of(context).size;
 
-    BlocProvider.of<AdminBuildingsBloc>(context).add(AdminBuildingsRequested());
+    CollectionReference collection =
+        FirebaseFirestore.instance.collection('admin_buildings');
+
+    collection.firestore.settings = Settings(persistenceEnabled: true);
 
     return Container(
         child: SizedBox(
             height: 250,
             width: double.infinity,
-            child: BlocBuilder<AdminBuildingsBloc, AdminBuildingsState>(
-              builder: (context, state) {
-                if (state is AdminBuildingsLoadInProgress) {
-                  return Center(child: CircularProgressIndicator());
-                }
-                if (state is AdminBuildingsLoadSuccess) {
-                  return ScrollSnapList(
-                    onItemFocus: (item) {
-                      print(item);
-                    },
-                    initialIndex: 0,
-                    margin: EdgeInsets.symmetric(vertical: 10),
-                    itemSize: 380,
-                    itemBuilder: (BuildContext context, int index) {
-                      return index >= state.admin_buildings.length
-                          ? Text("Bottom Loader")
-                          : AdminBuildingCard(
+            child: StreamBuilder<QuerySnapshot>(
+                stream: collection.snapshots(),
+                builder: (BuildContext context,
+                    AsyncSnapshot<QuerySnapshot> snapshot) {
+                  if (snapshot.hasError) {
+                    return Text("An error occured.");
+                  }
+                  if (snapshot.connectionState == ConnectionState.waiting) {
+                    return Container(
+                      width: double.infinity,
+                      height: _cardHeight - 20,
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [CircularProgressIndicator()],
+                      ),
+                    );
+                  }
+                  return new SingleChildScrollView(
+                    controller: _view,
+                    scrollDirection: Axis.horizontal,
+                    child: Row(
+                      children: [
+                        SizedBox(width: 20),
+                        Row(
+                          children: snapshot.data.docs
+                              .map((e) => AdminBuildingCard(
                               height: 200,
                               width: 300,
-                              name: state.admin_buildings[index].name,
-                              longDescription:
-                                  state.admin_buildings[index].longDescription,
-                              featureImage: apiUrl +
-                                  state.admin_buildings[index]
-                                      .featuredImage["url"],
-                            );
-                    },
-                    itemCount: state.admin_buildings.length,
-                    key: sslKeyAdminBuildings,
+                              name: e.data()['Name'],
+                              longDescription:e.data()['LongDescription'],
+                              featureImage: apiUrl + e.data()['FeatureImage']['url'],
+                            )))
+                              .toList(),
+                        )
+                      ],
+                    ),
                   );
-                }
-
-                return Container(
-                    width: appScreenSize.width,
-                    height: appScreenSize.height * 0.5,
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [CircularProgressIndicator()],
-                    ));
-              },
-            )));
+                })));
   }
 }
