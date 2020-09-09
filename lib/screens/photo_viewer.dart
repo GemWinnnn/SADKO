@@ -21,7 +21,13 @@ class PhotoViewer extends StatelessWidget {
         body: Stack(
           children: [
             PhotoView(
-              imageProvider: CachedNetworkImageProvider(this.image ?? ""),
+              imageProvider: CachedNetworkImageProvider(this.image),
+              loadingBuilder: (context, event) => Text("Loading...",
+                  style: GoogleFonts.lato(color: Colors.white)),
+              loadFailedChild: Text(
+                "Image failed to load.",
+                style: GoogleFonts.lato(color: Colors.white),
+              ),
             ),
             Positioned(
               top: 30,
