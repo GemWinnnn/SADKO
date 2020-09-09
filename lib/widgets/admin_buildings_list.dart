@@ -63,7 +63,8 @@ class _AdminBuildingsListState extends State<AdminBuildingsList> {
                                     longDescription:
                                         e.data()['LongDescription'],
                                     featureImage: apiUrl +
-                                        e.data()['FeaturedImage']['url'],
+                                        e.data()['FeaturedImage']['formats']
+                                            ['thumbnail']['url'],
                                   ))
                               .toList(),
                         )

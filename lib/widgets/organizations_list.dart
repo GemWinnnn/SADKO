@@ -47,7 +47,9 @@ class _OrganizationsListState extends State<OrganizationsList> {
                                 description: e.data()['Description'],
                                 height: 150,
                                 width: 150,
-                                logo: apiUrl + e.data()['Logo']['url'],
+                                logo: apiUrl +
+                                    e.data()['Logo']['formats']['thumbnail']
+                                        ['url'],
                                 name: e.data()['Name'],
                               );
                             }).toList()),

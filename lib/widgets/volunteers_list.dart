@@ -58,7 +58,8 @@ class _VolunteersListState extends State<VolunteersList> {
                                     name: e.data()['Name'],
                                     description: e.data()['Description'],
                                     profileImage: apiUrl +
-                                        e.data()['ProfileImage']['url'],
+                                        e.data()['ProfileImage']['formats']
+                                            ['thumbnail']['url'],
                                   ))
                               .toList(),
                         )

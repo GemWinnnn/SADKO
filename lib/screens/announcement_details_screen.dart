@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_vector_icons/flutter_vector_icons.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:wvsu_tour_app/config/app.dart';
-import 'package:wvsu_tour_app/widgets/like_action_button.dart';
 
 class AnnouncementDetailsScreen extends StatelessWidget {
   const AnnouncementDetailsScreen(

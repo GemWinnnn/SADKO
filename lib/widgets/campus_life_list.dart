@@ -56,7 +56,9 @@ class _CampusLifeListState extends State<CampusLifeList> {
                                       width: 300,
                                       shortDescription:
                                           e.data()['ShortDescription'],
-                                      image: apiUrl + e.data()['Image']['url'],
+                                      image: apiUrl +
+                                          e.data()['Image']['formats']
+                                              ['thumbnail']['url'],
                                     ))
                                 .toList())
                       ],

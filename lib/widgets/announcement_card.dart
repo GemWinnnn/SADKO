@@ -11,21 +11,20 @@ class AnnouncementCard extends StatelessWidget {
       {Key key,
       this.title,
       this.featuredImage,
+      this.featuredImageThumb,
       this.contents,
       this.createdBy,
       this.id})
       : super(key: key);
   final String title;
-  final dynamic featuredImage;
+  final String featuredImageThumb;
+  final String featuredImage;
   final String contents;
   final dynamic createdBy;
   final String id;
   @override
   Widget build(BuildContext context) {
     Size appScreenSize = MediaQuery.of(context).size;
-    dynamic featuredImageThumbnail =
-        apiUrl + (this.featuredImage["formats"]["thumbnail"]["url"] ?? "");
-    dynamic featuredImage = apiUrl + this.featuredImage["url"];
 
     // https://python.developreference.com/article/11038302/Converting+DateTime+to+time+ago+in+Dart+Flutter
     String timeAgo(DateTime d) {
@@ -53,7 +52,7 @@ class AnnouncementCard extends StatelessWidget {
               builder: (context) => AnnouncementDetailsScreen(
                 contents: this.contents,
                 title: this.title,
-                featuredImage: featuredImage,
+                featuredImage: this.featuredImage,
                 id: this.id,
               ),
             ));
@@ -86,7 +85,7 @@ class AnnouncementCard extends StatelessWidget {
                                 child: CachedNetworkImage(
                                   placeholder: (context, url) =>
                                       CircularProgressIndicator(),
-                                  imageUrl: featuredImageThumbnail,
+                                  imageUrl: this.featuredImageThumb,
                                 ),
                               ),
                             ),
@@ -137,7 +136,9 @@ class AnnouncementCard extends StatelessWidget {
                                     children: [
                                       Row(children: [
                                         Icon(Feather.feather, size: 15),
-                                        Text(" " + this.createdBy['username']),
+                                        Text(this.createdBy['username'] != null
+                                            ? this.createdBy['username']
+                                            : '...'),
                                       ]),
                                       Text(" " +
                                           timeAgo((this.createdBy['createdAt']

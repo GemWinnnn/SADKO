@@ -68,14 +68,14 @@ class _AuthScreenState extends State<AuthScreen> {
         final facebookAuthCred = FacebookAuthProvider.credential(result);
         userCredential =
             await widget.auth.signInWithCredentials(facebookAuthCred);
-        _showSnackbar("Logged in with Facebook");
+        this._showSnackbar("Logged in with Facebook");
         print(userCredential.user.uid);
       } catch (e) {
         setState(() {
           _loading = false;
         });
         print(e);
-        _showSnackbar("Failed to sign in with Facebook. :(");
+        this._showSnackbar("Failed to sign in with Facebook. :(");
       }
     }
   }
@@ -97,14 +97,14 @@ class _AuthScreenState extends State<AuthScreen> {
       );
       userCredential =
           await widget.auth.signInWithCredentials(googleAuthCredential);
-      _showSnackbar("Logged in with Google");
+      this._showSnackbar("Logged in with Google");
       print(userCredential.user.uid);
     } catch (e) {
       setState(() {
         _loading = false;
       });
       print(e);
-      _showSnackbar("Failed to sign in with Google. :(");
+      this._showSnackbar("Failed to sign in with Google. :(");
     }
   }
 

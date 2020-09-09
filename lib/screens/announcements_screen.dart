@@ -112,8 +112,17 @@ class _AnnouncementsScreenState extends State<AnnouncementsScreen> {
                                           .map((e) => AnnouncementCard(
                                                 id: e.id,
                                                 contents: e.data()['Contents'],
-                                                featuredImage:
-                                                    e.data()['FeaturedImage'],
+                                                featuredImage: apiUrl +
+                                                    e
+                                                        .data()['FeaturedImage']
+                                                            ['url']
+                                                        .toString(),
+                                                featuredImageThumb: apiUrl +
+                                                    e
+                                                        .data()['FeaturedImage']
+                                                            ['formats']
+                                                            ['thumbnail']['url']
+                                                        .toString(),
                                                 title: e.data()['Title'],
                                                 createdBy:
                                                     e.data()['created_by'],

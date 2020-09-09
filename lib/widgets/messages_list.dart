@@ -63,7 +63,7 @@ class _MessagesListState extends State<MessagesList> {
                                     description: e.data()['Description'],
                                     messageBody: e.data()['MessageBody'],
                                     featuredImage: apiUrl +
-                                        e.data()['FeaturedImage']["url"],
+                                        e.data()['FeaturedImage']['url'],
                                   ))
                               .toList(),
                         )

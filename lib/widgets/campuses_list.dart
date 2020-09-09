@@ -63,8 +63,11 @@ class _CampusesListState extends State<CampusesList> {
                                     shortDescription:
                                         e.data()['ShortDescription'],
                                     featuredImage: apiUrl +
-                                        e.data()['FeaturedImage']['url'],
-                                    logo: apiUrl + e.data()['Logo']['url'],
+                                        e.data()['FeaturedImage']['formats']
+                                            ['thumbnail']['url'],
+                                    logo: apiUrl +
+                                        e.data()['Logo']['formats']['thumbnail']
+                                            ['url'],
                                   ))
                               .toList(),
                         )
