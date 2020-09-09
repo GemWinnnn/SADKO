@@ -62,8 +62,10 @@ class VolunteersAvatar extends StatelessWidget {
                                 Text(
                                   this.name ?? "",
                                   style: GoogleFonts.lato(fontSize: 20),
+                                  textAlign: TextAlign.center,
                                 ),
-                                Text(this.description),
+                                Text(this.description,
+                                    textAlign: TextAlign.center),
                               ],
                             )
                           ],

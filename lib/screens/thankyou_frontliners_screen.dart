@@ -102,13 +102,26 @@ class _ThankyouFrontlinersScreenState extends State<ThankyouFrontlinersScreen> {
                       builder: (BuildContext context,
                           AsyncSnapshot<QuerySnapshot> snapshot) {
                         if (snapshot.hasError) {
-                          return Text('0');
+                          return Text("0",
+                              style: GoogleFonts.lato(
+                                  fontSize: 60, color: Colors.white));
                         }
                         if (snapshot.connectionState ==
                             ConnectionState.waiting) {
-                          return Text("...");
+                          return Text("...",
+                              style: GoogleFonts.lato(
+                                  fontSize: 60, color: Colors.white));
                         }
-                        return Text(snapshot.data.docs.length.toString() ?? "0",
+
+                        if (snapshot.hasData) {
+                          return Text(
+                              snapshot.data.docs != null
+                                  ? snapshot.data.docs.length.toString()
+                                  : "0",
+                              style: GoogleFonts.lato(
+                                  fontSize: 60, color: Colors.white));
+                        }
+                        return Text("0",
                             style: GoogleFonts.lato(
                                 fontSize: 60, color: Colors.white));
                       }),

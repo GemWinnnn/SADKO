@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -13,6 +14,8 @@ Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   Bloc.observer = DefaultBlocObserver();
   await Firebase.initializeApp();
+
+  FirebaseFirestore.instance.settings = Settings(persistenceEnabled: true);
 
   runApp(MyApp());
 }

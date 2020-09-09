@@ -23,7 +23,7 @@ class OrganizationsLogo extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       width: this.width,
-      height: this.height,
+      height: this.height + 30,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         mainAxisAlignment: MainAxisAlignment.center,
@@ -36,7 +36,7 @@ class OrganizationsLogo extends StatelessWidget {
             borderColor: Colors.grey[200],
             cacheImage: true,
             onTap: () {
-              print('img');
+              print(this.logo);
             }, // sets on tap
             showInitialTextAbovePicture:
                 true, // setting it true will show initials text above profile picture, default false

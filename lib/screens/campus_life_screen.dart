@@ -62,7 +62,7 @@ class _CampusLifeScreenState extends State<CampusLifeScreen> {
 
     SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
         statusBarIconBrightness: Brightness.dark,
-        statusBarColor: Colors.transparent));
+        statusBarColor: Colors.white));
   }
 
   @override
@@ -78,7 +78,7 @@ class _CampusLifeScreenState extends State<CampusLifeScreen> {
                   statusBarColor: Colors.white));
             } else if (scrollInfo.direction == ScrollDirection.reverse) {
               SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
-                  statusBarIconBrightness: Brightness.light,
+                  statusBarIconBrightness: Brightness.dark,
                   statusBarColor: Colors.white));
             }
             return true;
@@ -124,11 +124,7 @@ class _CampusLifeScreenState extends State<CampusLifeScreen> {
                       "Our University president, student representatives and other key officials would like to express their thoughts.",
                       style: appBodyTextStyle,
                     )),
-                BlocProvider(
-                  create: (context) => MessagesBloc(
-                      messagesRepository: widget.messagesRepository),
-                  child: new MessagesList(),
-                ),
+                new MessagesList(),
                 Divider(),
                 Padding(
                     padding: EdgeInsets.symmetric(horizontal: 30, vertical: 10),
@@ -140,11 +136,7 @@ class _CampusLifeScreenState extends State<CampusLifeScreen> {
                       "Unique, vibrant, invigorating, aspiring to inspire - we have something to please you no matter what your interests are!",
                       style: appBodyTextStyle,
                     )),
-                BlocProvider(
-                  create: (context) => CampusLifeBloc(
-                      campusLifeRepository: widget.campusLifeRepository),
-                  child: new CampusLifeList(),
-                ),
+                new CampusLifeList(),
                 Padding(
                     padding: EdgeInsets.symmetric(horizontal: 30, vertical: 10),
                     child: Text("School Organizations",
@@ -155,11 +147,7 @@ class _CampusLifeScreenState extends State<CampusLifeScreen> {
                       "Looking for a group to belong?",
                       style: appBodyTextStyle,
                     )),
-                BlocProvider(
-                  create: (context) => OrganizationsBloc(
-                      organizationsRepository: widget.organizationsRepository),
-                  child: new OrganizationsList(),
-                ),
+                new OrganizationsList(),
                 Padding(
                     padding: EdgeInsets.symmetric(horizontal: 30, vertical: 10),
                     child: Text("Timeless Culture",

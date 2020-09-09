@@ -1,7 +1,6 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:scroll_snap_list/scroll_snap_list.dart';
-import 'package:wvsu_tour_app/bloc/blocs.dart';
 import 'package:wvsu_tour_app/config/app.dart';
 import 'package:wvsu_tour_app/widgets/organizations_logo.dart';
 
@@ -19,52 +18,52 @@ class _OrganizationsListState extends State<OrganizationsList> {
   Widget build(BuildContext context) {
     Size appScreenSize = MediaQuery.of(context).size;
 
-    BlocProvider.of<OrganizationsBloc>(context).add(OrganizationsRequested());
-
+    CollectionReference collection =
+        FirebaseFirestore.instance.collection('school_organization');
+    ScrollController _view = ScrollController();
     return Container(
         child: SizedBox(
-            height: 200,
+            height: 250,
             width: double.infinity,
-            child: BlocBuilder<OrganizationsBloc, OrganizationsState>(
-              builder: (context, state) {
-                if (state is OrganizationsLoadInProgress) {
-                  return Center(child: CircularProgressIndicator());
-                }
-                if (state is OrganizationsLoadSuccess) {
-                  return ScrollSnapList(
-                    onItemFocus: (item) {
-                      print(item);
-                    },
-                    initialIndex: 0,
-                    margin: EdgeInsets.symmetric(vertical: 10),
-                    itemSize: 400,
-                    itemBuilder: (BuildContext context, int index) {
-                      return index >= state.organizations.length
-                          ? Text("Bottom Loader")
-                          : OrganizationsLogo(
-                              height: 100,
-                              width: 140,
-                              name: state.organizations[index].name,
-                              description:
-                                  state.organizations[index].description,
-                              logo: apiUrl +
-                                  state.organizations[index].logo["url"],
-                            );
-                    },
-                    itemCount: state.organizations.length,
-                    key: sslKeyOrganizations,
-                  );
-                }
-
-                return Container(
-                    width: appScreenSize.width,
-                    height: appScreenSize.height * 0.5,
+            child: FutureBuilder<QuerySnapshot>(
+                future: collection.get(),
+                builder: (BuildContext context,
+                    AsyncSnapshot<QuerySnapshot> snapshot) {
+                  if (snapshot.hasError) {
+                    return Text("An error occured.");
+                  }
+                  if (snapshot.connectionState == ConnectionState.done) {
+                    if (snapshot.hasData) {
+                      List<QueryDocumentSnapshot> data = snapshot.data.docs;
+                      return new SingleChildScrollView(
+                        controller: _view,
+                        scrollDirection: Axis.horizontal,
+                        child: Row(
+                          children: [
+                            SizedBox(width: 20),
+                            Row(
+                                children: data.map((e) {
+                              return OrganizationsLogo(
+                                description: e.data()['Description'],
+                                height: 150,
+                                width: 150,
+                                logo: apiUrl + e.data()['Logo']['url'],
+                                name: e.data()['Name'],
+                              );
+                            }).toList()),
+                          ],
+                        ),
+                      );
+                    }
+                  }
+                  return Container(
+                    width: double.infinity,
+                    height: 200,
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
-                      crossAxisAlignment: CrossAxisAlignment.center,
                       children: [CircularProgressIndicator()],
-                    ));
-              },
-            )));
+                    ),
+                  );
+                })));
   }
 }

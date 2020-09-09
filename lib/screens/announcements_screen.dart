@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter/services.dart';
@@ -31,7 +32,9 @@ class _AnnouncementsScreenState extends State<AnnouncementsScreen> {
   @override
   Widget build(BuildContext context) {
     Size appScreenSize = MediaQuery.of(context).size;
-    BlocProvider.of<AnnouncementsBloc>(context).add(AnnouncementsRequested());
+    CollectionReference collection =
+        FirebaseFirestore.instance.collection('announcements');
+
     return Scaffold(
         backgroundColor: appPrimaryColor,
         body: NotificationListener<ScrollNotification>(
@@ -58,18 +61,21 @@ class _AnnouncementsScreenState extends State<AnnouncementsScreen> {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.start,
                 crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisSize: MainAxisSize.min,
                 children: [
                   Padding(
                     padding: EdgeInsets.fromLTRB(
                         0, appScreenSize.height * 0.07, 0, 0),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
+                      mainAxisSize: MainAxisSize.min,
                       children: [
                         Padding(
                             padding: EdgeInsets.symmetric(
                                 horizontal: appDefaultPadding),
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
+                              mainAxisSize: MainAxisSize.min,
                               children: [
                                 Text("Announcements", style: appTitleTextStyle),
                                 SizedBox(height: 10),
@@ -82,34 +88,42 @@ class _AnnouncementsScreenState extends State<AnnouncementsScreen> {
                         SizedBox(
                           height: 20,
                         ),
-                        BlocBuilder<AnnouncementsBloc, AnnouncementsState>(
-                          builder: (context, state) {
-                            if (state is AnnouncementsLoadInProgress) {
-                              return Center(child: CircularProgressIndicator());
-                            }
-                            if (state is AnnouncementsLoadSuccess) {
-                              return Column(
-                                children: state.announcements.reversed
-                                    .map((e) => AnnouncementCard(
-                                          contents: e.contents,
-                                          featuredImage: e.featuredImage,
-                                          title: e.title,
-                                          createdBy: e.createdBy,
-                                        ))
-                                    .toList(),
-                              );
-                            }
+                        Flexible(
+                            flex: 1,
+                            fit: FlexFit.loose,
+                            child: FutureBuilder<QuerySnapshot>(
+                                future: collection.get(),
+                                builder: (BuildContext context,
+                                    AsyncSnapshot<QuerySnapshot> snapshot) {
+                                  if (snapshot.hasError) {
+                                    return Text("An error occured.");
+                                  }
 
-                            return Container(
-                                width: appScreenSize.width,
-                                height: appScreenSize.height * 0.5,
-                                child: Column(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  crossAxisAlignment: CrossAxisAlignment.center,
-                                  children: [CircularProgressIndicator()],
-                                ));
-                          },
-                        )
+                                  if (snapshot.connectionState ==
+                                      ConnectionState.done) {
+                                    if (snapshot.hasData) {
+                                      List<QueryDocumentSnapshot> data =
+                                          snapshot.data.docs;
+                                      return Column(
+                                          children: data
+                                              .map((e) => AnnouncementCard(
+                                                    contents:
+                                                        e.data()['Contents'],
+                                                    featuredImage: e.data()[
+                                                        'FeaturedImage'],
+                                                    title: e.data()['Title'],
+                                                    createdBy: "The Umalohokan",
+                                                  ))
+                                              .toList());
+                                    }
+                                  }
+                                  return Container(
+                                    width: double.infinity,
+                                    child: Column(
+                                      children: [CircularProgressIndicator()],
+                                    ),
+                                  );
+                                }))
                       ],
                     ),
                   )

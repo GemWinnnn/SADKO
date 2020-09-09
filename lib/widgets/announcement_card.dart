@@ -1,7 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_vector_icons/flutter_vector_icons.dart';
-import 'package:timeago/timeago.dart' as timeago;
 import 'package:wvsu_tour_app/config/app.dart';
 import 'package:wvsu_tour_app/screens/announcement_details_screen.dart';
 
@@ -17,7 +16,7 @@ class AnnouncementCard extends StatelessWidget {
   Widget build(BuildContext context) {
     Size appScreenSize = MediaQuery.of(context).size;
     dynamic featuredImageThumbnail =
-        apiUrl + this.featuredImage["formats"]["thumbnail"]["url"];
+        apiUrl + (this.featuredImage["formats"]["thumbnail"]["url"] ?? "");
     dynamic featuredImage = apiUrl + this.featuredImage["url"];
 
     // https://python.developreference.com/article/11038302/Converting+DateTime+to+time+ago+in+Dart+Flutter
@@ -129,21 +128,8 @@ class AnnouncementCard extends StatelessWidget {
                                     children: [
                                       Row(children: [
                                         Icon(Feather.feather, size: 15),
-                                        Text(" " + this.createdBy['username']),
+                                        Text(" " + this.createdBy),
                                       ]),
-                                      Row(
-                                        children: [
-                                          Icon(
-                                            SimpleLineIcons.clock,
-                                            size: 15,
-                                          ),
-                                          SizedBox(
-                                            width: 5,
-                                          ),
-                                          Text(timeAgo(DateTime.parse(
-                                              this.createdBy["createdAt"]))),
-                                        ],
-                                      )
                                     ],
                                   ),
                                 ))

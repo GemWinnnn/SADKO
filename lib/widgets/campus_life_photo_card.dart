@@ -25,7 +25,7 @@ class CampusLifePhotoCardCard extends StatelessWidget {
     return ClipRRect(
         borderRadius: appDefaultBorderRadius,
         child: Container(
-            margin: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+            margin: EdgeInsets.symmetric(horizontal: 10, vertical: 20),
             width: this.width,
             height: this.height,
             decoration: BoxDecoration(
