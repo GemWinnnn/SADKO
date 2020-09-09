@@ -1,7 +1,6 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:scroll_snap_list/scroll_snap_list.dart';
-import 'package:wvsu_tour_app/bloc/blocs.dart';
 import 'package:wvsu_tour_app/config/app.dart';
 import 'package:wvsu_tour_app/widgets/academic_buildings_card.dart';
 
@@ -18,6 +17,11 @@ class _AcademicBuildingsListState extends State<AcademicBuildingsList> {
   @override
   Widget build(BuildContext context) {
     Size appScreenSize = MediaQuery.of(context).size;
+
+    ScrollController _view = ScrollController();
+
+    double _cardHeight = appScreenSize.height * 0.5;
+
     CollectionReference collection =
         FirebaseFirestore.instance.collection('academic_buildings');
 
@@ -30,7 +34,7 @@ class _AcademicBuildingsListState extends State<AcademicBuildingsList> {
                 stream: collection.snapshots(),
                 builder: (BuildContext context,
                     AsyncSnapshot<QuerySnapshot> snapshot) {
-                       if (snapshot.hasError) {
+                  if (snapshot.hasError) {
                     return Text("An error occured.");
                   }
                   if (snapshot.connectionState == ConnectionState.waiting) {
@@ -44,27 +48,25 @@ class _AcademicBuildingsListState extends State<AcademicBuildingsList> {
                     );
                   }
                   return new SingleChildScrollView(
-                    controller: _view,
-                    scrollDirection: Axis.horizontal,
-                    child: Row(
-                      children: [
-                        SizedBox(width: 20),
-                        Row(
-                          children: snapshot.data.docs
-                              .map((e) => AcademicBuildingCard(
-                              height: 200,
-                              width: 300,
-                              longDescription: e.data()['LongDescription']
-                  
-                              name: e.data()['Name'],
-                              featureImage: apiUrl + e.data()['FeaturedImage']['url']
-                            )
-                            
-                            ))
-                              .toList(),
-                        )
-                      ],
-                    ),
-                    })));
+                      controller: _view,
+                      scrollDirection: Axis.horizontal,
+                      child: Row(
+                        children: [
+                          SizedBox(width: 20),
+                          Row(
+                            children: snapshot.data.docs
+                                .map((e) => AcademicBuildingCard(
+                                    height: 200,
+                                    width: 300,
+                                    longDescription:
+                                        e.data()['LongDescription'],
+                                    name: e.data()['Name'],
+                                    featureImage: apiUrl +
+                                        e.data()['FeaturedImage']['url']))
+                                .toList(),
+                          )
+                        ],
+                      ));
+                })));
   }
 }

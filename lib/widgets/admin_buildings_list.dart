@@ -1,7 +1,6 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:scroll_snap_list/scroll_snap_list.dart';
-import 'package:wvsu_tour_app/bloc/blocs.dart';
 import 'package:wvsu_tour_app/config/app.dart';
 import 'package:wvsu_tour_app/widgets/admin_buildings_card.dart';
 
@@ -22,7 +21,11 @@ class _AdminBuildingsListState extends State<AdminBuildingsList> {
     CollectionReference collection =
         FirebaseFirestore.instance.collection('admin_buildings');
 
+    ScrollController _view = ScrollController();
+
     collection.firestore.settings = Settings(persistenceEnabled: true);
+
+    double _cardHeight = appScreenSize.height * 0.5;
 
     return Container(
         child: SizedBox(
@@ -54,12 +57,14 @@ class _AdminBuildingsListState extends State<AdminBuildingsList> {
                         Row(
                           children: snapshot.data.docs
                               .map((e) => AdminBuildingCard(
-                              height: 200,
-                              width: 300,
-                              name: e.data()['Name'],
-                              longDescription:e.data()['LongDescription'],
-                              featureImage: apiUrl + e.data()['FeatureImage']['url'],
-                            )))
+                                    height: 200,
+                                    width: 300,
+                                    name: e.data()['Name'],
+                                    longDescription:
+                                        e.data()['LongDescription'],
+                                    featureImage: apiUrl +
+                                        e.data()['FeatureImage']['url'],
+                                  ))
                               .toList(),
                         )
                       ],

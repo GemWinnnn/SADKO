@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:scroll_snap_list/scroll_snap_list.dart';
@@ -19,57 +20,61 @@ class _CollegesListState extends State<CollegesList> {
   Widget build(BuildContext context) {
     Size appScreenSize = MediaQuery.of(context).size;
 
-    BlocProvider.of<CollegesBloc>(context).add(CollegesRequested());
+    CollectionReference collection =
+        FirebaseFirestore.instance.collection('colleges');
+
+    ScrollController _view = ScrollController();
+    double _cardHeight = appScreenSize.height * 0.5;
 
     return Container(
         child: SizedBox(
             height: 250,
             width: double.infinity,
-            child: BlocBuilder<CollegesBloc, CollegesState>(
-              builder: (context, state) {
-                if (state is CollegesLoadInProgress) {
-                  return Center(child: CircularProgressIndicator());
-                }
-                if (state is CollegesLoadSuccess) {
-                  return ScrollSnapList(
-                    onItemFocus: (item) {
-                      print(item);
-                    },
-                    initialIndex: 0,
-                    margin: EdgeInsets.symmetric(vertical: 10),
-                    itemSize: 380,
-                    itemBuilder: (BuildContext context, int index) {
-                      return index >= state.colleges.length
-                          ? Text("Bottom Loader")
-                          : CollegeCard(
-                              height: 200,
-                              width: 300,
-                              campus: state.colleges[index].campus,
-                              photos: state.colleges[index].photos,
-                              name: state.colleges[index].name,
-                              longDescription:
-                                  state.colleges[index].longDescription,
-                              shortDescription:
-                                  state.colleges[index].shortDescription,
-                              featuredImage: apiUrl +
-                                  state.colleges[index].featuredImage["url"],
-                              logo: apiUrl + state.colleges[index].logo["url"],
-                            );
-                    },
-                    itemCount: state.colleges.length,
-                    key: sslKeyColleges,
-                  );
-                }
+            child: StreamBuilder<QuerySnapshot>(
+                stream: collection.snapshots(),
+                builder: (BuildContext context,
+                    AsyncSnapshot<QuerySnapshot> snapshot) {
+                  if (snapshot.hasError) {
+                    return Text("An error occured.");
+                  }
+                  if (snapshot.connectionState == ConnectionState.waiting) {
+                    return Container(
+                      width: double.infinity,
+                      height: _cardHeight - 20,
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [CircularProgressIndicator()],
+                      ),
+                    );
+                  }
 
-                return Container(
-                    width: appScreenSize.width,
-                    height: appScreenSize.height * 0.5,
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [CircularProgressIndicator()],
-                    ));
-              },
-            )));
+                  return new SingleChildScrollView(
+                    controller: _view,
+                    scrollDirection: Axis.horizontal,
+                    child: Row(
+                      children: [
+                        SizedBox(width: 20),
+                        Row(
+                          children: snapshot.data.docs
+                              .map((e) => CollegeCard(
+                                    height: 200,
+                                    width: 300,
+                                    campus: e.data()['Campus'],
+                                    photos: e.data()['photos'],
+                                    name: e.data()['Name'],
+                                    longDescription:
+                                        e.data()['LongDescription'],
+                                    shortDescription:
+                                        e.data()['ShortDescription'],
+                                    featuredImage: apiUrl +
+                                        e.data()['FeaturedImage']['url'],
+                                    logo: apiUrl + e.data()['Logo']['url'],
+                                  ))
+                              .toList(),
+                        )
+                      ],
+                    ),
+                  );
+                })));
   }
 }

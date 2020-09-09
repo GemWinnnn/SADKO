@@ -31,7 +31,7 @@ class _HistoricalArtisticLandmarksListState
             height: 250,
             width: double.infinity,
             child: StreamBuilder<QuerySnapshot>(
-                future: collection.snapshots(),
+                stream: collection.snapshots(),
                 builder: (BuildContext context,
                     AsyncSnapshot<QuerySnapshot> snapshot) {
                   if (snapshot.hasError) {
@@ -46,25 +46,25 @@ class _HistoricalArtisticLandmarksListState
                         children: [CircularProgressIndicator()],
                       ),
                     );
-
-                    return SingleChildScrollView(
-                      child: Row(
-                        children: [
-                          SizedBox(width: 20),
-                          Row(
-                              children: snapshot.data.docs
-                                  .map((e) => HistoricalArtisticLandmarksCard(
-                                        height: 200,
-                                        width: 300,
-                                        name: e.data()['Name'],
-                                        featureImage: apiUrl +
-                                            e.data()['FeaturedImage']['url'],
-                                      ))
-                                  .toList())
-                        ],
-                      ),
-                    );
                   }
+
+                  return SingleChildScrollView(
+                    child: Row(
+                      children: [
+                        SizedBox(width: 20),
+                        Row(
+                            children: snapshot.data.docs
+                                .map((e) => HistoricalArtisticLandmarksCard(
+                                      height: 200,
+                                      width: 300,
+                                      name: e.data()['Name'],
+                                      featureImage: apiUrl +
+                                          e.data()['FeaturedImage']['url'],
+                                    ))
+                                .toList())
+                      ],
+                    ),
+                  );
                 })));
   }
 }
