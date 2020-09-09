@@ -4,8 +4,6 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:wvsu_tour_app/bloc/blocs.dart';
 import 'package:wvsu_tour_app/config/app.dart';
 import 'package:wvsu_tour_app/widgets/announcement_card.dart';
 
@@ -110,8 +108,9 @@ class _AnnouncementsScreenState extends State<AnnouncementsScreen> {
                                   }
 
                                   return Column(
-                                      children: snapshot.data.docs
+                                      children: snapshot.data.docs.reversed
                                           .map((e) => AnnouncementCard(
+                                                id: e.id,
                                                 contents: e.data()['Contents'],
                                                 featuredImage:
                                                     e.data()['FeaturedImage'],

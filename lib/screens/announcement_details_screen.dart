@@ -3,14 +3,16 @@ import 'package:flutter/material.dart';
 import 'package:flutter_vector_icons/flutter_vector_icons.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:wvsu_tour_app/config/app.dart';
+import 'package:wvsu_tour_app/widgets/like_action_button.dart';
 
 class AnnouncementDetailsScreen extends StatelessWidget {
   const AnnouncementDetailsScreen(
-      {Key key, this.title, this.featuredImage, this.contents})
+      {Key key, this.title, this.featuredImage, this.contents, this.id})
       : super(key: key);
   final String title;
   final dynamic featuredImage;
   final String contents;
+  final String id;
   @override
   Widget build(BuildContext context) {
     Size appScreenSize = MediaQuery.of(context).size;
@@ -61,12 +63,40 @@ class AnnouncementDetailsScreen extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text(
-                      this.title,
-                      style: GoogleFonts.lato(
-                          fontSize: 17, fontWeight: FontWeight.w600),
+                    Row(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        Container(
+                          width:
+                              appScreenSize.width - (appScreenSize.width * 0.3),
+                          child: Text(
+                            this.title,
+                            style: GoogleFonts.lato(
+                                fontSize: 20, fontWeight: FontWeight.w600),
+                          ),
+                        ),
+                        // Opacity(
+                        //   opacity: 0.7,
+                        //   child: Row(
+                        //     children: [
+                        //       Icon(
+                        //         Feather.heart,
+                        //         size: 15,
+                        //       ),
+                        //       Text(
+                        //         "1000",
+                        //         style: GoogleFonts.lato(
+                        //             fontWeight: FontWeight.bold, fontSize: 17),
+                        //       )
+                        //     ],
+                        //   ),
+                        // )
+                      ],
                     ),
-                    SizedBox(height: 20),
+                    Divider(
+                      height: 20,
+                      thickness: 1,
+                    ),
                     Text(this.contents)
                   ],
                 ),

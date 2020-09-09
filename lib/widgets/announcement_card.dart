@@ -2,17 +2,24 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_vector_icons/flutter_vector_icons.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:wvsu_tour_app/config/app.dart';
 import 'package:wvsu_tour_app/screens/announcement_details_screen.dart';
 
 class AnnouncementCard extends StatelessWidget {
   const AnnouncementCard(
-      {Key key, this.title, this.featuredImage, this.contents, this.createdBy})
+      {Key key,
+      this.title,
+      this.featuredImage,
+      this.contents,
+      this.createdBy,
+      this.id})
       : super(key: key);
   final String title;
   final dynamic featuredImage;
   final String contents;
   final dynamic createdBy;
+  final String id;
   @override
   Widget build(BuildContext context) {
     Size appScreenSize = MediaQuery.of(context).size;
@@ -47,6 +54,7 @@ class AnnouncementCard extends StatelessWidget {
                 contents: this.contents,
                 title: this.title,
                 featuredImage: featuredImage,
+                id: this.id,
               ),
             ));
       },
@@ -96,7 +104,7 @@ class AnnouncementCard extends StatelessWidget {
                                   this.title != null
                                       ? this.title
                                       : "Loading...",
-                                  style: appBodyTextStyle,
+                                  style: GoogleFonts.lato(fontSize: 18),
                                   overflow: TextOverflow.ellipsis,
                                   maxLines: 1,
                                   softWrap: true),
