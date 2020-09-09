@@ -1,5 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_vector_icons/flutter_vector_icons.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:google_sign_in/google_sign_in.dart';
@@ -38,6 +39,9 @@ class _AuthScreenState extends State<AuthScreen> {
   @override
   void initState() {
     super.initState();
+    SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
+        statusBarIconBrightness: Brightness.light,
+        statusBarColor: Colors.transparent));
   }
 
   void _showSnackbar(String message) {
@@ -131,6 +135,9 @@ class _AuthScreenState extends State<AuthScreen> {
         _signUpYOffset = appScreenSize.height;
         _loginWidth = appScreenSize.width;
         _loginXOffset = 0;
+        SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
+            statusBarIconBrightness: Brightness.dark,
+            statusBarColor: Colors.transparent));
         break;
       case 1:
         _backgroundColor = appSecondaryColor;
@@ -139,6 +146,9 @@ class _AuthScreenState extends State<AuthScreen> {
         _signUpYOffset = appScreenSize.height;
         _loginWidth = appScreenSize.width;
         _loginXOffset = 0;
+        SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
+            statusBarIconBrightness: Brightness.light,
+            statusBarColor: Colors.transparent));
         break;
       case 2:
         _loginOpacity = 0.9;
@@ -147,6 +157,9 @@ class _AuthScreenState extends State<AuthScreen> {
         _backgroundColor = appSecondaryColor;
         _loginWidth = appScreenSize.width - 30;
         _loginXOffset = 10;
+        SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
+            statusBarIconBrightness: Brightness.light,
+            statusBarColor: Colors.transparent));
         break;
     }
 
@@ -228,7 +241,7 @@ class _AuthScreenState extends State<AuthScreen> {
                                   false, // user must tap button!
                               builder: (BuildContext context) {
                                 return AlertDialog(
-                                  title: Text('WVSU Campus Tour in Beta'),
+                                  title: Text('Currently in Open Beta'),
                                   content: SingleChildScrollView(
                                     child: ListBody(
                                       children: <Widget>[
@@ -239,7 +252,7 @@ class _AuthScreenState extends State<AuthScreen> {
                                   ),
                                   actions: <Widget>[
                                     FlatButton(
-                                      child: Text('I understand.'),
+                                      child: Text('OK'),
                                       onPressed: () {
                                         Navigator.of(context).pop();
                                         _switchToState(0, 1);
