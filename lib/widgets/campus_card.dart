@@ -14,6 +14,7 @@ class CampusCard extends StatelessWidget {
       this.fullDescription,
       this.name,
       this.logo,
+      this.fullImage,
       this.featuredImage,
       this.height,
       this.width})
@@ -26,6 +27,7 @@ class CampusCard extends StatelessWidget {
   final String fullDescription;
   final String shortDescription;
   final String featuredImage;
+  final String fullImage;
   @override
   Widget build(BuildContext context) {
     return ClipRRect(
@@ -48,7 +50,7 @@ class CampusCard extends StatelessWidget {
                         fullDescription: this.fullDescription,
                         name: this.name,
                         logo: this.logo,
-                        featuredImage: featuredImage,
+                        featuredImage: this.fullImage ?? this.featuredImage,
                       ),
                     ));
               },

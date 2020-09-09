@@ -62,6 +62,8 @@ class _AdminBuildingsListState extends State<AdminBuildingsList> {
                                     name: e.data()['Name'],
                                     longDescription:
                                         e.data()['LongDescription'],
+                                    fullImage: apiUrl +
+                                        e.data()['FeaturedImage']['url'],
                                     featureImage: apiUrl +
                                         e.data()['FeaturedImage']['formats']
                                             ['thumbnail']['url'],

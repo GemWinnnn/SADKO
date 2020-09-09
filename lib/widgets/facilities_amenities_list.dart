@@ -59,6 +59,8 @@ class _FacilitiesAmenitiesListState extends State<FacilitiesAmenitiesList> {
                                     shortDescription:
                                         e.data()['ShortDescription'],
                                     name: e.data()['Name'],
+                                    fullImage: apiUrl +
+                                        e.data()['FeaturedImage']['url'],
                                     featureImage: apiUrl +
                                         e.data()['FeaturedImage']['formats']
                                             ['thumbnail']['url'],

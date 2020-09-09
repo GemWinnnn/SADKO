@@ -9,6 +9,7 @@ class AdminBuildingCard extends StatelessWidget {
   const AdminBuildingCard(
       {Key key,
       this.featureImage,
+      this.fullImage,
       this.height,
       this.name,
       this.width,
@@ -19,6 +20,7 @@ class AdminBuildingCard extends StatelessWidget {
   final double height;
   final double width;
   final String featureImage;
+  final String fullImage;
   @override
   Widget build(BuildContext context) {
     return ClipRRect(
@@ -40,7 +42,7 @@ class AdminBuildingCard extends StatelessWidget {
                       builder: (context) => AdministrativeBuildingDetailsScreen(
                         longDescription: this.longDescription,
                         name: this.name,
-                        featuredImage: this.featureImage,
+                        featuredImage: this.fullImage ?? this.featureImage,
                       ),
                     ));
               },

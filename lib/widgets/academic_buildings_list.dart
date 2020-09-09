@@ -61,6 +61,8 @@ class _AcademicBuildingsListState extends State<AcademicBuildingsList> {
                                     longDescription:
                                         e.data()['LongDescription'],
                                     name: e.data()['Name'],
+                                    fullImage: apiUrl +
+                                        e.data()['FeaturedImage']['url'],
                                     featureImage: apiUrl +
                                         e.data()['FeaturedImage']['formats']
                                             ['thumbnail']['url']))

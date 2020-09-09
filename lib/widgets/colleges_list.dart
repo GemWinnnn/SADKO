@@ -66,6 +66,8 @@ class _CollegesListState extends State<CollegesList> {
                                         e.data()['LongDescription'],
                                     shortDescription:
                                         e.data()['ShortDescription'],
+                                    fullImage: apiUrl +
+                                        e.data()['FeaturedImage']['url'],
                                     featuredImage: apiUrl +
                                         e.data()['FeaturedImage']['formats']
                                             ['thumbnail']['url'],

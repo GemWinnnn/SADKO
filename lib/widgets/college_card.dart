@@ -15,6 +15,7 @@ class CollegeCard extends StatelessWidget {
       this.logo,
       this.campus,
       this.featuredImage,
+      this.fullImage,
       this.height,
       this.photos,
       this.width})
@@ -23,6 +24,7 @@ class CollegeCard extends StatelessWidget {
   final double height;
   final double width;
   final String logo;
+  final String fullImage;
   final String name;
   final List<dynamic> photos;
   final String campus;
@@ -51,7 +53,7 @@ class CollegeCard extends StatelessWidget {
                         longDescription: this.longDescription,
                         name: this.name,
                         logo: this.logo,
-                        featuredImage: featuredImage,
+                        featuredImage: this.fullImage ?? this.featuredImage,
                       ),
                     ));
               },

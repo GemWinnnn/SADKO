@@ -9,6 +9,7 @@ class FaciltlitiesAmenitiesCard extends StatelessWidget {
   const FaciltlitiesAmenitiesCard(
       {Key key,
       this.featureImage,
+      this.fullImage,
       this.height,
       this.name,
       this.width,
@@ -16,6 +17,7 @@ class FaciltlitiesAmenitiesCard extends StatelessWidget {
       : super(key: key);
   final String shortDescription;
   final String name;
+  final String fullImage;
   final double height;
   final double width;
   final String featureImage;
@@ -39,7 +41,7 @@ class FaciltlitiesAmenitiesCard extends StatelessWidget {
                     MaterialPageRoute(
                       builder: (context) => PhotoViewer(
                         description: this.shortDescription,
-                        image: this.featureImage,
+                        image: this.fullImage ?? this.featureImage,
                       ),
                     ));
               },

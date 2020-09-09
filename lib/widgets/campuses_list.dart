@@ -62,6 +62,8 @@ class _CampusesListState extends State<CampusesList> {
                                         e.data()['FullDescription'],
                                     shortDescription:
                                         e.data()['ShortDescription'],
+                                    fullImage: apiUrl +
+                                        e.data()['FeaturedImage']['url'],
                                     featuredImage: apiUrl +
                                         e.data()['FeaturedImage']['formats']
                                             ['thumbnail']['url'],

@@ -10,6 +10,7 @@ class CampusLifePhotoCardCard extends StatelessWidget {
       {Key key,
       this.shortDescription,
       this.image,
+      this.fullImage,
       this.onPressed,
       this.height,
       this.width})
@@ -19,6 +20,7 @@ class CampusLifePhotoCardCard extends StatelessWidget {
   final double height;
   final double width;
   final String image;
+  final String fullImage;
   final String shortDescription;
   @override
   Widget build(BuildContext context) {
@@ -40,7 +42,7 @@ class CampusLifePhotoCardCard extends StatelessWidget {
                     MaterialPageRoute(
                       builder: (context) => PhotoViewer(
                         description: this.shortDescription,
-                        image: this.image,
+                        image: this.fullImage ?? this.fullImage,
                       ),
                     ));
               },

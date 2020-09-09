@@ -21,7 +21,7 @@ class PhotoViewer extends StatelessWidget {
         body: Stack(
           children: [
             PhotoView(
-              imageProvider: CachedNetworkImageProvider(this.image),
+              imageProvider: CachedNetworkImageProvider(this.image ?? ""),
             ),
             Positioned(
               top: 30,
