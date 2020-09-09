@@ -23,51 +23,51 @@ class _MessagesListState extends State<MessagesList> {
     double _cardHeight = appScreenSize.height * 0.5;
     CollectionReference collection =
         FirebaseFirestore.instance.collection('messages');
+
+    collection.firestore.settings = Settings(persistenceEnabled: true);
+
     return Container(
         margin: EdgeInsets.symmetric(vertical: 20),
         child: SizedBox(
             height: appScreenSize.height * 0.5,
             width: double.infinity,
-            child: FutureBuilder<QuerySnapshot>(
-                future: collection.get(),
+            child: StreamBuilder<QuerySnapshot>(
+                stream: collection.snapshots(),
                 builder: (BuildContext context,
                     AsyncSnapshot<QuerySnapshot> snapshot) {
                   if (snapshot.hasError) {
                     return Text("An error occured.");
                   }
-                  if (snapshot.connectionState == ConnectionState.done) {
-                    if (snapshot.hasData) {
-                      List<QueryDocumentSnapshot> data = snapshot.data.docs;
-                      return new SingleChildScrollView(
-                        controller: _view,
-                        scrollDirection: Axis.horizontal,
-                        child: Row(
-                          children: [
-                            SizedBox(width: 20),
-                            Row(
-                              children: data
-                                  .map((e) => MessageCard(
-                                        height: _cardHeight - 20,
-                                        width: 300,
-                                        name: e.data()['Name'],
-                                        description: e.data()['Description'],
-                                        messageBody: e.data()['MessageBody'],
-                                        featuredImage: apiUrl +
-                                            e.data()['FeaturedImage']["url"],
-                                      ))
-                                  .toList(),
-                            )
-                          ],
-                        ),
-                      );
-                    }
+                  if (snapshot.connectionState == ConnectionState.waiting) {
+                    return Container(
+                      width: double.infinity,
+                      height: _cardHeight - 20,
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [CircularProgressIndicator()],
+                      ),
+                    );
                   }
-                  return Container(
-                    width: double.infinity,
-                    height: _cardHeight - 20,
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [CircularProgressIndicator()],
+                  return new SingleChildScrollView(
+                    controller: _view,
+                    scrollDirection: Axis.horizontal,
+                    child: Row(
+                      children: [
+                        SizedBox(width: 20),
+                        Row(
+                          children: snapshot.data.docs
+                              .map((e) => MessageCard(
+                                    height: _cardHeight - 20,
+                                    width: 300,
+                                    name: e.data()['Name'],
+                                    description: e.data()['Description'],
+                                    messageBody: e.data()['MessageBody'],
+                                    featuredImage: apiUrl +
+                                        e.data()['FeaturedImage']["url"],
+                                  ))
+                              .toList(),
+                        )
+                      ],
                     ),
                   );
                 })));

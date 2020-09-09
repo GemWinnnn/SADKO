@@ -158,12 +158,7 @@ class _CampusLifeScreenState extends State<CampusLifeScreen> {
                       "Historical and Artistic Landmarks",
                       style: appBodyTextStyle,
                     )),
-                BlocProvider(
-                  create: (context) => HistoricalArtisticLandmarksBloc(
-                      historicalArtisticLandmarksRepository:
-                          widget.historicalArtisticLandmarksRepository),
-                  child: new HistoricalArtisticLandmarksList(),
-                ),
+                HistoricalArtisticLandmarksList(),
                 SizedBox(
                   height: appScreenSize.height * 0.05,
                 )

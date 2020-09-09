@@ -23,9 +23,6 @@ class _HistoricalArtisticLandmarksListState
   Widget build(BuildContext context) {
     Size appScreenSize = MediaQuery.of(context).size;
 
-    BlocProvider.of<HistoricalArtisticLandmarksBloc>(context)
-        .add(HistoricalArtisticLandmarksRequested());
-
     CollectionReference collection =
         FirebaseFirestore.instance.collection('landmarks');
 
