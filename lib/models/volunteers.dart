@@ -1,6 +1,4 @@
-import 'package:equatable/equatable.dart';
-
-class Volunteers extends Equatable {
+class Volunteers {
   final String name;
   final Map<String, dynamic> profileImage;
   final Map<String, dynamic> createdBy;

@@ -1,6 +1,4 @@
-import 'package:equatable/equatable.dart';
-
-class CampusLife extends Equatable {
+class CampusLife {
   final String shortDescription;
 
   final Map<String, dynamic> image;

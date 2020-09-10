@@ -1,6 +1,4 @@
-import 'package:equatable/equatable.dart';
-
-class Colleges extends Equatable {
+class Colleges {
   final String campus;
   final List<dynamic> photos;
   final String longDescription;

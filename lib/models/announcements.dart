@@ -1,6 +1,4 @@
-import 'package:equatable/equatable.dart';
-
-class Announcements extends Equatable {
+class Announcements {
   final String title;
   final String contents;
   final Map<String, dynamic> featuredImage;

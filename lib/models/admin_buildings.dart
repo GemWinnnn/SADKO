@@ -1,6 +1,4 @@
-import 'package:equatable/equatable.dart';
-
-class AdminBuildings extends Equatable {
+class AdminBuildings {
   final String name;
   final Map<String, dynamic> featuredImage;
   final Map<String, dynamic> createdBy;

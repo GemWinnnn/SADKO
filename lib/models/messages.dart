@@ -1,6 +1,4 @@
-import 'package:equatable/equatable.dart';
-
-class Messages extends Equatable {
+class Messages {
   final String name;
   final String messageBody;
   final Map<String, dynamic> featuredImage;

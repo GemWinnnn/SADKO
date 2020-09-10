@@ -1,6 +1,4 @@
-import 'package:equatable/equatable.dart';
-
-class FacilitiesAmenities extends Equatable {
+class FacilitiesAmenities {
   final String name;
   final String shortDescription;
   final Map<String, dynamic> createdBy;

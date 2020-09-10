@@ -1,3 +1,4 @@
+import 'package:extended_image/extended_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_vector_icons/flutter_vector_icons.dart';
@@ -41,14 +42,13 @@ class AcademicBuildingDetailsScreen extends StatelessWidget {
           child: Stack(
             children: [
               Container(
-                width: appScreenSize.width,
-                height: appScreenSize.height * 0.33,
-                decoration: BoxDecoration(
-                    color: appPrimaryColor,
-                    image: DecorationImage(
-                        image: NetworkImage(this.featuredImage),
-                        fit: BoxFit.cover)),
-              ),
+                  width: appScreenSize.width,
+                  height: appScreenSize.height * 0.33,
+                  decoration: BoxDecoration(
+                      color: appPrimaryColor,
+                      image: DecorationImage(
+                          image: ExtendedNetworkImageProvider(
+                              this.featuredImage)))),
               Container(
                 padding: EdgeInsets.all(appDefaultPadding),
                 width: appScreenSize.width,

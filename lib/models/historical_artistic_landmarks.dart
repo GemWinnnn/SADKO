@@ -1,6 +1,4 @@
-import 'package:equatable/equatable.dart';
-
-class HistoricalArtisticLandmarks extends Equatable {
+class HistoricalArtisticLandmarks {
   final String name;
   final String location;
   final Map<String, dynamic> createdBy;

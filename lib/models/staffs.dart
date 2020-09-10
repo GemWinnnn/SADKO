@@ -1,6 +1,4 @@
-import 'package:equatable/equatable.dart';
-
-class Staffs extends Equatable {
+class Staffs {
   final String name;
   final String office;
   final String description;

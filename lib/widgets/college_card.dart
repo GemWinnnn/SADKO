@@ -1,10 +1,9 @@
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:circular_profile_avatar/circular_profile_avatar.dart';
+import 'package:extended_image/extended_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_vector_icons/flutter_vector_icons.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:wvsu_tour_app/config/app.dart';
-import 'package:optimized_cached_image/optimized_cached_image.dart';
 import 'package:wvsu_tour_app/screens/college_details.dart';
 import 'package:wvsu_tour_app/widgets/like_counter.dart';
 
@@ -72,13 +71,11 @@ class CollegeCard extends StatelessWidget {
                       child: FittedBox(
                         fit: BoxFit.cover,
                         child: Center(
-                            child: OptimizedCacheImage(
-                                placeholder: (context, url) =>
-                                    CircularProgressIndicator(),
-                                imageUrl: this.featuredImage,
-                                fit: BoxFit.cover,
-                                width: this.width + 50,
-                                height: this.height)),
+                            child: ExtendedImage.network(
+                          this.featuredImage,
+                          fit: BoxFit.fill,
+                          cache: true,
+                        )),
                       ),
                     ),
                   ),

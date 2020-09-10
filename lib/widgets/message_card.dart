@@ -1,6 +1,6 @@
+import 'package:extended_image/extended_image.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:optimized_cached_image/optimized_cached_image.dart';
 import 'package:wvsu_tour_app/config/app.dart';
 import 'package:wvsu_tour_app/screens/message_details_screen.dart';
 import 'package:wvsu_tour_app/widgets/like_counter.dart';
@@ -60,16 +60,15 @@ class MessageCard extends StatelessWidget {
                     child: Container(
                       decoration: BoxDecoration(color: appPrimaryColor),
                       height: this.height,
+                      width: this.width,
                       child: FittedBox(
                         fit: BoxFit.cover,
                         child: Center(
-                            child: OptimizedCacheImage(
-                                placeholder: (context, url) =>
-                                    CircularProgressIndicator(),
-                                imageUrl: featuredImage,
-                                fit: BoxFit.cover,
-                                width: this.width + 50,
-                                height: this.height)),
+                            child: ExtendedImage.network(
+                          this.featuredImage,
+                          fit: BoxFit.cover,
+                          cache: true,
+                        )),
                       ),
                     ),
                   ),

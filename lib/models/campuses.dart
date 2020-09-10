@@ -1,6 +1,4 @@
-import 'package:equatable/equatable.dart';
-
-class Campuses extends Equatable {
+class Campuses {
   final String shortDescription;
   final String fullDescription;
   final String name;
