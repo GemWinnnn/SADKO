@@ -1,4 +1,5 @@
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:optimized_cached_image/optimized_cached_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -21,7 +22,7 @@ class PhotoViewer extends StatelessWidget {
         body: Stack(
           children: [
             PhotoView(
-              imageProvider: CachedNetworkImageProvider(this.image),
+              imageProvider: OptimizedCacheImageProvider(this.image),
               loadingBuilder: (context, event) => Text("Loading...",
                   style: GoogleFonts.lato(color: Colors.white)),
               loadFailedChild: Text(

@@ -1,4 +1,5 @@
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:optimized_cached_image/optimized_cached_image.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_vector_icons/flutter_vector_icons.dart';
@@ -72,7 +73,7 @@ class AnnouncementCard extends StatelessWidget {
                               decoration: BoxDecoration(color: appPrimaryColor),
                               child: FittedBox(
                                 fit: BoxFit.cover,
-                                child: CachedNetworkImage(
+                                child: OptimizedCacheImage(
                                   placeholder: (context, url) =>
                                       CircularProgressIndicator(),
                                   imageUrl: this.featuredImageThumb,

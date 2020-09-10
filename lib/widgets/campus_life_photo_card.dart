@@ -1,6 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_vector_icons/flutter_vector_icons.dart';
+import 'package:optimized_cached_image/optimized_cached_image.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:wvsu_tour_app/config/app.dart';
 import 'package:wvsu_tour_app/screens/photo_viewer.dart';
@@ -56,7 +57,7 @@ class CampusLifePhotoCard extends StatelessWidget {
                       child: FittedBox(
                         fit: BoxFit.cover,
                         child: Center(
-                            child: CachedNetworkImage(
+                            child: OptimizedCacheImage(
                                 placeholder: (context, url) =>
                                     CircularProgressIndicator(),
                                 imageUrl: this.image,
