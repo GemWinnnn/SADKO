@@ -5,6 +5,7 @@ import 'package:flutter/rendering.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_vector_icons/flutter_vector_icons.dart';
+import 'package:get_version/get_version.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:http/http.dart' as http;
 import 'package:url_launcher/url_launcher.dart';
@@ -54,6 +55,15 @@ class _AboutScreenState extends State<AboutScreen> {
   @override
   Widget build(BuildContext context) {
     Size appScreenSize = MediaQuery.of(context).size;
+    String projectVersion = "";
+    _getVersion() async {
+// Platform messages may fail, so we use a try/catch PlatformException.
+      try {
+        projectVersion = await GetVersion.projectVersion;
+      } on PlatformException {
+        projectVersion = 'Failed to get project version.';
+      }
+    }
 
     _launchURL(String url) async {
       if (await canLaunch(url)) {
@@ -223,6 +233,7 @@ class _AboutScreenState extends State<AboutScreen> {
                                     style: appSecondaryTitleTextStyle,
                                   ),
                                 ),
+                                Text(projectVersion),
                                 Padding(
                                   padding: EdgeInsets.fromLTRB(30, 10, 30, 10),
                                   child: Text(

@@ -57,6 +57,7 @@ class _NavigatorScreenState extends State<NavigatorScreen> {
               color: appSecondaryColor,
               image: DecorationImage(
                   alignment: Alignment.topRight,
+                  fit: BoxFit.cover,
                   image: AssetImage('assets/images/home-screen-top.png'))),
           child: Stack(
             children: [

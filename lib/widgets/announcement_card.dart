@@ -4,8 +4,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_vector_icons/flutter_vector_icons.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:jiffy/jiffy.dart';
+import 'package:timeago/timeago.dart' as timeago;
 import 'package:wvsu_tour_app/config/app.dart';
 import 'package:wvsu_tour_app/screens/announcement_details_screen.dart';
+import 'package:wvsu_tour_app/widgets/like_counter.dart';
 
 class AnnouncementCard extends StatelessWidget {
   const AnnouncementCard(
@@ -27,22 +29,9 @@ class AnnouncementCard extends StatelessWidget {
   Widget build(BuildContext context) {
     Size appScreenSize = MediaQuery.of(context).size;
 
-    // https://python.developreference.com/article/11038302/Converting+DateTime+to+time+ago+in+Dart+Flutter
-    String timeAgo(DateTime d) {
-      Duration diff = DateTime.now().difference(d);
-      if (diff.inDays > 365)
-        return "${(diff.inDays / 365).floor()} ${(diff.inDays / 365).floor() == 1 ? "year" : "years"} ago";
-      if (diff.inDays > 30)
-        return "${(diff.inDays / 30).floor()} ${(diff.inDays / 30).floor() == 1 ? "month" : "months"} ago";
-      if (diff.inDays > 7)
-        return "${(diff.inDays / 7).floor()} ${(diff.inDays / 7).floor() == 1 ? "week" : "weeks"} ago";
-      if (diff.inDays > 0)
-        return "${diff.inDays} ${diff.inDays == 1 ? "day" : "days"} ago";
-      if (diff.inHours > 0)
-        return "${diff.inHours} ${diff.inHours == 1 ? "hour" : "hours"} ago";
-      if (diff.inMinutes > 0)
-        return "${diff.inMinutes} ${diff.inMinutes == 1 ? "minute" : "minutes"} ago";
-      return "just now";
+    _ago(Timestamp t) {
+      return timeago.format(new DateTime.now()
+          .subtract(new Duration(minutes: t.toDate().minute)));
     }
 
     return InkWell(
@@ -104,12 +93,22 @@ class AnnouncementCard extends StatelessWidget {
                                   this.title != null
                                       ? this.title
                                       : "Loading...",
-                                  style: GoogleFonts.lato(fontSize: 18),
+                                  style: GoogleFonts.lato(fontSize: 19),
                                   overflow: TextOverflow.ellipsis,
                                   maxLines: 1,
                                   softWrap: true),
                             ),
                             SizedBox(height: 5),
+                            Opacity(
+                                opacity: 0.5,
+                                child: Row(children: [
+                                  Icon(Feather.feather, size: 15),
+                                  SizedBox(width: 5),
+                                  Text(this.createdBy['username'] != null
+                                      ? this.createdBy['username']
+                                      : '...'),
+                                ])),
+                            SizedBox(height: 10),
                             Opacity(
                                 opacity: 0.7,
                                 child: Container(
@@ -125,7 +124,12 @@ class AnnouncementCard extends StatelessWidget {
                                     softWrap: true,
                                   ),
                                 )),
-                            Divider(),
+                            Container(
+                              height: 2,
+                              margin: EdgeInsets.symmetric(vertical: 10),
+                              width: appScreenSize.width * 0.7,
+                              color: appPrimaryColor,
+                            ),
                             Opacity(
                                 opacity: 0.5,
                                 child: Container(
@@ -136,14 +140,13 @@ class AnnouncementCard extends StatelessWidget {
                                         MainAxisAlignment.spaceBetween,
                                     children: [
                                       Row(children: [
-                                        Icon(Feather.feather, size: 15),
-                                        Text(this.createdBy['username'] != null
-                                            ? this.createdBy['username']
-                                            : '...'),
+                                        Icon(Icons.favorite, size: 15),
+                                        SizedBox(
+                                          width: 5,
+                                        ),
+                                        LikeCounter(snapshotID: this.id),
                                       ]),
-                                      Text(Jiffy(DateTime.parse(
-                                              this.createdBy['createdAt']))
-                                          .fromNow())
+                                      Text(_ago(this.createdBy['createdAt']))
                                     ],
                                   ),
                                 ))

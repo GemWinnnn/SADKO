@@ -9,8 +9,14 @@ class LikeActionButton extends StatefulWidget {
   _LikeActionButtonState createState() => _LikeActionButtonState();
 }
 
-// TODO: Implement like counter
 class _LikeActionButtonState extends State<LikeActionButton> {
+  IconData _likeIcon = Icons.favorite_outline;
+
+  @override
+  void initState() {
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     CollectionReference collection = FirebaseFirestore.instance
@@ -18,31 +24,61 @@ class _LikeActionButtonState extends State<LikeActionButton> {
         .doc(widget.snapshotID)
         .collection('likes');
     final FirebaseAuth auth = FirebaseAuth.instance;
+
+    Future<DocumentSnapshot> doc = FirebaseFirestore.instance
+        .collection('likes_bucket')
+        .doc(widget.snapshotID)
+        .collection('likes')
+        .doc(auth.currentUser.uid)
+        .get();
+
+    Future<void> addLike(FirebaseAuth auth) {
+      collection
+          .doc(auth.currentUser.uid)
+          .set({'liked': true})
+          .then((value) => print("Liked"))
+          .catchError((error) => print("Failed like: $error"));
+    }
+
+    Future<void> removeLike(FirebaseAuth auth) {
+      collection.doc(auth.currentUser.uid).delete();
+    }
+
     return StreamBuilder<QuerySnapshot>(
         stream: collection.snapshots(),
         builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
           if (snapshot.hasError) {
-            return IconButton(
-                icon: Icon(
-                  Icons.favorite_outline,
-                  color: Colors.black,
-                ),
-                onPressed: () {});
+            print("Error");
           }
-          if (snapshot.hasData) {}
 
-          print(snapshot.data);
-          // print(auth.currentUser.uid);
+          if (snapshot.hasData) {
+            doc.then((value) {
+              if (value.exists) {
+                if (this.mounted) {
+                  this.setState(() {
+                    _likeIcon = Icons.favorite;
+                  });
+                }
+              } else {
+                if (this.mounted) {
+                  this.setState(() {
+                    _likeIcon = Icons.favorite_outline;
+                  });
+                }
+              }
+            });
+          }
           return new IconButton(
               icon: Icon(
-                Icons.favorite_outline,
-                color: Colors.black,
+                _likeIcon,
+                color: Color(0xFF666666),
               ),
               onPressed: () {
-                // collection
-                //     .doc('likes')
-                //     .doc(auth.currentUser.uid)
-                //     .set({'liked': true});
+                if (_likeIcon == Icons.favorite) {
+                  removeLike(auth);
+                } else {
+                  addLike(auth);
+                }
               });
         });
   }
