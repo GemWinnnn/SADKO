@@ -5,6 +5,7 @@ import 'package:flutter_vector_icons/flutter_vector_icons.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:wvsu_tour_app/config/app.dart';
 import 'package:wvsu_tour_app/screens/college_details.dart';
+import 'package:wvsu_tour_app/widgets/like_counter.dart';
 
 class CollegeCard extends StatelessWidget {
   const CollegeCard(
@@ -13,6 +14,7 @@ class CollegeCard extends StatelessWidget {
       this.longDescription,
       this.name,
       this.logo,
+      this.id,
       this.campus,
       this.featuredImage,
       this.fullImage,
@@ -28,6 +30,7 @@ class CollegeCard extends StatelessWidget {
   final String name;
   final List<dynamic> photos;
   final String campus;
+  final String id;
   final String longDescription;
   final String shortDescription;
   final String featuredImage;
@@ -50,6 +53,7 @@ class CollegeCard extends StatelessWidget {
                     context,
                     MaterialPageRoute(
                       builder: (context) => CollegeDetailsScreen(
+                        id: this.id,
                         longDescription: this.longDescription,
                         name: this.name,
                         logo: this.logo,
@@ -138,7 +142,28 @@ class CollegeCard extends StatelessWidget {
                               maxLines: 2,
                               softWrap: true),
                         )
-                      ]))
+                      ])),
+                  Positioned(
+                      top: 20,
+                      right: 20,
+                      child: Opacity(
+                        opacity: 0.9,
+                        child: Row(
+                          children: [
+                            Icon(
+                              Icons.favorite,
+                              color: Colors.white,
+                              size: 20,
+                            ),
+                            SizedBox(width: 5),
+                            LikeCounter(
+                              id: this.id,
+                              color: Colors.white,
+                              fontSize: 18,
+                            )
+                          ],
+                        ),
+                      ))
                 ],
               ),
             )));

@@ -27,7 +27,7 @@ class AnnouncementDetailsScreen extends StatelessWidget {
           elevation: 1,
           actions: [
             LikeActionButton(
-              snapshotID: this.id,
+              id: this.id,
             )
           ],
           leading: IconButton(

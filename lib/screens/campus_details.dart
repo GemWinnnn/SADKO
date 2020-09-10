@@ -5,12 +5,19 @@ import 'package:flutter_vector_icons/flutter_vector_icons.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:markdown_widget/markdown_generator.dart';
 import 'package:wvsu_tour_app/config/app.dart';
+import 'package:wvsu_tour_app/widgets/like_action_button.dart';
 
 class CampusDetailsScreen extends StatelessWidget {
   const CampusDetailsScreen(
-      {Key key, this.name, this.featuredImage, this.fullDescription, this.logo})
+      {Key key,
+      this.name,
+      this.id,
+      this.featuredImage,
+      this.fullDescription,
+      this.logo})
       : super(key: key);
   final String name;
+  final String id;
   final dynamic featuredImage;
   final String fullDescription;
   final String logo;
@@ -29,6 +36,7 @@ class CampusDetailsScreen extends StatelessWidget {
             "Campus",
             style: GoogleFonts.lato(color: Colors.black),
           ),
+          actions: [LikeActionButton(id: this.id)],
           elevation: 1,
           leading: IconButton(
               icon: Icon(

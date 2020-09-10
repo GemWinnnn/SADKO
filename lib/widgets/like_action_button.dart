@@ -3,8 +3,8 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 class LikeActionButton extends StatefulWidget {
-  LikeActionButton({Key key, this.snapshotID}) : super(key: key);
-  final String snapshotID;
+  LikeActionButton({Key key, this.id}) : super(key: key);
+  final String id;
   @override
   _LikeActionButtonState createState() => _LikeActionButtonState();
 }
@@ -21,13 +21,13 @@ class _LikeActionButtonState extends State<LikeActionButton> {
   Widget build(BuildContext context) {
     CollectionReference collection = FirebaseFirestore.instance
         .collection('likes_bucket')
-        .doc(widget.snapshotID)
+        .doc(widget.id)
         .collection('likes');
     final FirebaseAuth auth = FirebaseAuth.instance;
 
     Future<DocumentSnapshot> doc = FirebaseFirestore.instance
         .collection('likes_bucket')
-        .doc(widget.snapshotID)
+        .doc(widget.id)
         .collection('likes')
         .doc(auth.currentUser.uid)
         .get();

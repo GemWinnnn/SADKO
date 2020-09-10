@@ -5,15 +5,22 @@ import 'package:flutter_vector_icons/flutter_vector_icons.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:markdown_widget/markdown_generator.dart';
 import 'package:wvsu_tour_app/config/app.dart';
+import 'package:wvsu_tour_app/widgets/like_action_button.dart';
 
 class CollegeDetailsScreen extends StatelessWidget {
   const CollegeDetailsScreen(
-      {Key key, this.name, this.featuredImage, this.longDescription, this.logo})
+      {Key key,
+      this.name,
+      this.id,
+      this.featuredImage,
+      this.longDescription,
+      this.logo})
       : super(key: key);
   final String name;
   final dynamic featuredImage;
   final String longDescription;
   final String logo;
+  final String id;
 
   @override
   Widget build(BuildContext context) {
@@ -29,6 +36,7 @@ class CollegeDetailsScreen extends StatelessWidget {
             "College",
             style: GoogleFonts.lato(color: Colors.black),
           ),
+          actions: [LikeActionButton(id: this.id)],
           elevation: 1,
           leading: IconButton(
               icon: Icon(

@@ -1,8 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:scroll_snap_list/scroll_snap_list.dart';
-import 'package:wvsu_tour_app/bloc/blocs.dart';
 import 'package:wvsu_tour_app/config/app.dart';
 import 'package:wvsu_tour_app/widgets/message_card.dart';
 
@@ -57,6 +55,7 @@ class _MessagesListState extends State<MessagesList> {
                         Row(
                           children: snapshot.data.docs
                               .map((e) => MessageCard(
+                                    id: e.id,
                                     height: _cardHeight - 20,
                                     width: 300,
                                     name: e.data()['Name'],

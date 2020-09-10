@@ -144,7 +144,7 @@ class AnnouncementCard extends StatelessWidget {
                                         SizedBox(
                                           width: 5,
                                         ),
-                                        LikeCounter(snapshotID: this.id),
+                                        LikeCounter(id: this.id),
                                       ]),
                                       Text(_ago(this.createdBy['createdAt']))
                                     ],

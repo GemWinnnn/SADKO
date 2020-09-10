@@ -5,16 +5,19 @@ import 'package:flutter_markdown/flutter_markdown.dart';
 import 'package:flutter_vector_icons/flutter_vector_icons.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:wvsu_tour_app/config/app.dart';
+import 'package:wvsu_tour_app/widgets/like_action_button.dart';
 
 class MessageDetailsScreen extends StatelessWidget {
   const MessageDetailsScreen(
       {Key key,
+      this.id,
       this.name,
       this.featuredImage,
       this.messageBody,
       this.description})
       : super(key: key);
   final String name;
+  final String id;
   final String description;
   final dynamic featuredImage;
   final String messageBody;
@@ -30,6 +33,7 @@ class MessageDetailsScreen extends StatelessWidget {
             style: GoogleFonts.lato(color: Colors.black),
           ),
           elevation: 1,
+          actions: [LikeActionButton(id: this.id)],
           leading: IconButton(
               icon: Icon(
                 Feather.chevron_left,

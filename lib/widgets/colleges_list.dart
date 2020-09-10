@@ -57,6 +57,7 @@ class _CollegesListState extends State<CollegesList> {
                         Row(
                           children: snapshot.data.docs
                               .map((e) => CollegeCard(
+                                    id: e.id,
                                     height: 200,
                                     width: 300,
                                     campus: e.data()['Campus'],

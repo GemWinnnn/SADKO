@@ -6,6 +6,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:wvsu_tour_app/config/app.dart';
 import 'package:wvsu_tour_app/screens/campus_details.dart';
 import 'package:wvsu_tour_app/screens/photo_viewer.dart';
+import 'package:wvsu_tour_app/widgets/like_counter.dart';
 
 class CampusCard extends StatelessWidget {
   const CampusCard(
@@ -14,6 +15,7 @@ class CampusCard extends StatelessWidget {
       this.fullDescription,
       this.name,
       this.logo,
+      this.id,
       this.fullImage,
       this.featuredImage,
       this.height,
@@ -22,6 +24,7 @@ class CampusCard extends StatelessWidget {
 
   final double height;
   final double width;
+  final String id;
   final String logo;
   final String name;
   final String fullDescription;
@@ -50,6 +53,7 @@ class CampusCard extends StatelessWidget {
                         fullDescription: this.fullDescription,
                         name: this.name,
                         logo: this.logo,
+                        id: this.id,
                         featuredImage: this.fullImage ?? this.featuredImage,
                       ),
                     ));
@@ -133,7 +137,28 @@ class CampusCard extends StatelessWidget {
                                 overflow: TextOverflow.ellipsis,
                                 maxLines: 1,
                                 softWrap: true)
-                          ])))
+                          ]))),
+                  Positioned(
+                      top: 20,
+                      right: 20,
+                      child: Opacity(
+                        opacity: 0.9,
+                        child: Row(
+                          children: [
+                            Icon(
+                              Icons.favorite,
+                              color: Colors.white,
+                              size: 20,
+                            ),
+                            SizedBox(width: 5),
+                            LikeCounter(
+                              id: this.id,
+                              color: Colors.white,
+                              fontSize: 18,
+                            )
+                          ],
+                        ),
+                      ))
                 ],
               ),
             )));

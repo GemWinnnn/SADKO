@@ -3,10 +3,12 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:wvsu_tour_app/config/app.dart';
 import 'package:wvsu_tour_app/screens/message_details_screen.dart';
+import 'package:wvsu_tour_app/widgets/like_counter.dart';
 
 class MessageCard extends StatelessWidget {
   const MessageCard(
       {Key key,
+      this.id,
       this.name,
       this.featuredImage,
       this.description,
@@ -17,6 +19,7 @@ class MessageCard extends StatelessWidget {
       : super(key: key);
 
   final String name;
+  final String id;
   final String featuredImage;
   final GestureTapCallback onPressed;
   final double height;
@@ -42,6 +45,7 @@ class MessageCard extends StatelessWidget {
                     context,
                     MaterialPageRoute(
                       builder: (context) => MessageDetailsScreen(
+                        id: this.id,
                         description: this.description,
                         messageBody: this.messageBody,
                         name: this.name,
@@ -97,6 +101,27 @@ class MessageCard extends StatelessWidget {
                               style: GoogleFonts.lato(color: Colors.white)),
                         ],
                       )),
+                  Positioned(
+                      top: 20,
+                      right: 20,
+                      child: Opacity(
+                        opacity: 0.9,
+                        child: Row(
+                          children: [
+                            Icon(
+                              Icons.favorite,
+                              color: Colors.white,
+                              size: 20,
+                            ),
+                            SizedBox(width: 5),
+                            LikeCounter(
+                              id: this.id,
+                              color: Colors.white,
+                              fontSize: 18,
+                            )
+                          ],
+                        ),
+                      ))
                 ],
               ),
             )));
