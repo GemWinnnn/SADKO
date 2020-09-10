@@ -5,8 +5,8 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:wvsu_tour_app/config/app.dart';
 import 'package:wvsu_tour_app/screens/photo_viewer.dart';
 
-class CampusLifePhotoCardCard extends StatelessWidget {
-  const CampusLifePhotoCardCard(
+class CampusLifePhotoCard extends StatelessWidget {
+  const CampusLifePhotoCard(
       {Key key,
       this.shortDescription,
       this.image,

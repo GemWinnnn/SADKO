@@ -46,12 +46,13 @@ class _CampusLifeListState extends State<CampusLifeList> {
                   }
 
                   return SingleChildScrollView(
+                    scrollDirection: Axis.horizontal,
                     child: Row(
                       children: [
                         SizedBox(width: 20),
                         Row(
                             children: snapshot.data.docs
-                                .map((e) => CampusLifePhotoCardCard(
+                                .map((e) => CampusLifePhotoCard(
                                     height: 200,
                                     width: 300,
                                     shortDescription:

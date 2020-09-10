@@ -3,6 +3,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_vector_icons/flutter_vector_icons.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:jiffy/jiffy.dart';
 import 'package:wvsu_tour_app/config/app.dart';
 import 'package:wvsu_tour_app/screens/announcement_details_screen.dart';
 
@@ -140,10 +141,9 @@ class AnnouncementCard extends StatelessWidget {
                                             ? this.createdBy['username']
                                             : '...'),
                                       ]),
-                                      Text(" " +
-                                          timeAgo((this.createdBy['createdAt']
-                                                  as Timestamp)
-                                              .toDate()))
+                                      Text(Jiffy(DateTime.parse(
+                                              this.createdBy['createdAt']))
+                                          .fromNow())
                                     ],
                                   ),
                                 ))

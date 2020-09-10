@@ -49,6 +49,7 @@ class _HistoricalArtisticLandmarksListState
                   }
 
                   return SingleChildScrollView(
+                    scrollDirection: Axis.horizontal,
                     child: Row(
                       children: [
                         SizedBox(width: 20),
