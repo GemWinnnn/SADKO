@@ -65,6 +65,8 @@ class _AboutScreenState extends State<AboutScreen> {
       _scrollController = ScrollController();
     }
 
+    _getVersion();
+
     return Scaffold(
         backgroundColor: appPrimaryColor,
         body: NotificationListener<ScrollNotification>(
