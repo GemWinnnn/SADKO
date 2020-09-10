@@ -1,10 +1,9 @@
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:optimized_cached_image/optimized_cached_image.dart';
 import 'package:wvsu_tour_app/config/app.dart';
 import 'package:wvsu_tour_app/screens/message_details_screen.dart';
 import 'package:wvsu_tour_app/widgets/like_counter.dart';
-import 'package:optimized_cached_image/optimized_cached_image.dart';
 
 class MessageCard extends StatelessWidget {
   const MessageCard(

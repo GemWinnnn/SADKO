@@ -7,8 +7,8 @@ import 'package:wvsu_tour_app/config/app.dart';
 class LikeCounter extends StatefulWidget {
   LikeCounter({Key key, this.id, this.color, this.fontSize}) : super(key: key);
   final String id;
-  Color color;
-  double fontSize;
+  final Color color;
+  final double fontSize;
   @override
   _LikeCounterState createState() => _LikeCounterState();
 }

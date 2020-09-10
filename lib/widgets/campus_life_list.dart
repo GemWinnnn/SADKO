@@ -1,8 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:scroll_snap_list/scroll_snap_list.dart';
-import 'package:wvsu_tour_app/bloc/campus_life/campus_life_bloc.dart';
 import 'package:wvsu_tour_app/config/app.dart';
 import 'package:wvsu_tour_app/widgets/campus_life_photo_card.dart';
 

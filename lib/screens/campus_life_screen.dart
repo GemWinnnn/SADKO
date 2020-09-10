@@ -1,18 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter/services.dart';
-import 'package:http/http.dart' as http;
-import 'package:wvsu_tour_app/bloc/blocs.dart';
-import 'package:wvsu_tour_app/bloc/campus_life/campus_life_bloc.dart';
 import 'package:wvsu_tour_app/config/app.dart';
-import 'package:wvsu_tour_app/repositories/campus_life/campus_life_api.dart';
-import 'package:wvsu_tour_app/repositories/campus_life/campus_life_repository.dart';
-import 'package:wvsu_tour_app/repositories/historical_artistic_landmarks/historical_artistic_landmarks_api.dart';
-import 'package:wvsu_tour_app/repositories/messages/messages_api.dart';
-import 'package:wvsu_tour_app/repositories/messages/messages_repository.dart';
-import 'package:wvsu_tour_app/repositories/organizations/organizations_api.dart';
-import 'package:wvsu_tour_app/repositories/organizations/organizations_repository.dart';
-import 'package:wvsu_tour_app/repositories/repositories.dart';
 import 'package:wvsu_tour_app/widgets/campus_life_list.dart';
 import 'package:wvsu_tour_app/widgets/historical_artistic_landmarks_list.dart';
 import 'package:wvsu_tour_app/widgets/messages_list.dart';
